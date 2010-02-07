@@ -1,0 +1,1077 @@
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html>
+<head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="http://graphics8.nytimes.com/js/common.js" type="text/javascript"></script>
+<script src="http://graphics8.nytimes.com/js/article/articleShare.js" type="text/javascript"></script>
+<script src="http://graphics8.nytimes.com/js/Tacoda_AMS_DDC_Header.js" type="text/javascript"></script>
+<script src="http://graphics8.nytimes.com/js/fileit.js"></script>
+<script type="text/javascript" language="JavaScript" src="http://graphics8.nytimes.com/js/app/lib/prototype/1.6.0.2/prototype.js"></script>
+<script type="text/javascript" language="JavaScript" src="http://graphics8.nytimes.com/js/common/screen/DropDown.js"></script>
+<script type="text/javascript" language="JavaScript" src="http://graphics8.nytimes.com/js/common/screen/modifyNavigationDisplay.js"></script>
+<script type="text/javascript" language="JavaScript" src="http://graphics8.nytimes.com/js/common/screen/altClickToSearch.js"></script>
+<script type="text/javascript" language="JavaScript" src="http://graphics8.nytimes.com/js/util/tooltip.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="http://graphics8.nytimes.com/css/common/global.css" />
+<style type="text/css">
+			@import url(http://graphics8.nytimes.com/css/common/screen/article.css);
+			@import url(http://graphics8.nytimes.com/css/section/business/screen/smallbusiness/article.css);
+		</style>
+<!--[if IE 7]>
+		<style type="text/css">
+			@import url(http://graphics8.nytimes.com/css/common/screen/ie7.css); 
+			
+		</style>
+		<![endif]-->
+
+
+<title>Toyota Has Pattern of Slow Response on Safety Issues - NYTimes.com</title>
+<meta name="description" content="Toyota&#8217;s recent recalls and disclosures are part of a long-term pattern in which the automaker has reacted slowly to safety concerns.">
+<meta name="keywords" content="Toyota Motor Corp,Accidents and Safety,Automobiles,Brakes,Recalls and Bans of Products">
+<meta name="misspelling" content="">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="ROBOTS" content="NOARCHIVE">
+<meta name="DISPLAYDATE" content="February 7, 2010">
+<meta name="hdl" content="Toyota Has Pattern of Slow Response on Safety Issues">
+<meta name="hdl_p" content="TOYOTA&#8217;S PATTERN IS SLOW RESPONSE ON SAFETY ISSUES"> 
+<meta name="byl" content="By JAMES KANTER, MICHELINE MAYNARD and HIROKO TABUCHI">
+<meta name="lp" content="Toyota&#8217;s recent recalls and disclosures are part of a long-term pattern in which the automaker has reacted slowly to safety concerns.">
+<meta name="cre" content="The New York Times">
+<meta name="edt" content="NewYork">
+<meta name="pdate" content="20100207">
+<meta name="ttl" content=""> 
+<meta name="virtloc" content="">
+<meta name="des" content="Accidents and Safety;Automobiles;Brakes;Recalls and Bans of Products">
+<meta name="per" content="">
+<meta name="org" content="Toyota Motor Corp">
+<meta name="geo" content="">
+<meta name="ticker" content="Toyota Motor Corp|TM|NYSE;Honda Motor Co Ltd|HMC|NYSE">
+<meta name="dat" content="February 7, 2010">
+<meta name="tom" content="News">
+<meta name="cat" content="">
+<meta name="col" content="">
+<meta name="dsk" content="Business / Global Business">
+<meta name="articleid" content="1247466906953">
+<meta name="CG" content="business"/>
+<meta name="SCG" content="global"/>
+<meta name="PT" content="Article"/>
+<meta name="PST" content=""/>
+<meta name="hdr_img" content="/images/article/header/sect_business.gif">
+<meta name="thumbnail" content=""/>
+<meta name="thumbnail_height" content=""/>
+<meta name="thumbnail_width" content=""/>
+
+
+
+
+
+
+<meta  name="xlarge" content="images/2010/02/07/business/07toyota_CA1/07toyota_CA1-sfSpan.jpg"/>
+<meta  name="xlarge_height" content="250"/>
+<meta  name="xlarge_width" content="395"/>
+<meta NAME="ARTICLE_TEMPLATE_VERSION" CONTENT="700">
+<meta name="sec" content="A">
+<meta name="pg" content="1">
+<link rel="canonical" href="http://www.nytimes.com/2010/02/07/business/global/07toyota.html?pagewanted=2" />
+
+<script type="text/JavaScript">
+	var google_hints = "Accidents+and+Safety,Automobiles,Brakes,Recalls+and+Bans+of+Products,Toyota+Motor+Corp";
+	var google_ad_channel = "ar_business";
+</script>
+
+<link rel="alternate" media="handheld" href="http://mobile.nytimes.com/2010/02/07/business/global/07toyota.xml" />
+<!--AUTOCOMPLETE for business -->
+<script type="text/javascript" src="http://graphics8.nytimes.com/js/app/lib/prototype/1.6.0.2/prototype.js"></script>
+<script type="text/javascript" src="http://graphics8.nytimes.com/js/app/lib/scriptaculous/1.8.1/scriptaculous.js?load=effects,controls"></script>
+<script type="text/javascript" src="http://graphics8.nytimes.com/js/section/business/businesssearch/autosuggest.js"></script>
+</head>
+
+    
+
+<body >
+
+
+<a name="top"></a>
+<!--Hat -->
+<NYT_HEADER>
+
+</NYT_HEADER>
+<a href="#articleBodyLink" class="jumpLink">Skip to article</a>
+<!--New call for topnav stuff. -->
+<div id="shell" class="">
+
+<div id="login">
+<ul id="memberTools">
+<!-- ADXINFO classification="text_ad" campaign="nyt2010-circ-bar1_non-hp-34U7K"--><li><img src="http://at.amgdgt.com/ads/?t=pp&px=5548&rnd=[cachebuster]" width="1" height="1" border="0"/><a href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Bar1&sn2=1a50cb9d/923a393f&sn1=d5e9462f/59f4a72&camp=nyt2010-circ-bar1_non-hp-34U7K&ad=061809-bar1_non-hp_34U7K&goto=https%3A%2F%2Fwww%2Enytimesathome%2Ecom%2Fsplitter%5Fcp%2Findex%2Ephp%3FSPTR%5FID%3DhdNYT%26MediaCode%3DW47AF%26CMP%3D34U7K" target="_blank">Get Home Delivery </a></li>
+
+			
+
+			<li><a href="http://www.nytimes.com/auth/login?URI=http://">Log In</a></li> 
+			<li><a href="http://www.nytimes.com/gst/regi.html">Register Now</a></li>
+			
+
+
+</ul>
+<ul class="tabs">
+<li><a href="http://www.nytimes.com">Home Page</a></li>
+<!--<li><a href="http://my.nytimes.com">My Times</a></li> -->
+<li><a href="http://www.nytimes.com/pages/todayspaper/index.html">Today's Paper</a></li>
+<li><a href="http://www.nytimes.com/video">Video</a></li>
+<li><a href="http://www.nytimes.com/mostpopular">Most Popular</a></li>
+<li><a href="http://topics.nytimes.com/top/reference/timestopics/">Times Topics</a></li>
+</ul>
+</div>
+
+<div id="page">
+
+<div id="masthead">
+
+<div id="Middle1">
+<!-- ADXINFO classification="button" campaign="Sony_Picture_Classics01a_1130716_nyt5"--><a href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Middle1C&sn2=8dbb4758/c01e224b&sn1=e3a71744/5efdc567&camp=Sony_Picture_Classics01a_1130716_nyt5&ad=SPC_88x31_NowPlaying_c&goto=http%3A%2F%2Fwww%2Esonyclassics%2Ecom%2Fnyt%2F%3Fid%3Dparnassus" target="_blank">
+<img src="http://graphics8.nytimes.com/adx/images/ADS/22/09/ad.220903/Parnassus_88x31_3A_globes.jpg" width="88" height="31" border="0"></a>
+
+</div>
+
+<form id="searchForm" name="searchForm" method="get" 
+			action="http://query.nytimes.com/search/sitesearch" 
+			enctype="application/x-www-form-urlencoded">
+<div id="nytSearchWidget">
+<label for="searchQuery">Search All NYTimes.com</label>
+<input type="text" name="query" id="searchQuery"/>
+<input id="searchSubmit" title="Search" alt="Go" type="image" src="http://graphics8.nytimes.com/images/global/buttons/go.gif">
+<input type="hidden" id="searchAll" name="type" value="nyt"/>
+</div>
+</form>
+<a href="http://www.nytimes.com"><img src="http://graphics8.nytimes.com/images/misc/nytlogo152x23.gif" alt="New York Times" id="NYTLogo"/></a>
+<div id="Bar3">
+
+</div>
+<div id="date">
+</div>
+
+<h1>
+
+<a href="http://www.nytimes.com/pages/business/global/index.html">Global Business</a>
+</h1>
+
+</div>
+
+
+<div id="navigation" >
+<ul class="tabs">
+<li id="navWorld" ><a href="http://www.nytimes.com/pages/world/index.html">World</a>
+</li>
+<li id="navUS" ><a href="http://www.nytimes.com/pages/national/index.html">U.S.</a>
+</li>
+<li id="navNYRegion" ><a href="http://www.nytimes.com/pages/nyregion/index.html">N.Y. / Region</a>
+</li>
+<li id="navBusiness" class="selected"><a href="http://www.nytimes.com/pages/business/index.html">Business</a>
+</li>
+<li id="navTechnology" ><a href="http://www.nytimes.com/pages/technology/index.html">Technology</a>
+</li>
+<li id="navScience" ><a href="http://www.nytimes.com/pages/science/index.html">Science</a>
+</li>
+<li id="navHealth" ><a href="http://health.nytimes.com/pages/health/index.html">Health</a>
+</li>
+<li id="navSports" ><a href="http://www.nytimes.com/pages/sports/index.html">Sports</a>
+</li>
+<li id="navOpinion" ><a href="http://www.nytimes.com/pages/opinion/index.html">Opinion</a>
+</li>
+<li id="navArts" ><a href="http://www.nytimes.com/pages/arts/index.html">Arts</a>
+</li>
+<li id="navStyle" ><a href="http://www.nytimes.com/pages/style/index.html">Style</a>
+</li>
+<li id="navTravel" ><a href="http://travel.nytimes.com/pages/travel/index.html">Travel</a>
+</li>
+<li id="navJobs" ><a href="http://www.nytimes.com/pages/jobs/index.html">Jobs</a>
+</li>
+<li id="navRealestate" ><a href="http://www.nytimes.com/pages/realestate/index.html">Real Estate</a>
+</li>
+<li id="navAutos" ><a href="http://www.nytimes.com/pages/automobiles/index.html">Autos</a>
+</li>
+</ul>
+</div><!--#navigation -->
+<!--user code here -->
+<div class="sn-global"><!--menu highlighting wrapper -->
+<div id="businessSearchBar" class="clearfix">
+<div class="search">
+<label class="label" for="bsearchQuery">Search Business</label>
+<form method="get" action="http://query.nytimes.com/search/business/">
+<input type="text" id="bsearchQuery" autocomplete="off" name="query" value="" class="greyed" />
+<div class="querySuggestions" style="display:none;"></div>
+<input type="image" src="http://graphics8.nytimes.com/images/global/buttons/go.gif">
+</form>
+</div>
+<div class="financialTools">
+<label class="label" for="financialToolsChoices">Financial Tools</label>
+<select id="financialToolsChoices" onchange="goToURL2(this);">
+<option value="">Select a Financial Tool</option>
+<option value="http://markets.on.nytimes.com/research/stocks/tools/analysis_tools.asp">Analysis Tools</option>
+<option
+value="http://markets.on.nytimes.com/research/screener/quick_screen/quick_screen.asp">Stock
+and Fund Screener</option>
+<option value="http://markets.on.nytimes.com/research/portfolio/view/view.asp">Portfolio</option>
+<option value="http://select.nytimes.com/mem/tnt.html">Alerts</option>
+</select>
+</div>
+<div class="more">
+<strong>More in <a href="http://www.nytimes.com/pages/business/index.html">Business &#187;</a></strong>
+<ul>
+<li class="sn-worldbusiness"><a href="http://www.nytimes.com/pages/business/global/index.html">Global Business</a></li>
+<li class="sn-markets"><a href="http://markets.on.nytimes.com/research/markets/overview/overview.asp">Markets</a></li>
+<li class="sn-economy"><a href="http://www.nytimes.com/pages/business/economy/index.html">Economy</a></li>
+<li class="sn-dealbook"><a href="http://dealbook.blogs.nytimes.com/">DealBook</a></li>
+<li class="sn-media"><a href="http://www.nytimes.com/pages/business/media/index.html">Media &amp; Advertising</a></li>
+<li class="sn-smallbusiness"><a href="http://www.nytimes.com/pages/business/smallbusiness/index.html">Small Business</a></li>
+<li class="sn-yourmoney"><a href="http://www.nytimes.com/pages/your-money/index.html">Your Money</a></li>
+<li class="sn-energy-environment"><a href="http://www.nytimes.com/pages/business/energy-environment/index.html">Energy & Environment</a>
+</ul>
+</div>
+</div><!--close businessSearchBar -->
+</div><!--close highlighting wraper -->
+<script type="text/javascript">modifyNavigationDisplay();</script>
+
+<!--space holder for tool bar -->
+
+
+<div id="adxLeaderboard"><!-- ADXINFO classification="leaderboard_728" campaign="Google_2010_ROSLB_nyt15"--><div class="clearfix">
+<script type="text/javascript" language="JavaScript">
+<!--
+	google_ad_client = 'ca-nytimes_display_block';
+	google_alternate_ad_url = 'http://www.nytimes.com/ads/remnant/networkredirect-leaderboard.html';
+	google_ad_width = 728; 
+	google_ad_height = 90;
+	google_ad_format = '728x90_pas_abgc';
+	google_ad_type = 'image,flash';
+	google_encoding = 'utf8'; 
+	google_safe = 'high';
+	google_targeting = 'site';
+	google_ad_channel = 'leaderboard';
+// -->
+</script>
+<script type="text/javascript" language="JavaScript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+<noscript>
+	<img height="1" width="1" border="0" src="http://pagead2.googlesyndication.com/pagead/imp.gif?client=ca-nytimes_display_html&event=noscript" /> 
+</noscript>
+<div style="font-family: Arial; font-size: 10px; color:#004276; float: right; margin-right: 125px;"><a href="http://www.nytimes.whsites.net/mediakit/">Advertise on NYTimes.com</a></div></div>
+</div>
+
+
+<a name="articleBodyLink"></a>
+<div id="main">
+
+
+
+
+
+
+<div id="aColumn">
+<div id="article">
+<!--google_ad_section_start -->
+
+<h1>
+<NYT_HEADLINE  version="1.0" type=" ">
+Toyota Has Pattern of Slow Response on Safety Issues
+</NYT_HEADLINE>
+</h1>
+
+
+<script language='JavaScript' type='text/JavaScript'>function getSharePasskey() { return 'ex=1423285200&en=e21e83bf6c1328fc&ei=5124';}</script>
+<script language="JavaScript" type="text/JavaScript">
+function getShareURL() {
+	return encodeURIComponent('http://www.nytimes.com/2010/02/07/business/global/07toyota.html');
+}
+function getShareHeadline() {
+	return encodeURIComponent('Toyota Has Pattern of Slow Response on Safety Issues');
+}
+function getShareDescription() { 
+
+	return encodeURIComponent('Toyota&#8217;s recent recalls and disclosures are part of a long-term pattern in which the automaker has reacted slowly to safety concerns.');
+}
+function getShareKeywords() {
+	return encodeURIComponent('Brakes,Automobiles,Recalls and Bans of Products,Accidents and Safety,Toyota Motor Corp');
+}
+function getShareSection() {
+	return encodeURIComponent('business');
+}
+function getShareSectionDisplay() {
+
+	return encodeURIComponent('Business / Global Business');
+}
+function getShareSubSection() {
+	return encodeURIComponent('global');
+}
+function getShareByline() {
+	return encodeURIComponent('By JAMES KANTER, MICHELINE MAYNARD and HIROKO TABUCHI');
+}
+function getSharePubdate() {
+	return encodeURIComponent('February 7, 2010');
+}
+</script>
+<div id="toolsRight">
+<NYT_REPRINTS_FORM>
+
+<script language="javascript">
+			<!-- 
+			function submitCCCForm(){
+				PopUp = window.open('', '_Icon','location=no,toolbar=no,status=no,width=650,height=550,scrollbars=yes,resizable=yes');
+				this.document.cccform.submit();
+			}
+			// -->
+			</script>
+<form name="cccform" action="https://s100.copyright.com/CommonApp/LoadingApplication.jsp" target="_Icon"><input type="hidden" name="Title" value="Toyota Has Pattern of Slow Response on Safety Issues"><input type="hidden" name="Author" value="By JAMES KANTER, MICHELINE MAYNARD and HIROKO TABUCHI"><input type="hidden" name="ContentID" value="http://www.nytimes.com/2010/02/07/business/global/07toyota.html"><input type="hidden" name="FormatType" value="default"><input type="hidden" name="PublicationDate" value="FEB 07 2010"><input type="hidden" name="PublisherName" value="The New York Times"><input type="hidden" name="Publication" value="nytimes.com"><input type="hidden" name="wordCount" value="1243"></form>
+</NYT_REPRINTS_FORM>
+<div class="articleTools">
+<div class="toolsContainer">
+<ul class="toolsList" id="toolsList">
+<li class="email">
+
+<a id="emailThis" onClick="s_code_linktrack('Article-Tool-EmailSignIn');" 
+           href="http://www.nytimes.com/auth/login?URI=http://www.nytimes.com/2010/02/07/business/global/07toyota.html">Sign In to E-Mail</a>
+</li>
+<li class="print">
+<A HREF="/2010/02/07/business/global/07toyota.html?hp=&pagewanted=print">Print</a>
+</li>
+ <li class="singlePage">
+<A HREF="/2010/02/07/business/global/07toyota.html?hp=&pagewanted=all"> Single Page</a>
+ </li>
+<li class="reprints"><a href="#" onClick="javascript:submitCCCForm();">Reprints</a></li>
+</ul>
+
+<div id="adxToolSponsor"><a href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Frame4A&sn2=a23bc051/6ffe8c2e&sn1=4483f568/70acad68&camp=foxsearch2010_emailtools_1225561c_nyt5&ad=Cyrus_120x60_01.25&goto=http%3A%2F%2Fwww%2Efoxsearchlight%2Ecom%2Fcyrus" target="_blank">
+<img src="http://graphics8.nytimes.com/adx/images/ADS/22/34/ad.223456/CYRUS_Sundance_July9.gif" width="120" height="60" border="0"></a>
+</div>
+
+</div>
+</div>
+</div>
+
+
+<div class="timestamp">Published: February 6, 2010 </div>
+<div id="articleBody">
+
+
+
+<!--NYT_INLINE_IMAGE_POSITION1 -->
+
+
+
+
+
+<NYT_TEXT >
+
+
+    <p><font size="-1">(Page 2 of 2)</font><p><p><p>Japan&#8217;s Transport Ministry appeared to be a step ahead of Toyota last week. It ordered the company to investigate problems on the 2010 Prius hybrid that could cause its brakes to be unresponsive when driving slowly on bumpy or icy roads. </p> 
+<div id="articleInline" class="inlineLeft">
+<div id="leftNavTabs"></div>
+<div id="inlineBox"><a href="#secondParagraph" class="jumpLink">Skip to next paragraph</a>
+  
+   
+<div id="sidebarArticles">
+<h4>Related</h4>
+<h2>
+
+
+
+
+<a href="http://www.nytimes.com/2010/02/05/business/05recall.html?ref=global-business" >Lawsuit Over a Crash Adds to Toyota’s Difficulties</a> 
+
+(February 5, 2010)
+</h2>
+<h2>
+
+
+
+
+<a href="http://www.nytimes.com/2010/02/05/technology/05electronics.html?ref=global-business" >The Dozens of Computers That Make Modern Cars Go (and Stop)</a> 
+
+(February 5, 2010)
+</h2>
+<h2>
+
+
+
+
+<a href="http://www.nytimes.com/2010/02/05/business/05questions.html?ref=global-business" >Answers to Questions About Prius and the Toyota Recalls</a> 
+
+(February 5, 2010)
+</h2>
+<h2>
+
+
+
+
+<a href="http://www.nytimes.com/2010/02/06/business/global/06toyota.html?ref=global-business" >Toyota’s Top Executive Under Rising Pressure</a> 
+
+(February 6, 2010)
+</h2>
+<h2>
+
+
+
+
+<a href="http://www.nytimes.com/2010/02/07/weekinreview/07segal.html?ref=global-business" >Paragon Envy: Oh, What a Feeling: Watching Toyota Flunk for Once</a> 
+
+(February 7, 2010)
+</h2>
+<h2><script src="http://graphics8.nytimes.com/packages/html/multimedia/js/swfobject.js"></script>
+<script src="http://graphics8.nytimes.com/packages/html/multimedia/js/NYTInlineEmbed.js" ></script>
+<script>
+mm.DI = true;
+mm.LI = false;
+mm.AH = "Weekend Business: Jane Bornemeier and Micheline Maynard on Toyota’s problems.";
+mm.AS = "20100123_weekend_biz_audio";
+mm.AD = "1222";
+mm.AU = "http://graphics8.nytimes.com/podcasts/2010/02/05/05weekendbiz.mp3";
+mm.IU = "";
+writePlayer();
+</script></h2>
+</div>
+<!--hasEmbeddedPlayer promo include for articles -->
+<div id="portfolioInline" class="inlineLeft">
+<h4>Add to Portfolio</h4>
+<ul>
+
+
+				<li><a href="http://www.nytimes.com/auth/login?URI=http://www.nytimes.com/2010/02/07/business/global/07toyota.html">Toyota Motor Corp</a></li>
+				
+</ul>
+<p><a href="http://markets.on.nytimes.com/research/portfolio/view/view.asp#sda">Go to your Portfolio &#187;</a></p>
+</div>
+  
+</div>
+</div><a name="secondParagraph"></a>
+<!--calling embedded video jsp -->
+
+<!--brightcove player begins -->
+<div class="inlineVideo left brightcove">
+<!--NYT video player embed code *starts here* - Build# 2008.09.17 --> 
+<script type="text/javascript" src="http://graphics8.nytimes.com/bcvideo/1.0/iframe/embed.js"></script>
+<script type="text/javascript">
+			NYT_VideoPlayerStart( {
+			   playerType  : "article",
+			   videoId     : "1247466893981"
+			} );
+			</script>
+<!--NYT video player embed code *ends here* --> 
+</div>
+<!--brightcove player ends -->
+
+ <p>Toyota then said it had corrected the problem on cars built since mid-January. But it now faces a decision on whether to recall more than 300,000 cars sold since the newest version of the Prius was introduced last spring. </p><p>The most severe criticism has been over Toyota&#8217;s handling of the pedal problem.</p><p>The company did not recall cars with sticky pedals in Europe, after it made a design change for new cars, because it considered the problem a &#8220;customer satisfaction&#8221; issue rather than a defect. None of the 26 complaints it received involved cars that had been in accidents, Toyota officials said.</p><p>It introduced the design change for new cars being built in Europe last summer, before sticky pedal problems came to a head in the United States.</p><p>Only after Toyota announced a recall in the United States did it then extend the recall to 1.8 million European vehicles as well.</p><p>In a filing with the <a href="http://topics.nytimes.com/top/reference/timestopics/organizations/n/national_highway_traffic_safety_administration/index.html?inline=nyt-org" title="More articles about National Highway Traffic Safety Administration">National Highway Traffic Safety Administration</a>, Toyota said it had not realized until October that the pedals in cars made in the United States used the same material as those in Europe &#151; even though both are supplied by the same parts maker, CTS of Elkhart, Ind.</p><p>Although it made the change on European models last summer, Toyota initially told American authorities it was unaware of any problems with the CTS-made pedals. Instead, Toyota said it believed gas pedals were becoming trapped in floor mats, the subject of an advisory to consumers that was later followed by a recall. </p><p>Toyota had &#8220;not been able to single out or verify any other cause&#8221; for the unintended acceleration, the company said when the floor-mat recall was made.</p><p>Analysts questioned Toyota&#8217;s explanation. </p><p>&#8220;There is no way that Toyota in America or Japan would not have known about a replacement taking place in Europe,&#8221; said Tadashi Nishioka, an auto industry expert at the University of Hyogo in Japan. &#8220;At Toyota, all information flows to headquarters. It&#8217;s that kind of company.&#8221;</p><p>Colin Hensley, the general manager of corporate affairs at Toyota Motor Europe, said the change would eventually have been brought to cars in the United States under Toyota&#8217;s practice of sharing new production methods among its plants.</p><p>Shinichi Sasaki, the Toyota executive in charge of quality, added last week: &#8220;We did realize that it was not good that pedals were not returning to their proper positions, but we took some time to consider whether we needed to take market action.&#8221; </p><p>When American regulators visited Japan, they &#8220;directed us to think of things from a customer&#8217;s perspective,&#8221; Mr. Sasaki added. &#8220;We took this seriously and made the decision to recall the cars.&#8221; </p><p>Last week, Toyota dealers began replacing pedals on millions of cars. Factories will start installing them in new cars this week.</p><div id="pageLinks"><a class="previous" onClick="s_code_linktrack('Article-MultiPage-Previous');"
+            title="Previous Page"
+            href="/2010/02/07/business/global/07toyota.html?pagewanted=1&hp">&#x00ab; Previous Page</a><ul id="pageNumbers"><li> <a onClick="s_code_linktrack('Article-MultiPagePageNum1');" title="Page 1" href="/2010/02/07/business/global/07toyota.html?pagewanted=1&hp">1</a> </li><li> 2 </li></ul></div><NYT_AUTHOR_ID><div id="authorId"><p>Keith Bradsher and Michael Parrish contributed reporting.</p></div></NYT_AUTHOR_ID><NYT_UPDATE_BOTTOM>
+</NYT_UPDATE_BOTTOM>
+</NYT_TEXT>
+<div class="nextArticleLink clearfix">
+<a title="Testy Conflict With Goldman Helped Push A.I.G. to Edge" 
+		  	onClick="s_code_linktrack('Article-NextArticleBottom');"
+		  	href="http://www.nytimes.com/2010/02/07/business/07goldman.html">Next Article in 
+		  	Business (1 of 
+		  	27)  &#x00bb;</a>
+<span>A version of this article appeared in print on February 7, 2010, on page A1 of the New York edition.</span>										
+</div>		
+</div>
+</div>
+<!--google_ad_section_end -->
+<!--story end -->
+<div id="articleExtras">
+
+<div class="expandedToolsRight">
+<div class="articleTools">
+<div class="toolsContainer">
+<ul class="toolsList">
+<li class="email"><a id="emailThis" onClick="s_code_linktrack('Article-Tool-EmailSignIn');" 
+            href="http://www.nytimes.com/auth/login?URI=http://www.nytimes.com/2010/02/07/business/global/07toyota.html">Sign In to E-Mail</a></li>
+<li class="print">
+<A HREF="/2010/02/07/business/global/07toyota.html?hp=&pagewanted=print">Print</a>
+</li>
+ <li class="singlePage">
+<A HREF="/2010/02/07/business/global/07toyota.html?hp=&pagewanted=all"> Single Page</a>
+ </li>
+<li class="reprints"><a href="#" onClick="javascript:submitCCCForm();">Reprints</a></li>
+</ul>
+<script language="JavaScript" type="text/javascript">writePost();</script>
+
+</div>
+</div>
+</div>
+
+<div class="extrasLeft">
+
+<div id="adxCircBottom"><!-- ADXINFO classification="text_ad" campaign="nyt2010-circ-sf_footer_34YR6"--><table width="468" border="0">
+<tr>
+<td width="84"><a href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Bottom1&sn2=794b505b/5ccf9ae2&sn1=f6bbb28/1559282&camp=nyt2010-circ-sf_footer_34YR6&ad=101609-footer-sf_34YR6&goto=https%3A%2F%2Fwww%2Enytimesathome%2Ecom%2Foffer%2Ephp%3Fid%3D78%26MediaCode%3DWA9AM%26CMP%3D34YR6"><img src="http://graphics8.nytimes.com/adx/images/ADS/21/45/ad.214571/90x79_newspaper.gif" width="90" height="70" border="0"></a></td>
+<td width="381">
+<p align="left">
+<font size="-1" class="nav" color="#000066"><a href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Bottom1&sn2=794b505b/5ccf9ae2&sn1=f6bbb28/1559282&camp=nyt2010-circ-sf_footer_34YR6&ad=101609-footer-sf_34YR6&goto=https%3A%2F%2Fwww%2Enytimesathome%2Ecom%2Foffer%2Ephp%3Fid%3D78%26MediaCode%3DWA9AM%26CMP%3D34YR6">The Times & the Bay Area - now at 50% off when you subscribe for the convenience of home delivery.</a></font>
+<img src="http://amch.questionmarket.com/adsc/d662899/2/668744/adscout.php?ord=[randnum]" height="1" width="1" border="0">
+<img src="http://at.amgdgt.com/ads/?t=pp&px=5548&rnd=[cachebuster]" width="1" height="1" border="0"/></td>
+</tr>
+</table>
+<br></div>
+
+
+<div id="relatedArticles" class="list"><h3>Past Coverage</h3><ul><li><span class="headlineWrapper"><a onClick="s_code_linktrack('Article-RelatedArticles-searchFree');" href="http://www.nytimes.com/2010/02/06/business/global/06toyota.html?fta=y">Toyota's Top Executive Under Rising Pressure</a></span>&nbsp;(February 6, 2010)</li><li><span class="headlineWrapper"><a onClick="s_code_linktrack('Article-RelatedArticles-searchFree');" href="http://www.nytimes.com/2010/02/05/business/05recall.html?fta=y">Lawsuit Over a Crash Adds to Toyota's Difficulties</a></span>&nbsp;(February 5, 2010)</li><li><span class="headlineWrapper"><a onClick="s_code_linktrack('Article-RelatedArticles-searchFree');" href="http://www.nytimes.com/2010/02/05/business/global/05toyota.html?fta=y">U.S. Starts Inquiry Into Brake Problems on Prius</a></span>&nbsp;(February 5, 2010)</li><li><span class="headlineWrapper"><a onClick="s_code_linktrack('Article-RelatedArticles-searchFree');" href="http://www.nytimes.com/2010/02/04/business/global/04prius.html?fta=y">Prius Brake Inquiry May Be Another Blow for Toyota</a></span>&nbsp;(February 4, 2010)</li></ul></div>
+<!--related blogs promo -->
+<!--related blogs promo end -->
+
+<div id="relatedTopics">
+<h3>Related Searches</h3>
+<form ACTION="/mem/tnt.html" METHOD="GET" ENCTYPE="application/x-www-form-urlencoded">
+<ul>
+<input type="hidden" name="retA" value="http://www.nytimes.com2010/02/07/business/global/07toyota.html"/>
+<input type="hidden" name="retT" value="Toyota Has Pattern of Slow Response on Safety Issues"/>
+<input type="hidden" name="module" value="call"/>
+<input type="hidden" name="alert_context" value="1"/>	    
+<input type="hidden" name="topic1" value="Toyota Motor Corp"/>
+<input type="hidden" name="topic_field1" value="nyt_org_all"/>					
+<li>
+<span><a href="http://query.nytimes.com/search/query&#063;ppds=org&#038;v1=TOYOTA+MOTOR+CORP&#038;fdq=19960101&#038;td=sysdate&#038;sort=newest&#038;ac=TOYOTA+MOTOR+CORP&#038;rt=1%2Cdes%2Corg%2Cper%2Cgeo" onClick="javascript:s_code_linktrack('Article-RelatedTopics');">Toyota Motor Corp</a></span>
+<span class="alert">
+<a href="http://select.nytimes.com/mem/tnt.html?module=call&alert_context=1&topic1=TOYOTA+MOTOR+CORP&topic_field1=org&topic1_check=y&retA=&retT=&cskey=" onClick="javascript:s_code_linktrack('Article-RelatedTopics'); dcsMultiTrack('DCS.dcssip','www.nytimes.com','DCS.dcsuri','/newstracker/add.html','WT.ti','Newstracker Add','WT.z_nta','Add','WT.pers','Per','WT.z_dcsm','1');">
+Get E-Mail Alerts</a>
+</span>
+</li>
+<input type="hidden" name="topic2" value="Accidents and Safety"/>
+<input type="hidden" name="topic_field2" value="mdes"/>					
+<li>
+<span><a href="http://query.nytimes.com/search/query&#063;ppds=des&#038;v1=ACCIDENTS+AND+SAFETY&#038;fdq=19960101&#038;td=sysdate&#038;sort=newest&#038;ac=ACCIDENTS+AND+SAFETY&#038;rt=1%2Cdes%2Corg%2Cper%2Cgeo" onClick="javascript:s_code_linktrack('Article-RelatedTopics');">Accidents and Safety</a></span>
+<span class="alert">
+<a href="http://select.nytimes.com/mem/tnt.html?module=call&alert_context=1&topic1=ACCIDENTS+AND+SAFETY&topic_field1=des&topic1_check=y&retA=&retT=&cskey=" onClick="javascript:s_code_linktrack('Article-RelatedTopics'); dcsMultiTrack('DCS.dcssip','www.nytimes.com','DCS.dcsuri','/newstracker/add.html','WT.ti','Newstracker Add','WT.z_nta','Add','WT.pers','Per','WT.z_dcsm','1');">
+Get E-Mail Alerts</a>
+</span>
+</li>
+<input type="hidden" name="topic3" value="Automobiles"/>
+<input type="hidden" name="topic_field3" value="des"/>					
+<li>
+<span><a href="http://query.nytimes.com/search/query&#063;ppds=des&#038;v1=AUTOMOBILES&#038;fdq=19960101&#038;td=sysdate&#038;sort=newest&#038;ac=AUTOMOBILES&#038;rt=1%2Cdes%2Corg%2Cper%2Cgeo" onClick="javascript:s_code_linktrack('Article-RelatedTopics');">Automobiles</a></span>
+<span class="alert">
+<a href="http://select.nytimes.com/mem/tnt.html?module=call&alert_context=1&topic1=AUTOMOBILES&topic_field1=des&topic1_check=y&retA=&retT=&cskey=" onClick="javascript:s_code_linktrack('Article-RelatedTopics'); dcsMultiTrack('DCS.dcssip','www.nytimes.com','DCS.dcsuri','/newstracker/add.html','WT.ti','Newstracker Add','WT.z_nta','Add','WT.pers','Per','WT.z_dcsm','1');">
+Get E-Mail Alerts</a>
+</span>
+</li>
+<input type="hidden" name="topic4" value="Brakes"/>
+<input type="hidden" name="topic_field4" value="des"/>					
+<li>
+<span><a href="http://query.nytimes.com/search/query&#063;ppds=des&#038;v1=BRAKES&#038;fdq=19960101&#038;td=sysdate&#038;sort=newest&#038;ac=BRAKES&#038;rt=1%2Cdes%2Corg%2Cper%2Cgeo" onClick="javascript:s_code_linktrack('Article-RelatedTopics');">Brakes</a></span>
+<span class="alert">
+<a href="http://select.nytimes.com/mem/tnt.html?module=call&alert_context=1&topic1=BRAKES&topic_field1=des&topic1_check=y&retA=&retT=&cskey=" onClick="javascript:s_code_linktrack('Article-RelatedTopics'); dcsMultiTrack('DCS.dcssip','www.nytimes.com','DCS.dcsuri','/newstracker/add.html','WT.ti','Newstracker Add','WT.z_nta','Add','WT.pers','Per','WT.z_dcsm','1');">
+Get E-Mail Alerts</a>
+</span>
+</li>
+</ul>
+</form>
+</div>
+
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div id="bColumn">
+
+<div class="columnGroup">
+<div class="nextArticleLink"><a title="Testy Conflict With Goldman Helped Push A.I.G. to Edge" 
+		  	onClick="s_code_linktrack('Article-NextArticleTop');"
+		  	href="http://www.nytimes.com/2010/02/07/business/07goldman.html">Next Article in 
+		  	Business (1 of 
+		  	27)  &#x00bb;</a></div>
+</div>
+<div class="columnGroup"><!-- ADXINFO classification="logo_strips" campaign="Linked-in-nonlinked-users"--><SCRIPT LANGUAGE="JavaScript">
+   var movieWidth = 336;
+   var movieHeight = 150;
+   var altSrc = "http://graphics8.nytimes.com/adx/images/ADS/18/18/ad.181858/081429_inked_in_Module_336x150_Headline.gif";
+   var swfFile = "http://graphics8.nytimes.com/adx/images/ADS/18/18/ad.181858/081429_inked_in_Module_336x150_Headline.swf";
+   var altClickThru = "http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=ArtTopC&sn2=847f1ea7/ee1f89f5&sn1=ee26c7ad/88d7b131&camp=Linked-in-nonlinked-users&ad=mod-headline&goto=http%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fstatic%3Fkey%3Dpromo%5Fnytimes%26trk%3Dnyt%5F02%26WT%2Emc%5Fid%3DNYT%2DD%2DI%2DNYT%2DP%2DPM%2DLI7%2DROS%2D0908%2DNA%26WT%2Emc%5Fev%3Dclick";
+   var swfSrc = swfFile + "?clicktag=" + escape(altClickThru);
+</SCRIPT>
+<script language="JavaScript" src="http://www.nytimes.com/ads/common/embed3.js">
+</script>
+</div>
+
+
+<div id="adxBigAd" class="columnGroup"><!-- ADXINFO classification="bigad" campaign="Google_2010_ROSBigAd_nyt15"--><div class="clearfix">
+<script language="JavaScript">
+<!--
+if (!window.nyt_google_count) { var nyt_google_count = 0; }
+if ((!window.nyt_google_ad_channel) && (window.google_ad_channel)) { var nyt_google_ad_channel = google_ad_channel; }
+if ((!window.nyt_google_hints) && (window.google_hints)) { var nyt_google_hints = google_hints; }
+if ((!window.nyt_google_contents) && (window.google_contents)) { var nyt_google_contents = google_contents; }
+function ss(w,id) {window.status = w;return true;}function cs(){window.status='';}function ha(a){  pha=document.getElementById(a); nhi=pha.href.indexOf("&nh=");if(nhi < 1) {phb=pha.href+"&nh=1";} pha.href=phb;}function ca(a) {  pha=document.getElementById(a); nci=pha.href.indexOf("&nc=");if(nci < 1) {phb=pha.href+"&nc=1";} pha.href=phb;window.open(document.getElementById(a).href);}function ga(o,e) {if (document.getElementById) {a=o.id.substring(1);p = "";r = "";g = e.target;if (g) {t = g.id;f = g.parentNode;if (f) {p = f.id;h = f.parentNode;if (h)r = h.id;}} else {h = e.srcElement;f = h.parentNode;if (f)p = f.id;t = h.id;}if (t==a || p==a || r==a)return true;pha=document.getElementById(a); nbi=pha.href.indexOf("&nb=");if(nbi < 1) {phb=pha.href+"&nb=1";} pha.href=phb;window.open(document.getElementById(a).href);}}
+ 
+function google_ad_request_done(ads) {
+    var s = '';
+    var i;
+ 
+    if (ads.length == 0) {
+        return;
+    }
+ 
+    if (ads[0].type == "image") {
+        s += '<a href="' + ads[0].url +
+        '" target="_top" title="go to ' + ads[0].visible_url +
+        '"><img border="0" src="' + ads[0].image_url +
+        '"width="' + ads[0].image_width +
+        '"height="' + ads[0].image_height + '"></a>';
+    } else if (ads[0].type == "flash") {
+        s += '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"' +
+        ' codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"' +
+        ' WIDTH="' + google_ad.image_width +
+        '" HEIGHT="' + google_ad.image_height + '">' +
+        '<PARAM NAME="movie" VALUE="' + google_ad.image_url + '">' +
+        '<PARAM NAME="quality" VALUE="high">' +
+        '<PARAM NAME="AllowScriptAccess" VALUE="never">' +
+        '<EMBED src="' + google_ad.image_url +
+        '" WIDTH="' + google_ad.image_width +
+        '" HEIGHT="' + google_ad.image_height +
+        '" TYPE="application/x-shockwave-flash"' +
+        ' AllowScriptAccess="never" ' +
+        ' PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED></OBJECT>';
+    } else if (ads[0].type == "text") {
+        nyt_google_count += ads.length;
+        google_ad_section_line_height = "14px";
+        google_ad_section_padding_left = "7px";
+        google_title_link_font_size = "12px";
+        google_ad_text_font_size = "11px";
+        google_visible_url_font_size = "10px";
+ 
+        s += '<table width="100%" height="" border="0" cellspacing="0" cellpadding="0" style="text-align:left; width:100%; border-style: solid; border-width: 1px; border-color: #9da3ad" >\n<tr>\n<td style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:#333333;" valign="top"><table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%; height:100%;">\n<tr>\n <td style="background-color:#9da3ad; width:70%; height:20px; padding-top:2px; padding-left:11px; padding-bottom:2px; font-family:Arial,Helvetica,sans-serif; font-size:12px; color:#333333;" width="70%" height="20" bgcolor="#9da3ad" ><span style="font-size: 12px; font-weight: normal; color:#ffffff;" >Ads by Google</span></td>\n<td style="padding-top:2px; padding-bottom:2px; width:30%; height:20px; align:right; background-color:#9da3ad; font-family:Arial,Helvetica,sans-serif; font-size:12px; color:#333333;" width="30%" height="20" align="right" bgcolor="#9da3ad" ><span><a style="font-family:Arial,Helvetica,sans-serif; color: white; font-size:12px; padding-right:7px;" href="http://www.nytimes.com/ref/membercenter/faq/linkingqa16.html" onclick="window.open(\'\',\'popupad\',\'left=100,top=100,width=390,height=390,resizable,scrollbars=no\')" target="popupad">what\'s this?</a></span></td>\n</tr>\n</table>\n</td>\n</tr>\n<tr>\n<td style="height:110px; font-family:Arial,Helvetica,sans-serif; font-size:12px; color:#333333;" valign="top" height="110"><table height="100%" width="100%" cellpadding="4" cellspacing="0" border="0" bgcolor="#f8f8f9" style="height:100%; width:100%; padding:4px; background-color:#f8f8f9;">\n';
+        for (i = 0; i < ads.length; ++i) {
+            s += '<tr>\n<td style="cursor:pointer; cursor:hand; font-family:Arial,Helvetica,sans-serif; font-size:12px; color:#333333; background-color:#f8f8f9;" id="taw' + i + '" valign="middle" onFocus="ss(\'go to ' + ads[i].visible_url + '\',\'aw' + i + '\')" onMouseOver="ss(\'go to ' + ads[i].visible_url + '\',\'aw' + i + '\')"  onMouseOut="cs()" onClick="ga(this,event)"><div style="line-height:' + google_ad_section_line_height + '; padding-left:' + google_ad_section_padding_left + '; padding-bottom:5px;" ><a id="aw' + i + '" href="' + ads[i].url + '" target="_blank" style="font-size:' + google_title_link_font_size + '; color:#000066; font-weight:bold; text-decoration:underline;" onFocus="ss(\'go to ' + ads[i].visible_url + '\',\'aw' + i + '\')" onClick="ha(\'aw' + i + '\')" onMouseOver="return ss(\'go to ' + ads[i].visible_url + '\',\'aw' + i + '\')"  onMouseOut="cs()">' + ads[i].line1 + '</a><br>\n<a href="' + ads[i].url + '" target="_blank" style="font-family:Arial,Helvetica,sans-serif; font-size:' + google_ad_text_font_size + ';color:#333333;text-decoration:none;">' + ads[i].line2 + ' ' + ads[i].line3 + '</a><br>\n<a href="' + ads[i].url + '" target="_blank" style="font-size:' + google_visible_url_font_size + '; color:#000066; font-weight:normal; text-decoration:none;">' + ads[i].visible_url + '</a></div>\n</td>\n</tr>\n';
+        }
+        s += '</table>\n</td>\n</tr>\n</table>';
+    }
+    document.write(s);
+    return;
+}
+google_ad_client = 'nytimes_display_block';
+google_ad_channel = 'big_ad';
+google_ad_output = 'js';
+google_max_num_ads = '6';
+google_ad_type = 'text, image, flash';
+google_image_size = '336x280';
+google_safe = 'high';
+google_targeting = 'site_content';
+if (window.nyt_google_contents) { google_contents = nyt_google_contents; }
+else if (window.nyt_google_hints) { google_hints = nyt_google_hints; }
+// -->
+</script>
+<script language="JavaScript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+
+<div style="font-family: Arial; font-size: 10px; color:#004276; float: right; margin-right: 9px;"><a href="http://www.nytimes.whsites.net/mediakit/">Advertise on NYTimes.com</a></div></div>
+</div>
+
+
+<div class="columnGroup"><!-- ADXINFO classification="feature_squares" campaign="regilite-P4-breakingnewsalertBOX7"--><IFRAME title="regilite" src="http://www.nytimes.com/gst/litesub_insert.html?product=NA&size=336X90" width="336" height="90" marginheight="0" marginwidth="0" frameborder="0" vspace="0" hspace="0" scrolling="no"></IFRAME> </div>
+
+<div class="columnGroup" id="mostPopWidget">
+
+      <!-- MOST POPULAR MODULE STARTS -->
+      <h4>MOST POPULAR - BUSINESS</h4>
+         <div id="tabsContainer">
+         <ul class="tabs">
+            <li class="selected"><a href="#">E-Mailed</a></li>
+            <li><a href="#">Blogged</a></li>
+            
+            
+         </ul>
+         </div>
+            <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"></HEAD><div class="tabContent tabContentActive" id="mostEmailed"><ol>
+<li><a href="http://www.nytimes.com/2010/02/07/business/07goldman.html?em" title="Click to go to this article">Testy Conflict With Goldman Helped Push A.I.G. to Edge</a></li>
+<li><a href="http://www.nytimes.com/2010/02/06/your-money/stocks-and-bonds/06wealth.html?em" title="Click to go to this article">Wealth Matters: Index Funds, Dowdy to Some, Get a Notable Endorsement</a></li>
+<li><a href="http://www.nytimes.com/2010/02/07/business/global/07toyota.html?em" title="Click to go to this article">Toyota Has Pattern of Slow Response on Safety Issues</a></li>
+<li><a href="http://www.nytimes.com/2010/02/06/business/06portion.html?em" title="Click to go to this article">One Bowl = 2 Servings. F.D.A. May Fix That.</a></li>
+<li><a href="http://www.nytimes.com/2010/02/07/business/global/07greece.html?em" title="Click to go to this article">Is Greece&rsquo;s Debt Trashing the Euro?</a></li>
+<li><a href="http://www.nytimes.com/2010/02/07/business/07digi.html?em" title="Click to go to this article">Digital Domain: Buy Now, Pay Later (Maybe With Your Allowance)</a></li>
+<li><a href="http://www.nytimes.com/2010/02/07/business/economy/07gret.html?em" title="Click to go to this article">Fair Game: This Crisis Won&rsquo;t Stop Moving</a></li>
+<li><a href="http://www.nytimes.com/2010/02/07/business/07emi.html?em" title="Click to go to this article">Battle of the Bands: Citigroup Is Up Next</a></li>
+<li><a href="http://www.nytimes.com/2010/02/05/business/05diabetes.html?em" title="Click to go to this article">Insulin Study Could Lead to New Dosage Devices</a></li>
+<li><a href="http://www.nytimes.com/2012/02/07/business/07corner.html?em" title="Click to go to this article">Corner Office: Now, Put Yourself In My Shoes</a></li>
+</ol>
+        <a class="more" href="http://www.nytimes.com/gst/mostemailed.html">Go to Complete List &#x00bb;</a>
+        </div><!-- #most emailed top10 -->
+
+            <div class="tabContent" id="mostBlogged">
+<ol>
+<li><a href="http://www.nytimes.com/2010/02/03/business/03walk.html?bl" title="Click to go to this article">No Help or Bubble in Sight, More Homeowners Just Walk Away</a></li>
+<li><a href="http://www.nytimes.com/2010/02/06/business/economy/06jobs.html?bl" title="Click to go to this article">Jobless Rate Down to 9.7%; 20,000 Jobs Lost in January</a></li>
+<li><a href="http://www.nytimes.com/2010/02/03/business/03regulate.html?bl" title="Click to go to this article">Dodd Warns of Uphill Road on Regulation</a></li>
+<li><a href="http://www.nytimes.com/2010/02/04/business/global/04prius.html?bl" title="Click to go to this article">Toyota Ordered to Look at Prius Brakes Complaints</a></li>
+<li><a href="http://www.nytimes.com/2010/02/04/business/global/04toyota.html?bl" title="Click to go to this article">Stop Driving Recalled Toyotas, Agency Chief Says</a></li>
+<li><a href="http://www.nytimes.com/2010/02/02/business/02regulate.html?bl" title="Click to go to this article">A Curveball Alters Talks Over Reform of Wall St.</a></li>
+<li><a href="http://www.nytimes.com/2010/02/05/business/global/05toyota.html?bl" title="Click to go to this article">Prius Adds to Toyota's Woes as Stock Drops in Tokyo</a></li>
+<li><a href="http://www.nytimes.com/2010/02/02/business/economy/02fannie.html?bl" title="Click to go to this article">For Fannie and Freddie, the Future Looks Cloudy</a></li>
+<li><a href="http://www.nytimes.com/2010/02/06/business/global/06toyota.html?bl" title="Click to go to this article">Toyota Considers Prius Recall for Brake Problem</a></li>
+<li><a href="http://www.nytimes.com/2010/01/31/business/31corner.html?bl" title="Click to go to this article">Are You a C.E.O. of Something?</a></li>
+</ol>
+<a class="more" href="http://www.nytimes.com/gst/mostblogged.html">Go to Complete List &#x00bb;</a>
+</div><!-- #most blogged top10 -->
+
+            
+            
+         <script type="text/javascript">new Accordian("mostPopWidget");</script>
+      <!-- MOST POPULAR MODULE ENDS -->
+   
+
+</div>
+<div id="adxMiddle" class="columnGroup"><!-- ADXINFO classification="feature_position" campaign="NYT2010_marketingmodule_Jobs"-->
+
+<!-- MARKETING MODULE -->
+<div style="border:solid #999;border-width:1px;font-family:Arial,sans-serif;text-align:left; width:334px;background:#fff;" class="clearfix wrap">
+  <a href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Box1&sn2=4b9ff321/390fe73f&sn1=e42e110a/3d0fc97&camp=NYT2010_marketingmodule_Jobs&ad=JO-D-I-NYT-MOD-MOD-M135-ROS-0210&goto=http://www.nytimes.com/2010/01/31/jobs/31search.html%3Fex=1280725200%26en=6f35ce672e14f2d8%26ei=5087%26WT.mc_id=JO-D-I-NYT-MOD-MOD-M135-ROS-0210-PH%26WT.mc_ev=click" target="_new"><img src="http://graphics8.nytimes.com/ads/marketing/mm10/jobs_020710.jpg" width="334" height="154" border="0" alt=""></a> 
+  <div style="padding:7px 9px 0;background:#fff">
+      <h2 style="font-size:22px;line-height:24px; margin:0;padding:0 0 4px;"><a style="color:#336699;" target="_new" href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Box1&sn2=4b9ff321/390fe73f&sn1=e42e110a/3d0fc97&camp=NYT2010_marketingmodule_Jobs&ad=JO-D-I-NYT-MOD-MOD-M135-ROS-0210&goto=http://www.nytimes.com/2010/01/31/jobs/31search.html%3Fex=1280725200%26en=6f35ce672e14f2d8%26ei=5087%26WT.mc_id=JO-D-I-NYT-MOD-MOD-M135-ROS-0210-HDR%26WT.mc_ev=click">Back to school, as an adjunct</a></h2>
+      <p style="margin:0 0 3px; padding:0;"><a href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Box1&sn2=4b9ff321/390fe73f&sn1=f71b7ae1/36d4893a&camp=NYT2010_marketingmodule_Jobs&ad=JO-D-I-NYT-MOD-MOD-M135-ROS-0210&goto=http://jobmarket.nytimes.com/pages/jobs/%3FWT.mc_id=JO-D-I-NYT-MOD-MOD-M135-ROS-0210-URL%26WT.mc_ev=click" target="_new" style="font-size:11px;margin:3px 0;padding:0;font-family:Arial,sans-serif;  color:#000; text-transform:uppercase;">Also in Jobs &raquo;</a></p>
+      <ul style="font-size:12px;margin:0; padding-bottom: 10px; border-bottom:1px solid #ccc;" class="refer">
+        <li style="font-size:12px"><a target="_new" href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Box1&sn2=4b9ff321/390fe73f&sn1=e42e110a/3d0fc97&camp=NYT2010_marketingmodule_Jobs&ad=JO-D-I-NYT-MOD-MOD-M135-ROS-0210&goto=http://www.nytimes.com/2010/01/31/jobs/31boss.html%3Fex=1280725200%26en=67e83cebffbc05f0%26ei=5087%26WT.mc_id=JO-D-I-NYT-MOD-MOD-M135-ROS-0210-L1%26WT.mc_ev=click">Soldier, broker and C.E.O.</a></li>
+        <li style="font-size:12px"><a target="_new" href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Box1&sn2=4b9ff321/390fe73f&sn1=f71b7ae1/36d4893a&camp=NYT2010_marketingmodule_Jobs&ad=JO-D-I-NYT-MOD-MOD-M135-ROS-0210&goto=http://jobmarket.nytimes.com/jobs/search-jobs/index.html%3FWT.mc_id=JO-D-I-NYT-MOD-MOD-M135-ROS-0210-L2%26WT.mc_ev=click">Looking for a new job?</a></li>
+      </ul>
+    </div>
+ 
+ <div style="padding:5px 9px; float:left; width:316px; background:#fff"> <a style="float:left" href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Box1&sn2=4b9ff321/390fe73f&sn1=b080b647/f977c1fb&camp=NYT2010_marketingmodule_Jobs&ad=JO-D-I-NYT-MOD-MOD-M135-ROS-0210&goto=http://nytimes.com/%3FWT.mc_id=JO-D-I-NYT-MOD-MOD-M135-ROS-0210-LOGO%26WT.mc_ev=click" target="_new"><img src="http://graphics8.nytimes.com/ads/marketing/mm09/verticalst/nytimes.gif" alt="nytimes.com" width="116" height="18" border="0"></a><a style="float:right" href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Box1&sn2=4b9ff321/390fe73f&sn1=f71b7ae1/36d4893a&camp=NYT2010_marketingmodule_Jobs&ad=JO-D-I-NYT-MOD-MOD-M135-ROS-0210&goto=http://jobmarket.nytimes.com/pages/jobs/%3FWT.mc_id=JO-D-I-NYT-MOD-MOD-M135-ROS-0210-VRT%26WT.mc_ev=click" target="_new"><img src="http://graphics8.nytimes.com/ads/marketing/mm09/verticalst/verticals_jobs.gif" alt="Jobs" width="120" height="18" border="0"></a></div><br clear="all">
+</div>
+  <!-- /MARKETING MODULE -->
+</div>
+
+
+<div class="columnGroup advertisementColumnGroup">
+<h4>Advertisements</h4>
+<table cellpadding="0" cellspacing="0"><tr><td class="cColumn">
+<div class="cColumn-TextAdsBox">
+
+
+<div class="cColumn-TextAdsRight"><!-- ADXINFO classification="box_86x60" campaign="nyt2010-circ-bottom3_weekender-34QK3"--><a href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Bottom3&sn2=2a794b83/5ccf9ada&sn1=bcefff91/20412c93&camp=nyt2010-circ-bottom3_weekender-34QK3&ad=010910-bottom3-weekender&goto=https%3A%2F%2Fwww%2Enytimesathome%2Ecom%2Foffer%2Ephp%3Fid%3D88%26MediaCode%3DWC8AJ%26CMP%3D34QK3" target="_blank">
+<img src="http://graphics8.nytimes.com/adx/images/ADS/22/21/ad.222192/weekender_86x60.gif" width="86" height="60" border="0"></a>
+<img src="http://at.amgdgt.com/ads/?t=pp&px=5548&rnd=[cachebuster]" width="1" height="1" border="0"/>
+</div>
+
+</div>
+</td></tr></table>
+</div>
+
+<div id="adxMiddle5" class="columnGroup"><!-- ADXINFO classification="feature_position" campaign="NYT2010-Mktg-Crosswords-336x79-ROS"--><a href="http://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/yr/mo/day/business&pos=Middle5&sn2=600f1156/e6b1b741&sn1=e4363c86/d9609ee0&camp=NYT2010-Mktg-Crosswords-336x79-ROS&ad=GM-D-I-NYT-AD-FP-XWD-ROS-1209-CLUE&goto=http%3A%2F%2Fwww%2Enytimes%2Ecom%2Fpages%2Fcrosswords%2Findex%2Ehtml%3FWT%2Emc%5Fid%3DGM%2DD%2DI%2DNYT%2DAD%2DFP%2DXWD%2DROS%2D1209%2DCLUE%26WT%2Emc%5Fev%3Dclick" target="_blank">
+<img src="http://graphics8.nytimes.com/adx/images/ADS/22/00/ad.220016/NYT_crossword_banners_336x79_r2-1.gif" width="336" height="79" border="0"></a>
+</div>
+
+
+
+
+
+
+
+
+
+</div><!--end #bColumn -->
+
+<!--MOTHS -->
+
+  <!-- start MOTH -->
+  	<div id="insideNYTimes" class="doubleRule">
+            <script language="JavaScript" type="text/javascript" src="http://graphics8.nytimes.com/js/app/moth/moth.js"></script>
+        
+    <div id="insideNYTimesHeader">
+                    <div class="navigation"><span id="leftArrow"><img id="mothReverse" src="http://graphics8.nytimes.com/images/global/buttons/moth_reverse.gif" /></span>&nbsp;<span id="rightArrow"><img id="mothForward" src="http://graphics8.nytimes.com/images/global/buttons/moth_forward.gif" /></span></div>
+                <h4>
+            Inside NYTimes.com        </h4>
+    </div>
+    
+        
+    <div id="insideNYTimesScrollWrapper">
+        <table id="insideNYTimesBrowser" cellspacing="0">
+            <tbody>
+                <tr>
+                                                <td class="first">
+        <div class="story">
+            <h6 class="kicker">
+                                    <a href="http://www.nytimes.com/pages/fashion/index.html">Fashion & Style &raquo;</a>
+                            </h6>
+            <div class="mothImage">
+                <a href="http://www.nytimes.com/2010/02/07/fashion/07jenny.html"><img src="http://graphics8.nytimes.com/images/2010/02/07/fashion/07moth-jenny/07moth-jenny-moth.jpg" alt="Southern Discomfort" width="151" height="151" /></a>
+            </div>
+            <h6 class="headline"><a href="http://www.nytimes.com/2010/02/07/fashion/07jenny.html">Southern Discomfort</a></h6>
+        </div>
+    </td>
+                                                <td>
+        <div class="story">
+            <h6 class="kicker">
+                                    <a href="http://www.nytimes.com/pages/opinion/index.html">Opinion &raquo;</a>
+                            </h6>
+            <div class="mothImage">
+                <a href="http://www.nytimes.com/2010/02/07/opinion/07wilentz.html"><img src="http://graphics8.nytimes.com/images/2010/02/07/opinion/07moth_oped1/07moth_oped-moth.jpg" alt="Op-Ed: The Dechoukaj This Time" width="151" height="151" /></a>
+            </div>
+            <h6 class="headline"><a href="http://www.nytimes.com/2010/02/07/opinion/07wilentz.html">Op-Ed: The Dechoukaj This Time</a></h6>
+        </div>
+    </td>
+                                                <td>
+        <div class="story">
+            <h6 class="kicker">
+                                    <a href="http://www.nytimes.com/pages/weekinreview/index.html">Week in Review &raquo;</a>
+                            </h6>
+            <div class="mothImage">
+                <a href="http://www.nytimes.com/2010/02/07/weekinreview/07aoscott.html"><img src="http://graphics8.nytimes.com/images/2010/02/07/weekinreview/07moth_aoscott/07moth_aoscott-moth.jpg" alt="Apolitics and the War Film" width="151" height="151" /></a>
+            </div>
+            <h6 class="headline"><a href="http://www.nytimes.com/2010/02/07/weekinreview/07aoscott.html">Apolitics and the War Film</a></h6>
+        </div>
+    </td>
+                                                <td>
+        <div class="story">
+            <h6 class="kicker">
+                                    <a href="http://www.nytimes.com/pages/travel/index.html">Travel &raquo;</a>
+                            </h6>
+            <div class="mothImage">
+                <a href="http://travel.nytimes.com/2010/02/07/travel/07santafe.html"><img src="http://graphics8.nytimes.com/images/2010/02/07/travel/07moth-santa/07moth-santa-moth.jpg" alt="The Art of Being Santa Fe" width="151" height="151" /></a>
+            </div>
+            <h6 class="headline"><a href="http://travel.nytimes.com/2010/02/07/travel/07santafe.html">The Art of Being Santa Fe</a></h6>
+        </div>
+    </td>
+                                                    <td>
+            <div class="story">
+                <h6 class="kicker"><a href="http://www.nytimes.com/pages/opinion/index.html">Opinion &raquo;</a></h6>
+                <h3><a href="http://www.nytimes.com/2003/01/26/opinion/ok-champ-now-comes-the-hard-part.html">Op-Classic, 2003: 37 Thoughts for the Champ</a></h3>
+                <p class="summary">The Patriots coach Bill Belichick on the aftermath of winning the Super Bowl.</p>
+            </div>
+        </td>
+                                                <td>
+        <div class="story">
+            <h6 class="kicker">
+                                    <a href="http://www.nytimes.com/pages/arts/music/index.html">Music &raquo;</a>
+                            </h6>
+            <div class="mothImage">
+                <a href="http://www.nytimes.com/2010/02/07/arts/music/07sade.html"><img src="http://graphics8.nytimes.com/images/2010/02/07/arts/music/07moth_sade/07moth_sade-moth.jpg" alt="A Reluctant Return to the Spotlight" width="151" height="151" /></a>
+            </div>
+            <h6 class="headline"><a href="http://www.nytimes.com/2010/02/07/arts/music/07sade.html">A Reluctant Return to the Spotlight</a></h6>
+        </div>
+    </td>
+                                                <td class="hidden">
+        <div class="story">
+            <h6 class="kicker">
+                                    <a href="http://movies.nytimes.com/pages/movies/index.html">Movies &raquo;</a>
+                            </h6>
+            <div class="mothImage">
+                <a href="http://www.nytimes.com/2010/02/07/movies/07scorcese.html"><span class="img" src="http://graphics8.nytimes.com/images/2010/02/07/movies/07moth_scorsese/07moth_scorsese-moth.jpg" alt="Cue the Director&rsquo;s Adrenaline" width="151" height="151" /></a>
+            </div>
+            <h6 class="headline"><a href="http://www.nytimes.com/2010/02/07/movies/07scorcese.html">Cue the Director&rsquo;s Adrenaline</a></h6>
+        </div>
+    </td>
+                                                <td class="hidden">
+        <div class="story">
+            <h6 class="kicker">
+                                    <a href="http://www.nytimes.com/pages/opinion/index.html">Opinion &raquo;</a>
+                            </h6>
+            <div class="mothImage">
+                <a href="http://www.nytimes.com/2010/02/07/opinion/07intro.html"><span class="img" src="http://graphics8.nytimes.com/images/2010/02/07/opinion/07moth_oped2/07moth_oped2-moth.jpg" alt="Op-Eds: Nelson Mandela&rsquo;s Captive Audience" width="151" height="151" /></a>
+            </div>
+            <h6 class="headline"><a href="http://www.nytimes.com/2010/02/07/opinion/07intro.html">Op-Eds: Nelson Mandela&rsquo;s Captive Audience</a></h6>
+        </div>
+    </td>
+                                                <td class="hidden">
+        <div class="story">
+            <h6 class="kicker">
+                                    <a href="http://www.nytimes.com/pages/education/index.html">Education &raquo;</a>
+                            </h6>
+            <div class="mothImage">
+                <a href="http://www.nytimes.com/2010/02/07/education/07foster.html"><span class="img" src="http://graphics8.nytimes.com/images/2010/02/07/education/07moth_foster/07moth_foster-moth.jpg" alt="Pass the Squishy" width="151" height="151" /></a>
+            </div>
+            <h6 class="headline"><a href="http://www.nytimes.com/2010/02/07/education/07foster.html">Pass the Squishy</a></h6>
+        </div>
+    </td>
+                                                <td class="hidden">
+        <div class="story">
+            <h6 class="kicker">
+                                    <a href="http://www.nytimes.com/pages/magazine/index.html">Magazine &raquo;</a>
+                            </h6>
+            <div class="mothImage">
+                <a href="http://www.nytimes.com/packages/html/olympics/2010/highfliers/index.html"><span class="img" src="http://graphics8.nytimes.com/images/2010/02/07/magazine/07moth-magcov/moth.jpg" alt="The Highfliers of the 2010 Olympics" width="151" height="151" /></a>
+            </div>
+            <h6 class="headline"><a href="http://www.nytimes.com/packages/html/olympics/2010/highfliers/index.html">The Highfliers of the 2010 Olympics</a></h6>
+        </div>
+    </td>
+                                                    <td class="hidden">
+            <div class="story">
+                <h6 class="kicker"><a href="http://www.nytimes.com/pages/opinion/index.html">Opinion &raquo;</a></h6>
+                <h3><a href="http://opinionator.blogs.nytimes.com/2010/02/06/the-two-worlds-of-the-citizen-soldier/">Home Fires: Citizen Soldier; Two Worlds</a></h3>
+                <p class="summary">From Harvard Yard to National Guard one weekend a month is a journey into a different world.</p>
+            </div>
+        </td>
+                                                <td class="hidden">
+        <div class="story">
+            <h6 class="kicker">
+                                    <a href="http://www.nytimes.com/pages/fashion/index.html">Fashion & Style &raquo;</a>
+                            </h6>
+            <div class="mothImage">
+                <a href="http://www.nytimes.com/pages/fashion/weddings/index.html"><span class="img" src="http://graphics8.nytimes.com/images/2010/02/07/fashion/07moth_vows/07moth_vows-moth.jpg" alt="Weddings and Celebrations" width="151" height="151" /></a>
+            </div>
+            <h6 class="headline"><a href="http://www.nytimes.com/pages/fashion/weddings/index.html">Weddings and Celebrations</a></h6>
+        </div>
+    </td>
+                                    </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    </div><!-- end #insideNYTimes -->
+
+
+</div>
+<!--Footer -->
+
+<NYT_FOOTER>	 
+<NYT_COPYRIGHT>
+
+<div id="footer">
+<div class="footerRow">
+<a href="http://www.nytimes.com/">Home</a>
+<ul>
+<li><a href="http://www.nytimes.com/pages/world/index.html">World</a></li>
+<li><a href="http://www.nytimes.com/pages/national/index.html">U.S.</a></li>
+<li><a href="http://www.nytimes.com/pages/nyregion/index.html">N.Y. / Region</a></li>
+<li><a href="http://www.nytimes.com/pages/business/index.html">Business</a></li>
+<li><a href="http://www.nytimes.com/pages/technology/index.html">Technology</a></li>
+<li><a href="http://www.nytimes.com/pages/science/index.html">Science</a></li>
+<li><a href="http://www.nytimes.com/pages/health/index.html">Health</a></li>
+<li><a href="http://www.nytimes.com/pages/sports/index.html">Sports</a></li>
+<li><a href="http://www.nytimes.com/pages/opinion/index.html">Opinion</a></li>
+<li><a href="http://www.nytimes.com/pages/arts/index.html">Arts</a></li>
+<li><a href="http://www.nytimes.com/pages/style/index.html">Style</a></li>
+<li><a href="http://travel.nytimes.com/pages/travel/index.html">Travel</a></li>
+<li><a href="http://www.nytimes.com/pages/jobs/index.html">Jobs</a></li>
+<li><a href="http://www.nytimes.com/pages/realestate/index.html">Real Estate</a></li>
+<li><a href="http://www.nytimes.com/pages/automobiles/index.html">Automobiles</a></li>
+<li><a href="#top">Back to Top</a></li>
+</ul>
+</div>
+<a href="http://www.nytimes.com/ref/membercenter/help/copyright.html">Copyright 2010</a> 
+<a href="http://www.nytco.com/">The New York Times Company</a>
+<ul>
+<li><a href="http://www.nytimes.com/privacy">Privacy Policy</a></li>
+<li><a href="http://www.nytimes.com/ref/membercenter/help/agree.html">Terms of Service</a></li>
+<li><a href="http://query.nytimes.com/gst/sitesearch_selector.html?query=&date_select=full&type=nyt">Search</a></li>
+<li><a href="http://www.nytimes.com/corrections.html">Corrections</a></li>
+<li><a href="http://www.nytimes.com/rss" class="rssButton">RSS</a></li>
+<li><a href="http://firstlook.nytimes.com">First Look</a></li>
+<li><a href="http://www.nytimes.com/membercenter/sitehelp.html">Help</a></li>
+<li><a href="http://nytimes.com/ref/membercenter/help/infoservdirectory.html">Contact Us</a></li>
+<li><a href="http://www.nytco.com/careers/">Work for Us</a></li>
+<li><a href="http://spiderbites.nytimes.com/">Site Map</a></li>
+</ul>
+</div>
+
+</NYT_COPYRIGHT>
+</NYT_FOOTER>  
+
+</div>
+</div>
+
+			
+		<!-- Start UPT call -->
+		<img height="1" width="3" border=0 src="http://up.nytimes.com/?d=0/4/20&t=2&s=0&ui=&r=&u=www%2enytimes%2ecom%2f2010%2f02%2f07%2fbusiness%2fglobal%2f07toyota%2ehtml%3fhp%3d%26pagewanted%3d2">
+		<!-- End UPT call -->
+	
+		
+        <script language="JavaScript"><!--
+          var dcsvid="";
+          var regstatus="non-registered";
+        //--></script>
+        <script src="http://graphics8.nytimes.com/js/app/analytics/trackingTags_v1.1.js" type="text/javascript"></script>
+        <noscript>
+          <div><img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="http://wt.o.nytimes.com/dcsym57yw10000s1s8g0boozt_9t1x/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=1.0.7"/></div>
+        </noscript>
+   
+
+
+		<script language="Javascript">Tacoda_AMS_DDC_addPair("t_section","Business, Global")</script>
+		<script language="Javascript">Tacoda_AMS_DDC_addPair("site","nytimes.com")</script>
+		<script language="JavaScript">Tacoda_AMS_DDC("http://te.nytimes.com/tte/blank.gif","1.0")</script>	
+		
+<IMG SRC="/adx/bin/clientside/1c063755Q2FFiryfVqrdiq6LyyQ27Q2BqLQ25VQ2BN" height="1" width="3">
+
+
+
+</body>
+
+
+
+<script src="http://icompass.insightexpressai.com/57.js" type="text/javascript"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

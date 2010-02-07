@@ -40,8 +40,8 @@ module Readability
     def sanitize(node)
 
       # Get rid of divs full of non-text items
-      node.css("div").each do |el| 
-        counts = Hash[ %w[p img li a embed].each { |kind| [kind, el.css(kind)] } ]
+      node.css("div").each do |el|
+        counts = %w[p img li a embed].inject({}) { |m, kind| m[kind] = el.css(kind).length; m }
         el.remove if (el.text.count(",") < 10) && (counts["p"] == 0 || counts["embed"] > 0 || counts["a"] > counts["p"] || counts["li"] > counts["p"] || counts["img"] > counts["p"])
       end
 
@@ -51,7 +51,7 @@ module Readability
       # Use a hash for speed (don't want to make a million calls to include?)
       whitelist = Hash[ whitelist.zip([true] * whitelist.size) ]
 
-      ([node] + node.css("*")).each do |el| 
+      ([node] + node.css("*")).each do |el|
 
         # If element is in whitelist, delete all its attributes
         if whitelist[el.node_name]
@@ -61,7 +61,7 @@ module Readability
         else
           el.swap(el.text)
         end
-          
+
       end
 
       # Get rid of duplicate whitespace
@@ -70,8 +70,3 @@ module Readability
 
   end
 end
-
-
-d = Readability::Document.new(File.open("sample.html"))
-
-p d.content
