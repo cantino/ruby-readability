@@ -5,7 +5,7 @@ module Readability
   class Document
 
     def initialize(input)
-      @html = Nokogiri::HTML(input)
+      @html = Nokogiri::HTML(input, nil, 'UTF-8')
     end
 
     def content
