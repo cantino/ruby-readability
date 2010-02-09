@@ -4,9 +4,11 @@ require 'nokogiri'
 module Readability
   class Document
 
-    def initialize(input)
+    def initialize(input, options = {})
+      @options = options
       @html = Nokogiri::HTML(input, nil, 'UTF-8')
     end
+
 
     def content
 
@@ -46,7 +48,7 @@ module Readability
       end
 
       # We'll sanitize all elements using a whitelist
-      whitelist = %w[div p]
+      whitelist = @options[:tags] || %w[div p]
 
       # Use a hash for speed (don't want to make a million calls to include?)
       whitelist = Hash[ whitelist.zip([true] * whitelist.size) ]
@@ -55,7 +57,7 @@ module Readability
 
         # If element is in whitelist, delete all its attributes
         if whitelist[el.node_name]
-          el.attributes.each { |a, x| el.delete(a)  }
+          el.attributes.each { |a, x| el.delete(a) unless @options[:attributes] && @options[:attributes].include?(a.to_s) }
 
         # Otherwise, replace the element with its contents
         else
