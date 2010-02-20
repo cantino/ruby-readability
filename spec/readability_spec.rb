@@ -64,7 +64,7 @@ describe Readability do
     end
   end
 
-  describe "removeUnlikelyCandidates" do
+  describe "remove_unlikely_candidates!" do
     before do
       @doc = Readability::Document.new(@simple_html_fixture)
       @doc.remove_unlikely_candidates!
