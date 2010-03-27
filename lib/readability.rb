@@ -215,6 +215,11 @@ module Readability
         elem.remove
       end
 
+      # remove empty <p> tags
+      node.css("p").each do |elem|
+        elem.remove if elem.content.strip.empty?
+      end
+
       # Conditionally clean <table>s, <ul>s, and <div>s
       node.css("table, ul, div").each do |el|
         weight = class_weight(el)
