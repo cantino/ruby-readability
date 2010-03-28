@@ -269,11 +269,11 @@ module Readability
       end
 
       # We'll sanitize all elements using a whitelist
-      whitelist = @options[:tags] || %w[div p]
+      base_whitelist = @options[:tags] || %w[div p]
 
       # Use a hash for speed (don't want to make a million calls to include?)
-      whitelist = Hash[ whitelist.zip([true] * whitelist.size) ]
-
+      whitelist = Hash.new
+      base_whitelist.each {|tag| whitelist[tag] = true }
       ([node] + node.css("*")).each do |el|
 
         # If element is in whitelist, delete all its attributes
