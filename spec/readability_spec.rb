@@ -147,4 +147,34 @@ describe Readability do
       @doc.content.should_not match("sidebar")
     end
   end
+  
+  describe "outputs good stuff for known documents" do
+    before do
+      @html_files = Dir.glob(File.dirname(__FILE__) + "/fixtures/samples/*.html")
+      @samples = @html_files.map {|filename| File.basename(filename, '.html') }
+    end
+    
+    it "should output expected fragments of text" do
+
+      checks = 0
+      @samples.each do |sample|
+        html = File.read(File.dirname(__FILE__) + "/fixtures/samples/#{sample}.html")
+        doc = Readability::Document.new(html).content
+
+        load "fixtures/samples/#{sample}-fragments.rb"
+        puts "testing #{sample}..."
+        
+        $required_fragments.each do |required_text|
+          doc.should include(required_text)
+          checks += 1
+        end
+        
+        $excluded_fragments.each do |text_to_avoid|
+          doc.should_not include(text_to_avoid)
+          checks += 1
+        end
+      end
+      puts "Performed #{checks} checks."
+    end
+  end
 end
