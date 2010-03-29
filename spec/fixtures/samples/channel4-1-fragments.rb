@@ -9,6 +9,6 @@ $required_fragments = [
 ]
 
 $excluded_fragments = [
-#  "Share this article" # ideally this would not be present
+  "Share this article" # ideally this would not be present
   
 ]

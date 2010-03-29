@@ -233,7 +233,7 @@ module Readability
           counts = %w[p img li a embed input].inject({}) { |m, kind| m[kind] = el.css(kind).length; m }
           counts["li"] -= 100
 
-          content_length = el.text.length
+          content_length = el.text.strip.length  # Count the text length excluding any surrounding whitespace
           link_density = get_link_density(el)
           to_remove = false
           reason = ""
