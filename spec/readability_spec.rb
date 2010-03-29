@@ -165,7 +165,7 @@ describe Readability do
         puts "testing #{sample}..."
         
         $required_fragments.each do |required_text|
-          doc.should include(required_text), doc
+          doc.should include(required_text)
           checks += 1
         end
         
