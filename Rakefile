@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "ruby-readability"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{ruby-readability}
+    gem.description = %Q{ruby-readability}
     gem.email = "kmaxwell@twitter.com"
     gem.homepage = "http://github.com/fizx/ruby-readability"
     gem.authors = ["Kyle Maxwell"]
