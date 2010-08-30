@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby 
+$KCODE='u'
+require 'rubygems'
+require 'open-uri'
+require File.dirname(__FILE__) + '/../lib/readability'
+
+if ARGV.length != 1
+  STDERR.puts "Usage: #{File.basename($0)} URL"
+  exit 1
+end
+
+text = open(ARGV.first).read
+puts Readability::Document.new(text).content
