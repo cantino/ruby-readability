@@ -27,10 +27,10 @@ module Readability
     end
 
     REGEXES = {
-        :unlikelyCandidatesRe => /combx|comment|disqus|foot|header|menu|meta|nav|rss|shoutbox|sidebar|sponsor/i,
-        :okMaybeItsACandidateRe => /and|article|body|column|main/i,
-        :positiveRe => /article|body|content|entry|hentry|page|pagination|post|text/i,
-        :negativeRe => /combx|comment|contact|foot|footer|footnote|link|media|meta|promo|related|scroll|shoutbox|sponsor|tags|widget/i,
+        :unlikelyCandidatesRe => /combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup/i,
+        :okMaybeItsACandidateRe => /and|article|body|column|main|shadow/i,
+        :positiveRe => /article|body|content|entry|hentry|main|page|pagination|post|text|blog|story/i,
+        :negativeRe => /combx|comment|com-|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget/i,
         :divToPElementsRe => /<(a|blockquote|dl|div|img|ol|p|pre|table|ul)/i,
         :replaceBrsRe => /(<br[^>]*>[ \n\r\t]*){2,}/i,
         :replaceFontsRe => /<(\/?)font[^>]*>/i,
