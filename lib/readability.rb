@@ -14,7 +14,7 @@ module Readability
     attr_accessor :options, :html
 
     def initialize(input, options = {})
-      @input = input
+      @input = input.gsub(REGEXES[:replaceBrsRe], '</p><p>').gsub(REGEXES[:replaceFontsRe], '<\1span>')
       @options = DEFAULT_OPTIONS.merge(options)
       @remove_unlikely_candidates = @options[:remove_unlikely_candidates]
       @weight_classes = @options[:weight_classes]

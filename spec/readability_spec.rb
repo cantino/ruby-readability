@@ -117,6 +117,37 @@ describe Readability do
     end
   end
 
+  describe "score_paragraphs" do
+    context "when two consequent br tags are used instead of p" do
+      before :each do
+        @doc = Readability::Document.new(<<-HTML)
+          <html>
+            <head>
+              <title>title!</title>
+            </head>
+            <body id="body">
+              <div id="post1">
+                This is the main content!<br/><br/>
+                Zebra found killed butcher with the chainsaw.<br/><br/>
+                If only I could think of an example, oh, wait.
+              </div>
+              <div id="post2">
+                This is not the content and although it's longer if you meaure it in characters,
+                it's supposed to have lower score than the previous paragraph. And it's only because
+                of the previous paragraph is not one paragraph, it's three subparagraphs
+              </div>
+            </body>
+          </html>
+        HTML
+        @candidates = @doc.score_paragraphs(0)
+      end
+
+      it "should assign the higher score to the first paragraph in this particular example" do
+        @candidates.values.sort_by { |a| -a[:content_score] }.first[:elem][:id].should == 'post1'
+      end
+    end
+  end
+
   describe "the cant_read.html fixture" do
     it "should work on the cant_read.html fixture with some allowed tags" do
       allowed_tags = %w[div span table tr td p i strong u h1 h2 h3 h4 pre code br a]
