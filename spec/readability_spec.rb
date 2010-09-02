@@ -101,7 +101,7 @@ describe Readability do
               <p id="some_text2">some more text</p>
             </div>
           </body>
-        </html>
+        </html><!-- " -->
       HTML
       @candidates = @doc.score_paragraphs(0)
     end
