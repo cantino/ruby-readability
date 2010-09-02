@@ -3,14 +3,22 @@ require 'nokogiri'
 
 module Readability
   class Document
-    TEXT_LENGTH_THRESHOLD = 25
-    RETRY_LENGTH = 250
+    DEFAULT_OPTIONS = {
+      :retry_length => 250,
+      :min_text_length => 25,
+      :remove_unlikely_candidates => true,
+      :weight_classes => true,
+      :clean_conditionally => true
+    }.freeze
 
     attr_accessor :options, :html
 
     def initialize(input, options = {})
       @input = input
-      @options = options
+      @options = DEFAULT_OPTIONS.merge(options)
+      @remove_unlikely_candidates = @options[:remove_unlikely_candidates]
+      @weight_classes = @options[:weight_classes]
+      @clean_conditionally = @options[:clean_conditionally]
       make_html
     end
 
@@ -32,19 +40,32 @@ module Readability
         :videoRe => /http:\/\/(www\.)?(youtube|vimeo)\.com/i
     }
 
-    def content(remove_unlikely_candidates = true)
+    def content(remove_unlikely_candidates = :default)
+      @remove_unlikely_candidates = false if remove_unlikely_candidates == false
+
       @html.css("script, style").each { |i| i.remove }
 
-      remove_unlikely_candidates! if remove_unlikely_candidates
+      remove_unlikely_candidates! if @remove_unlikely_candidates
       transform_misused_divs_into_paragraphs!
-      candidates = score_paragraphs(options[:min_text_length] || TEXT_LENGTH_THRESHOLD)
+      candidates = score_paragraphs(options[:min_text_length])
       best_candidate = select_best_candidate(candidates)
       article = get_article(candidates, best_candidate)
 
       cleaned_article = sanitize(article, candidates, options)
-      if remove_unlikely_candidates && article.text.strip.length < (options[:retry_length] || RETRY_LENGTH)
+      if article.text.strip.length < options[:retry_length]
+        if @remove_unlikely_candidates
+          @remove_unlikely_candidates = false
+        elsif @weight_classes
+          @weight_classes = false
+        elsif @clean_conditionally
+          @clean_conditionally = false
+        else
+          # nothing we can do
+          return cleaned_article
+        end
+
         make_html
-        content(false)
+        content
       else
         cleaned_article
       end
@@ -134,6 +155,8 @@ module Readability
 
     def class_weight(e)
       weight = 0
+      return weight unless @weight_classes
+
       if e[:class] && e[:class] != ""
         if e[:class] =~ REGEXES[:negativeRe]
           weight -= 25
@@ -221,7 +244,34 @@ module Readability
       end
 
       # Conditionally clean <table>s, <ul>s, and <div>s
-      node.css("table, ul, div").each do |el|
+      clean_conditionally(node, candidates, "table, ul, div")
+
+      # We'll sanitize all elements using a whitelist
+      base_whitelist = @options[:tags] || %w[div p]
+
+      # Use a hash for speed (don't want to make a million calls to include?)
+      whitelist = Hash.new
+      base_whitelist.each {|tag| whitelist[tag] = true }
+      ([node] + node.css("*")).each do |el|
+
+        # If element is in whitelist, delete all its attributes
+        if whitelist[el.node_name]
+          el.attributes.each { |a, x| el.delete(a) unless @options[:attributes] && @options[:attributes].include?(a.to_s) }
+
+          # Otherwise, replace the element with its contents
+        else
+          el.swap(el.text)
+        end
+
+      end
+
+      # Get rid of duplicate whitespace
+      node.to_html.gsub(/[\r\n\f]+/, "\n" ).gsub(/[\t ]+/, " ").gsub(/&nbsp;/, " ")
+    end
+
+    def clean_conditionally(node, candidates, selector)
+      return unless @clean_conditionally
+      node.css(selector).each do |el|
         weight = class_weight(el)
         content_score = candidates[el] ? candidates[el][:content_score] : 0
         name = el.name.downcase
@@ -267,28 +317,6 @@ module Readability
           end
         end
       end
-
-      # We'll sanitize all elements using a whitelist
-      base_whitelist = @options[:tags] || %w[div p]
-
-      # Use a hash for speed (don't want to make a million calls to include?)
-      whitelist = Hash.new
-      base_whitelist.each {|tag| whitelist[tag] = true }
-      ([node] + node.css("*")).each do |el|
-
-        # If element is in whitelist, delete all its attributes
-        if whitelist[el.node_name]
-          el.attributes.each { |a, x| el.delete(a) unless @options[:attributes] && @options[:attributes].include?(a.to_s) }
-
-          # Otherwise, replace the element with its contents
-        else
-          el.swap(el.text)
-        end
-
-      end
-
-      # Get rid of duplicate whitespace
-      node.to_html.gsub(/[\r\n\f]+/, "\n" ).gsub(/[\t ]+/, " ").gsub(/&nbsp;/, " ")
     end
 
   end
