@@ -178,7 +178,25 @@ describe Readability do
       @doc.content.should_not match("sidebar")
     end
   end
-  
+
+  describe "inserting space for block elements" do
+    before do
+      @doc = Readability::Document.new(<<-HTML, :min_text_length => 0, :retry_length => 1)
+        <html><head><title>title!</title></head>
+          <body>
+            <div>
+              <p>a<br>b<hr>c<address>d</address>f/p>
+            </div>
+          </body>
+        </html>
+      HTML
+    end
+
+    it "should not return the sidebar" do
+      @doc.content.should_not match("a b c d f")
+    end
+  end
+
   describe "outputs good stuff for known documents" do
     before do
       @html_files = Dir.glob(File.dirname(__FILE__) + "/fixtures/samples/*.html")

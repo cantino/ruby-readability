@@ -248,10 +248,15 @@ module Readability
 
       # We'll sanitize all elements using a whitelist
       base_whitelist = @options[:tags] || %w[div p]
+      # We'll add whitespace instead of block elements,
+      # so a<br>b will have a nice space between them
+      base_replace_with_whitespace = %w[br hr h1 h2 h3 h4 h5 h6 dl dd ol li ul address blockquote center]
 
       # Use a hash for speed (don't want to make a million calls to include?)
       whitelist = Hash.new
       base_whitelist.each {|tag| whitelist[tag] = true }
+      replace_with_whitespace = Hash[base_replace_with_whitespace.map { |tag| [tag, true] }]
+
       ([node] + node.css("*")).each do |el|
 
         # If element is in whitelist, delete all its attributes
@@ -260,13 +265,18 @@ module Readability
 
           # Otherwise, replace the element with its contents
         else
-          el.swap(el.text)
+          if replace_with_whitespace[el.node_name]
+            # Adding &nbsp; here, because swap removes regular spaaces
+            el.swap('&nbsp;' << el.text << '&nbsp;')
+          else
+            el.swap(el.text)
+          end
         end
 
       end
 
       # Get rid of duplicate whitespace
-      node.to_html.gsub(/[\r\n\f]+/, "\n" ).gsub(/[\t ]+/, " ").gsub(/&nbsp;/, " ")
+      node.to_html.gsub(/[\r\n\f]+/, "\n" ).gsub(/[\t  ]+/, " ")
     end
 
     def clean_conditionally(node, candidates, selector)
