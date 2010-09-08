@@ -255,7 +255,8 @@ module Readability
       # Use a hash for speed (don't want to make a million calls to include?)
       whitelist = Hash.new
       base_whitelist.each {|tag| whitelist[tag] = true }
-      replace_with_whitespace = Hash[base_replace_with_whitespace.map { |tag| [tag, true] }]
+      replace_with_whitespace = Hash.new
+      base_replace_with_whitespace.each { |tag| replace_with_whitespace[tag] = true }
 
       ([node] + node.css("*")).each do |el|
 
