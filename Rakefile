@@ -5,11 +5,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "ruby-readability"
-    gem.summary = %Q{ruby-readability}
-    gem.description = %Q{ruby-readability}
-    gem.email = "kmaxwell@twitter.com"
-    gem.homepage = "http://github.com/fizx/ruby-readability"
-    gem.authors = ["Kyle Maxwell"]
+    gem.summary = %Q{Port of arc90's readability project to ruby}
+    gem.description = %Q{Port of arc90's readability project to ruby}
+    gem.email = "andrew@iterationlabs.com"
+    gem.homepage = "http://github.com/iterationlabs/ruby-readability"
+    gem.authors = ["Andrew Cantino", "starrhorne", "libc", "Kyle Maxwell"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
