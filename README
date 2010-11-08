@@ -1,6 +1,12 @@
 Ruby Readability
 
+Command line:
   (sudo) gem install ruby-readability
+
+Bundler:
+  gem "ruby-readability", :require => 'readability'
+
+Example:
 
   require 'rubygems'
   require 'readability'
