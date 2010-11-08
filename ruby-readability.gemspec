@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrew Cantino", "starrhorne", "libc", "Kyle Maxwell"]
-  s.date = %q{2010-10-01}
+  s.date = %q{2010-11-07}
   s.default_executable = %q{readability}
   s.description = %q{Port of arc90's readability project to ruby}
   s.email = %q{andrew@iterationlabs.com}
@@ -25,7 +25,6 @@ Gem::Specification.new do |s|
      "VERSION",
      "bin/readability",
      "lib/readability.rb",
-     "lib/readability_old.rb",
      "ruby-readability.gemspec",
      "spec/fixtures/cant_read.html",
      "spec/fixtures/sample.html",
