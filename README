@@ -1,3 +1,16 @@
+Ruby Readability
+
+  (sudo) gem install ruby-readability
+
+  require 'rubygems'
+  require 'readability'
+  require 'open-uri'
+
+  source = open('http://lab.arc90.com/experiments/readability/').read
+  puts Readability::Document.new(source).content
+
+===
+
 This code is under the Apache License 2.0.  http://www.apache.org/licenses/LICENSE-2.0
 
 This is a ruby port of arc90's readability project
