@@ -267,10 +267,9 @@ module Readability
           # Otherwise, replace the element with its contents
         else
           if replace_with_whitespace[el.node_name]
-            # Adding &nbsp; here, because swap removes regular spaaces
-            el.swap('&nbsp;' << el.text << '&nbsp;')
+            el.swap(Nokogiri::XML::Text.new(' ' << el.text << ' ', el.document))
           else
-            el.swap(el.text)
+            el.swap(Nokogiri::XML::Text.new(el.text, el.document))
           end
         end
 
