@@ -11,7 +11,7 @@ begin
     gem.homepage = "http://github.com/iterationlabs/ruby-readability"
     gem.authors = ["Andrew Cantino", "starrhorne", "libc", "Kyle Maxwell"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_dependency 'nokogiri', '>= 1.4.2'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
