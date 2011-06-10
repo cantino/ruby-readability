@@ -15,6 +15,13 @@ Example:
   source = open('http://lab.arc90.com/experiments/readability/').read
   puts Readability::Document.new(source).content
 
+There is also a command-line tool for testing readability in bin/readability.
+
+  Usage: readability [options] URL
+      -d, --debug                      Show debug output
+      -i, --images                     Keep images and links
+      -h, --help                       Show this message
+
 ===
 
 This code is under the Apache License 2.0.  http://www.apache.org/licenses/LICENSE-2.0

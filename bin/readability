@@ -2,12 +2,39 @@
 $KCODE='u'
 require 'rubygems'
 require 'open-uri'
+require 'optparse'
 require File.dirname(__FILE__) + '/../lib/readability'
 
+options = { :debug => false, :images => false }
+options_parser = OptionParser.new do |opts|
+  opts.banner = "Usage: #{File.basename($0)} [options] URL"
+
+  opts.on("-d", "--debug", "Show debug output") do |v|
+    options[:debug] = v
+  end
+
+  opts.on("-i", "--images", "Keep images and links") do |i|
+    options[:images] = i
+  end
+
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+end
+options_parser.parse!
+
 if ARGV.length != 1
-  STDERR.puts "Usage: #{File.basename($0)} URL"
+  STDERR.puts options_parser
   exit 1
 end
 
 text = open(ARGV.first).read
-puts Readability::Document.new(text).content
+if options[:images]
+  puts Readability::Document.new(text, :tags => %w[div p img a], 
+                                       :attributes => %w[src href], 
+                                       :remove_empty_nodes => false, 
+                                       :debug => options[:debug]).content
+else
+  puts Readability::Document.new(text, :debug => options[:debug]).content
+end

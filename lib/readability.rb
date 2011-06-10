@@ -8,7 +8,8 @@ module Readability
       :min_text_length => 25,
       :remove_unlikely_candidates => true,
       :weight_classes => true,
-      :clean_conditionally => true
+      :clean_conditionally => true,
+      :remove_empty_nodes => true
     }.freeze
 
     attr_accessor :options, :html
@@ -221,7 +222,7 @@ module Readability
           # wrap text nodes in p tags
 #          elem.children.each do |child|
 #            if child.text?
-##              debug("wrapping text node with a p")
+#              debug("wrapping text node with a p")
 #              child.swap("<p>#{child.text}</p>")
 #            end
 #          end
@@ -238,9 +239,11 @@ module Readability
         elem.remove
       end
 
-      # remove empty <p> tags
-      node.css("p").each do |elem|
-        elem.remove if elem.content.strip.empty?
+      if @options[:remove_empty_nodes]
+        # remove <p> tags that have no text content - this will also remove p tags that contain only images.
+        node.css("p").each do |elem|
+          elem.remove if elem.content.strip.empty?
+        end
       end
 
       # Conditionally clean <table>s, <ul>s, and <div>s
@@ -259,7 +262,6 @@ module Readability
       base_replace_with_whitespace.each { |tag| replace_with_whitespace[tag] = true }
 
       ([node] + node.css("*")).each do |el|
-
         # If element is in whitelist, delete all its attributes
         if whitelist[el.node_name]
           el.attributes.each { |a, x| el.delete(a) unless @options[:attributes] && @options[:attributes].include?(a.to_s) }
