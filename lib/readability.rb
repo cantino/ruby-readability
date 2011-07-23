@@ -9,7 +9,8 @@ module Readability
       :remove_unlikely_candidates => true,
       :weight_classes => true,
       :clean_conditionally => true,
-      :remove_empty_nodes => true
+      :remove_empty_nodes => true,
+      :encoding => 'UTF-8'
     }.freeze
 
     attr_accessor :options, :html
@@ -20,11 +21,12 @@ module Readability
       @remove_unlikely_candidates = @options[:remove_unlikely_candidates]
       @weight_classes = @options[:weight_classes]
       @clean_conditionally = @options[:clean_conditionally]
+      @encoding = @options[:encoding]
       make_html
     end
 
     def make_html
-      @html = Nokogiri::HTML(@input, nil, 'UTF-8')
+      @html = Nokogiri::HTML(@input, nil, @encoding)
     end
 
     REGEXES = {
