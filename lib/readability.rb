@@ -43,6 +43,11 @@ module Readability
         :videoRe => /http:\/\/(www\.)?(youtube|vimeo)\.com/i
     }
 
+    def title
+      title = @html.css("title").first
+      title ? title.text : nil
+    end
+
     def content(remove_unlikely_candidates = :default)
       @remove_unlikely_candidates = false if remove_unlikely_candidates == false
 
