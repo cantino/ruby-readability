@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'nokogiri'
+require 'guess_html_encoding'
 
 module Readability
   class Document
@@ -9,24 +10,29 @@ module Readability
       :remove_unlikely_candidates => true,
       :weight_classes => true,
       :clean_conditionally => true,
-      :remove_empty_nodes => true,
-      :encoding => 'UTF-8'
+      :remove_empty_nodes => true
     }.freeze
 
     attr_accessor :options, :html
 
     def initialize(input, options = {})
-      @input = input.gsub(REGEXES[:replaceBrsRe], '</p><p>').gsub(REGEXES[:replaceFontsRe], '<\1span>')
       @options = DEFAULT_OPTIONS.merge(options)
+      @input = input
+
+      if RUBY_VERSION == "1.9.2" && !@options[:encoding]
+        @input = GuessHtmlEncoding.encode(@input, @options[:html_headers]) unless @options[:do_not_guess_encoding]
+        @options[:encoding] = @input.encoding.to_s
+      end
+
+      @input = @input.gsub(REGEXES[:replaceBrsRe], '</p><p>').gsub(REGEXES[:replaceFontsRe], '<\1span>')
       @remove_unlikely_candidates = @options[:remove_unlikely_candidates]
       @weight_classes = @options[:weight_classes]
       @clean_conditionally = @options[:clean_conditionally]
-      @encoding = @options[:encoding]
       make_html
     end
 
     def make_html
-      @html = Nokogiri::HTML(@input, nil, @encoding)
+      @html = Nokogiri::HTML(@input, nil, @options[:encoding])
     end
 
     REGEXES = {
