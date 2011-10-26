@@ -166,6 +166,14 @@ describe Readability do
     it "should return the main page content" do
       @doc.content.should match("Some content")
     end
+
+    it "should return the page title if present" do
+      @doc.title.should match("title!")
+
+      doc = Readability::Document.new("<html><head></head><body><div><p>Some content</p></div></body>",
+                                       :min_text_length => 0, :retry_length => 1)
+      doc.title.should be_nil
+    end
   end
 
   describe "ignoring sidebars" do
