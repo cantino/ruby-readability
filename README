@@ -20,11 +20,13 @@ Options:
   You may provide additions options to Readability::Document.new, including:
 
     :tags               - the base whitelist of tags to sanitize, defaults to %w[div p]
-    :remove_empty_nodes - remove <p> tags that have no text content; this will also remove p tags that contain only images
+    :remove_empty_nodes - remove <p> tags that have no text content; also removes p tags that contain only images
     :attributes         - whitelist of allowed attributes
     :debug              - provide debugging output, defaults false
-    :encoding           - if this page is of a known encoding, you can specify it; if left unspecified, the encoding will be guessed (only in Ruby 1.9.x)
-    :html_headers       - in Ruby 1.9.x these will be passed to the guess_html_encoding gem to aid with guessing the HTML encoding 
+    :encoding           - if this page is of a known encoding, you can specify it; if left 
+                          unspecified, the encoding will be guessed (only in Ruby 1.9.x)
+    :html_headers       - in Ruby 1.9.x these will be passed to the guess_html_encoding gem 
+                          to aid with guessing the HTML encoding 
 
 Readability comes with a command-line tool for experimentation in bin/readability.
 
