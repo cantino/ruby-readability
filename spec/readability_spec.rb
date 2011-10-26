@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'spec_helper'
 
 describe Readability do
@@ -222,17 +224,26 @@ describe Readability do
   end
 
   describe "encoding guessing" do
-    context "with ruby 1.9.2" do
-      it "should correctly guess and enforce HTML encoding" do
-        
-      end
+    if RUBY_VERSION =~ /^1\.9\./
+      context "with ruby 1.9.2" do
+        it "should correctly guess and enforce HTML encoding" do
+          doc = Readability::Document.new("<html><head><meta http-equiv='content-type' content='text/html; charset=LATIN1'></head><body><div>hi!</div></body></html>")
+          content = doc.content
+          content.encoding.to_s.should == "ISO-8859-1"
+          content.should be_valid_encoding
+        end
 
-      it "should allow encoding guessing to be skipped" do
+        it "should allow encoding guessing to be skipped" do
+          do_not_allow(GuessHtmlEncoding).encode
+          doc = Readability::Document.new(@simple_html_fixture, :do_not_guess_encoding => true)
+          doc.content
+        end
 
-      end
-
-      it "should allow encoding guessing to be overridden" do
-
+        it "should allow encoding guessing to be overridden" do
+          do_not_allow(GuessHtmlEncoding).encode
+          doc = Readability::Document.new(@simple_html_fixture, :encoding => "UTF-8")
+          doc.content
+        end
       end
     end
   end

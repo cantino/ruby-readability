@@ -19,7 +19,7 @@ module Readability
       @options = DEFAULT_OPTIONS.merge(options)
       @input = input
 
-      if RUBY_VERSION == "1.9.2" && !@options[:encoding]
+      if RUBY_VERSION =~ /^1\.9\./ && !@options[:encoding]
         @input = GuessHtmlEncoding.encode(@input, @options[:html_headers]) unless @options[:do_not_guess_encoding]
         @options[:encoding] = @input.encoding.to_s
       end
