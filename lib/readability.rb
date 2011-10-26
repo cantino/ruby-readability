@@ -51,7 +51,7 @@ module Readability
     def content(remove_unlikely_candidates = :default)
       @remove_unlikely_candidates = false if remove_unlikely_candidates == false
 
-      @html.css("script, style").each { |i| i.remove }
+      @html.css("script, style").each(&:remove)
 
       remove_unlikely_candidates! if @remove_unlikely_candidates
       transform_misused_divs_into_paragraphs!
@@ -126,7 +126,7 @@ module Readability
     end
 
     def get_link_density(elem)
-      link_length = elem.css("a").map {|i| i.text}.join("").length
+      link_length = elem.css("a").map(&:text).join("").length
       text_length = elem.text.length
       link_length / text_length.to_f
     end
