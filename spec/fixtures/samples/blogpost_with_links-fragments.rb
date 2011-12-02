@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This sample originally from http://softarhive.net
 
 $required_fragments = [

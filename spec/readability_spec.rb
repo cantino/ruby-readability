@@ -1,4 +1,6 @@
-require File.expand_path(File.join(File.dirname(__FILE__), "spec_helper"))
+# encoding: UTF-8
+
+require 'spec_helper'
 
 describe Readability do
   before do
@@ -16,6 +18,78 @@ describe Readability do
         </body>
       </html>
     HTML
+  end
+
+  describe "images" do
+    before do
+      # bbc     => http://www.bbc.co.uk/news/magazine-15959067
+      # nytimes => http://opinionator.blogs.nytimes.com/2011/12/01/health-care-for-a-changing-work-force/
+      # thesum  => http://www.thesun.co.uk/sol/homepage/sport/football/3973265/Manchester-United-news-Dimitar-Berbatov-and-Carling-Cup-flops-warned.html
+
+      @bbc      = File.read(File.dirname(__FILE__) + "/fixtures/bbc.html")
+      @nytimes  = File.read(File.dirname(__FILE__) + "/fixtures/nytimes.html")
+      @thesum   = File.read(File.dirname(__FILE__) + "/fixtures/thesun.html")
+    end
+
+    it "should show one image, but outside of the best candidate" do
+      @doc = Readability::Document.new(@thesum)
+      @doc.images.should == ["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg"]
+      @doc.best_candidate_has_image.should == false
+    end
+
+    it "should show one image inside of the best candidate" do
+      @doc = Readability::Document.new(@nytimes)
+      @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
+      @doc.best_candidate_has_image.should == true
+    end
+
+    describe "no images" do
+      it "shouldn't show images" do
+        @doc = Readability::Document.new(@bbc, :min_image_height => 400)
+        @doc.images.should == []
+        @doc.best_candidate_has_image.should == false
+      end
+    end
+
+    describe "poll of images" do
+      it "should show some images inside of the best candidate" do
+        @doc = Readability::Document.new(@bbc)
+        @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg", "http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027786_john_capes229_rnsm.jpg", "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"]
+        @doc.best_candidate_has_image.should == true
+      end
+
+      it "should show some images inside of the best candidate, include gif format" do
+        @doc = Readability::Document.new(@bbc, :ignore_image_format => [])
+        @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg", "http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027786_john_capes229_rnsm.jpg", "http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif", "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"]
+        @doc.best_candidate_has_image.should == true
+      end
+
+      describe "width, height and format" do
+        it "should show some images inside of the best candidate, but with width most equal to 400px" do
+          @doc = Readability::Document.new(@bbc, :min_image_width => 400, :ignore_image_format => [])
+          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg"]
+          @doc.best_candidate_has_image.should == true
+        end
+
+        it "should show some images inside of the best candidate, but with width most equal to 304px" do
+          @doc = Readability::Document.new(@bbc, :min_image_width => 304, :ignore_image_format => [])
+          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg", "http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif", "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"]
+          @doc.best_candidate_has_image.should == true
+        end
+
+        it "should show some images inside of the best candidate, but with width most equal to 304px and ignoring JPG format" do
+          @doc = Readability::Document.new(@bbc, :min_image_width => 304, :ignore_image_format => ["jpg"])
+          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif"]
+          @doc.best_candidate_has_image.should == true
+        end
+
+        it "should show some images inside of the best candidate, but with height most equal to 400px, no ignoring no format" do
+          @doc = Readability::Document.new(@bbc, :min_image_height => 400, :ignore_image_format => [])
+          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif"]
+          @doc.best_candidate_has_image.should == true
+        end
+      end
+    end
   end
 
   describe "transformMisusedDivsIntoParagraphs" do
@@ -115,11 +189,9 @@ describe Readability do
         b[:content_score] <=> a[:content_score]
       }.first[:elem][:id].should == "body"
     end
-  end
 
-  describe "score_paragraphs" do
     context "when two consequent br tags are used instead of p" do
-      before :each do
+      it "should assign the higher score to the first paragraph in this particular example" do
         @doc = Readability::Document.new(<<-HTML)
           <html>
             <head>
@@ -140,9 +212,6 @@ describe Readability do
           </html>
         HTML
         @candidates = @doc.score_paragraphs(0)
-      end
-
-      it "should assign the higher score to the first paragraph in this particular example" do
         @candidates.values.sort_by { |a| -a[:content_score] }.first[:elem][:id].should == 'post1'
       end
     end
@@ -212,14 +281,13 @@ describe Readability do
     end
     
     it "should output expected fragments of text" do
-
       checks = 0
       @samples.each do |sample|
         html = File.read(File.dirname(__FILE__) + "/fixtures/samples/#{sample}.html")
         doc = Readability::Document.new(html).content
 
         load "fixtures/samples/#{sample}-fragments.rb"
-        puts "testing #{sample}..."
+        #puts "testing #{sample}..."
         
         $required_fragments.each do |required_text|
           doc.should include(required_text)
@@ -231,7 +299,32 @@ describe Readability do
           checks += 1
         end
       end
-      puts "Performed #{checks} checks."
+      #puts "Performed #{checks} checks."
+    end
+  end
+
+  describe "encoding guessing" do
+    if RUBY_VERSION =~ /^1\.9\./
+      context "with ruby 1.9.2" do
+        it "should correctly guess and enforce HTML encoding" do
+          doc = Readability::Document.new("<html><head><meta http-equiv='content-type' content='text/html; charset=LATIN1'></head><body><div>hi!</div></body></html>")
+          content = doc.content
+          content.encoding.to_s.should == "ISO-8859-1"
+          content.should be_valid_encoding
+        end
+
+        it "should allow encoding guessing to be skipped" do
+          do_not_allow(GuessHtmlEncoding).encode
+          doc = Readability::Document.new(@simple_html_fixture, :do_not_guess_encoding => true)
+          doc.content
+        end
+
+        it "should allow encoding guessing to be overridden" do
+          do_not_allow(GuessHtmlEncoding).encode
+          doc = Readability::Document.new(@simple_html_fixture, :encoding => "UTF-8")
+          doc.content
+        end
+      end
     end
   end
 end

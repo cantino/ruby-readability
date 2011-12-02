@@ -1,4 +1,4 @@
-
+# encoding: UTF-8
 # Originally from http://www.theglobeandmail.com/news/national/ottawa-cuts-already-vacant-positions/article1494400/
 
 $required_fragments = [

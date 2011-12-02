@@ -1,32 +1,98 @@
 require 'rubygems'
 require 'nokogiri'
+require 'guess_html_encoding'
+require 'mini_magick'
 
 module Readability
   class Document
     DEFAULT_OPTIONS = {
-      :retry_length => 250,
-      :min_text_length => 25,
+      :retry_length               => 250,
+      :min_text_length            => 25,
       :remove_unlikely_candidates => true,
-      :weight_classes => true,
-      :clean_conditionally => true,
-      :remove_empty_nodes => true,
-      :encoding => 'UTF-8'
+      :weight_classes             => true,
+      :clean_conditionally        => true,
+      :remove_empty_nodes         => true,
+      :min_image_width            => 130,
+      :min_image_height           => 80,
+      :ignore_image_format        => ["gif"]
     }.freeze
 
-    attr_accessor :options, :html
+    attr_accessor :options, :html, :best_candidate, :candidates, :best_candidate_has_image
 
     def initialize(input, options = {})
-      @input = input.gsub(REGEXES[:replaceBrsRe], '</p><p>').gsub(REGEXES[:replaceFontsRe], '<\1span>')
       @options = DEFAULT_OPTIONS.merge(options)
+      @input = input
+
+      if RUBY_VERSION =~ /^1\.9\./ && !@options[:encoding]
+        @input = GuessHtmlEncoding.encode(@input, @options[:html_headers]) unless @options[:do_not_guess_encoding]
+        @options[:encoding] = @input.encoding.to_s
+      end
+
+      @input = @input.gsub(REGEXES[:replaceBrsRe], '</p><p>').gsub(REGEXES[:replaceFontsRe], '<\1span>')
       @remove_unlikely_candidates = @options[:remove_unlikely_candidates]
       @weight_classes = @options[:weight_classes]
       @clean_conditionally = @options[:clean_conditionally]
-      @encoding = @options[:encoding]
+      @best_candidate_has_image = true
       make_html
     end
 
+    def prepare_candidates
+      @html.css("script, style").each { |i| i.remove }
+      remove_unlikely_candidates! if @remove_unlikely_candidates
+      transform_misused_divs_into_paragraphs!
+
+      @candidates     = score_paragraphs(options[:min_text_length])
+      @best_candidate = select_best_candidate(@candidates)
+    end
+
     def make_html
-      @html = Nokogiri::HTML(@input, nil, @encoding)
+      @html = Nokogiri::HTML(@input, nil, @options[:encoding])
+    end
+
+    def images(content=nil, reload=false)
+      @best_candidate_has_image = false if reload
+
+      prepare_candidates
+      list_images   = []
+      tested_images = []
+      content       = @best_candidate[:elem] unless reload
+
+      return list_images if content.nil?
+      elements = content.css("img").map(&:attributes)
+
+        elements.each do |element|
+          begin
+            url     = element["src"].value
+            height  = element["height"].nil?  ? 0 : element["height"].value.to_i
+            width   = element["width"].nil?   ? 0 : element["width"].value.to_i
+            format  = File.extname(url).gsub(".", "")
+            image   = {:width => width, :height => height, :format => format}
+            image   = MiniMagick::Image.open(url) if height.zero? or width.zero?
+
+            if tested_images.include?(url)
+              debug("Image was tested: #{url}")
+              next
+            end
+
+            tested_images.push(url)
+            if imageable?(image)
+              list_images << url
+            else
+              debug("Image descarted: #{url} - height: #{image[:height]} - width: #{image[:width]} - format: #{image[:format]}")
+            end
+          rescue => e
+            debug("Image error: #{e}")
+            next
+          end
+        end
+
+      (list_images.empty? and content != @html) ? images(@html, true) : list_images
+    end
+
+    def imageable?(image)
+      image[:width] >= options[:min_image_width] and
+      image[:height] >= options[:min_image_height] and not
+      options[:ignore_image_format].include?(image[:format].downcase)
     end
 
     REGEXES = {
@@ -51,15 +117,9 @@ module Readability
     def content(remove_unlikely_candidates = :default)
       @remove_unlikely_candidates = false if remove_unlikely_candidates == false
 
-      @html.css("script, style").each(&:remove)
-
-      remove_unlikely_candidates! if @remove_unlikely_candidates
-      transform_misused_divs_into_paragraphs!
-      candidates = score_paragraphs(options[:min_text_length])
-      best_candidate = select_best_candidate(candidates)
-      article = get_article(candidates, best_candidate)
-
-      cleaned_article = sanitize(article, candidates, options)
+      prepare_candidates
+      article = get_article(@candidates, @best_candidate)
+      cleaned_article = sanitize(article, @candidates, options)
       if article.text.strip.length < options[:retry_length]
         if @remove_unlikely_candidates
           @remove_unlikely_candidates = false

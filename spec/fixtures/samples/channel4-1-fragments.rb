@@ -1,4 +1,4 @@
-
+# encoding: UTF-8
 # This sample originally from http://www.channel4.com/news/articles/world/judge+rules+briton+can+be+forcefed/3578372
 
 $required_fragments = [
