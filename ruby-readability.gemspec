@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rr", ">= 1.0"
   s.add_dependency 'nokogiri', '>= 1.4.2'
   s.add_dependency 'guess_html_encoding', '>= 0.0.2'
+  s.add_dependency 'mini_magick', '= 3.3'
 end
