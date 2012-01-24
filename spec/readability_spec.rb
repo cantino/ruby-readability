@@ -1,4 +1,6 @@
-require File.expand_path(File.join(File.dirname(__FILE__), "spec_helper"))
+# encoding: UTF-8
+
+require 'spec_helper'
 
 describe Readability do
   before do
@@ -115,11 +117,9 @@ describe Readability do
         b[:content_score] <=> a[:content_score]
       }.first[:elem][:id].should == "body"
     end
-  end
 
-  describe "score_paragraphs" do
     context "when two consequent br tags are used instead of p" do
-      before :each do
+      it "should assign the higher score to the first paragraph in this particular example" do
         @doc = Readability::Document.new(<<-HTML)
           <html>
             <head>
@@ -140,9 +140,6 @@ describe Readability do
           </html>
         HTML
         @candidates = @doc.score_paragraphs(0)
-      end
-
-      it "should assign the higher score to the first paragraph in this particular example" do
         @candidates.values.sort_by { |a| -a[:content_score] }.first[:elem][:id].should == 'post1'
       end
     end
@@ -212,14 +209,13 @@ describe Readability do
     end
     
     it "should output expected fragments of text" do
-
       checks = 0
       @samples.each do |sample|
         html = File.read(File.dirname(__FILE__) + "/fixtures/samples/#{sample}.html")
         doc = Readability::Document.new(html).content
 
         load "fixtures/samples/#{sample}-fragments.rb"
-        puts "testing #{sample}..."
+        #puts "testing #{sample}..."
         
         $required_fragments.each do |required_text|
           doc.should include(required_text)
@@ -231,7 +227,32 @@ describe Readability do
           checks += 1
         end
       end
-      puts "Performed #{checks} checks."
+      #puts "Performed #{checks} checks."
+    end
+  end
+
+  describe "encoding guessing" do
+    if RUBY_VERSION =~ /^1\.9\./
+      context "with ruby 1.9.2" do
+        it "should correctly guess and enforce HTML encoding" do
+          doc = Readability::Document.new("<html><head><meta http-equiv='content-type' content='text/html; charset=LATIN1'></head><body><div>hi!</div></body></html>")
+          content = doc.content
+          content.encoding.to_s.should == "ISO-8859-1"
+          content.should be_valid_encoding
+        end
+
+        it "should allow encoding guessing to be skipped" do
+          do_not_allow(GuessHtmlEncoding).encode
+          doc = Readability::Document.new(@simple_html_fixture, :do_not_guess_encoding => true)
+          doc.content
+        end
+
+        it "should allow encoding guessing to be overridden" do
+          do_not_allow(GuessHtmlEncoding).encode
+          doc = Readability::Document.new(@simple_html_fixture, :encoding => "UTF-8")
+          doc.content
+        end
+      end
     end
   end
 end

@@ -15,12 +15,31 @@ Example:
   source = open('http://lab.arc90.com/experiments/readability/').read
   puts Readability::Document.new(source).content
 
-There is also a command-line tool for testing readability in bin/readability.
+Options:
+
+  You may provide additions options to Readability::Document.new, including:
+
+    :tags               - the base whitelist of tags to sanitize, defaults to %w[div p]
+    :remove_empty_nodes - remove <p> tags that have no text content; also removes p tags that contain only images
+    :attributes         - whitelist of allowed attributes
+    :debug              - provide debugging output, defaults false
+    :encoding           - if this page is of a known encoding, you can specify it; if left 
+                          unspecified, the encoding will be guessed (only in Ruby 1.9.x)
+    :html_headers       - in Ruby 1.9.x these will be passed to the guess_html_encoding gem 
+                          to aid with guessing the HTML encoding 
+
+Readability comes with a command-line tool for experimentation in bin/readability.
 
   Usage: readability [options] URL
       -d, --debug                      Show debug output
       -i, --images                     Keep images and links
       -h, --help                       Show this message
+
+Potential issues:
+
+* If you're on a Mac and are getting segmentation faults, see this discussion https://github.com/tenderlove/nokogiri/issues/404 and consider updating your version of libxml2.
+  Version 2.7.8 of libxml2 with the following worked for me:
+  gem install nokogiri -- --with-xml2-include=/usr/local/Cellar/libxml2/2.7.8/include/libxml2 --with-xml2-lib=/usr/local/Cellar/libxml2/2.7.8/lib --with-xslt-dir=/usr/local/Cellar/libxslt/1.1.26
 
 ===
 
