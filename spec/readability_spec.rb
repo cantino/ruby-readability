@@ -22,10 +22,6 @@ describe Readability do
 
   describe "images" do
     before do
-      # bbc     => http://www.bbc.co.uk/news/magazine-15959067
-      # nytimes => http://opinionator.blogs.nytimes.com/2011/12/01/health-care-for-a-changing-work-force/
-      # thesum  => http://www.thesun.co.uk/sol/homepage/sport/football/3973265/Manchester-United-news-Dimitar-Berbatov-and-Carling-Cup-flops-warned.html
-
       @bbc      = File.read(File.dirname(__FILE__) + "/fixtures/bbc.html")
       @nytimes  = File.read(File.dirname(__FILE__) + "/fixtures/nytimes.html")
       @thesum   = File.read(File.dirname(__FILE__) + "/fixtures/thesun.html")
