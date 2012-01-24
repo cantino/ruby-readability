@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby 
-$KCODE='u'
 require 'rubygems'
 require 'open-uri'
 require 'optparse'
