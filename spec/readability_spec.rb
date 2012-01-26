@@ -20,6 +20,74 @@ describe Readability do
     HTML
   end
 
+  describe "images" do
+    before do
+      @bbc      = File.read(File.dirname(__FILE__) + "/fixtures/bbc.html")
+      @nytimes  = File.read(File.dirname(__FILE__) + "/fixtures/nytimes.html")
+      @thesum   = File.read(File.dirname(__FILE__) + "/fixtures/thesun.html")
+    end
+
+    it "should show one image, but outside of the best candidate" do
+      @doc = Readability::Document.new(@thesum)
+      @doc.images.should == ["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg"]
+      @doc.best_candidate_has_image.should == false
+    end
+
+    it "should show one image inside of the best candidate" do
+      @doc = Readability::Document.new(@nytimes)
+      @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
+      @doc.best_candidate_has_image.should == true
+    end
+
+    describe "no images" do
+      it "shouldn't show images" do
+        @doc = Readability::Document.new(@bbc, :min_image_height => 400)
+        @doc.images.should == []
+        @doc.best_candidate_has_image.should == false
+      end
+    end
+
+    describe "poll of images" do
+      it "should show some images inside of the best candidate" do
+        @doc = Readability::Document.new(@bbc)
+        @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg", "http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027786_john_capes229_rnsm.jpg", "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"]
+        @doc.best_candidate_has_image.should == true
+      end
+
+      it "should show some images inside of the best candidate, include gif format" do
+        @doc = Readability::Document.new(@bbc, :ignore_image_format => [])
+        @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg", "http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027786_john_capes229_rnsm.jpg", "http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif", "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"]
+        @doc.best_candidate_has_image.should == true
+      end
+
+      describe "width, height and format" do
+        it "should show some images inside of the best candidate, but with width most equal to 400px" do
+          @doc = Readability::Document.new(@bbc, :min_image_width => 400, :ignore_image_format => [])
+          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg"]
+          @doc.best_candidate_has_image.should == true
+        end
+
+        it "should show some images inside of the best candidate, but with width most equal to 304px" do
+          @doc = Readability::Document.new(@bbc, :min_image_width => 304, :ignore_image_format => [])
+          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg", "http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif", "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"]
+          @doc.best_candidate_has_image.should == true
+        end
+
+        it "should show some images inside of the best candidate, but with width most equal to 304px and ignoring JPG format" do
+          @doc = Readability::Document.new(@bbc, :min_image_width => 304, :ignore_image_format => ["jpg"])
+          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif"]
+          @doc.best_candidate_has_image.should == true
+        end
+
+        it "should show some images inside of the best candidate, but with height most equal to 400px, no ignoring no format" do
+          @doc = Readability::Document.new(@bbc, :min_image_height => 400, :ignore_image_format => [])
+          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif"]
+          @doc.best_candidate_has_image.should == true
+        end
+      end
+    end
+  end
+
   describe "transformMisusedDivsIntoParagraphs" do
     before do
       @doc = Readability::Document.new(@simple_html_fixture)

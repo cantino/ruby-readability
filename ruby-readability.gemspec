@@ -17,7 +17,8 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_development_dependency "rspec", ">= 2.6"
+  s.add_development_dependency "rspec", ">= 2.8"
+  s.add_development_dependency "rspec-expectations", ">= 2.8"
   s.add_development_dependency "rr", ">= 1.0"
   s.add_dependency 'nokogiri', '>= 1.4.2'
   s.add_dependency 'guess_html_encoding', '>= 0.0.2'
