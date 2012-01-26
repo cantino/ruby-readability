@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'nokogiri'
 require 'guess_html_encoding'
-require 'mini_magick'
 
 module Readability
   class Document
@@ -50,6 +49,8 @@ module Readability
     end
 
     def images(content=nil, reload=false)
+      require 'mini_magick'
+
       @best_candidate_has_image = false if reload
 
       prepare_candidates
