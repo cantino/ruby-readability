@@ -49,7 +49,11 @@ module Readability
     end
 
     def images(content=nil, reload=false)
-      require 'mini_magick'
+      begin
+        require 'mini_magick'
+      rescue LoadError
+        raise "Please install mini_magick in order to use the #images feature."
+      end
 
       @best_candidate_has_image = false if reload
 
