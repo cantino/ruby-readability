@@ -58,6 +58,10 @@ If you're on a Mac and are getting segmentation faults, see the discussion at ht
 
     gem install nokogiri -- --with-xml2-include=/usr/local/Cellar/libxml2/2.7.8/include/libxml2 --with-xml2-lib=/usr/local/Cellar/libxml2/2.7.8/lib --with-xslt-dir=/usr/local/Cellar/libxslt/1.1.26
 
+Or if you're using bundler and Rails 3, you can run this command to make bundler always globally build `nokogiri` this way
+
+    bundle config build.nokogiri -- --with-xml2-include=/usr/local/Cellar/libxml2/2.7.8/include/libxml2 --with-xml2-lib=/usr/local/Cellar/libxml2/2.7.8/lib --with-xslt-dir=/usr/local/Cellar/libxslt/1.1.26
+    
 # License
 
 This code is under the Apache License 2.0.  http://www.apache.org/licenses/LICENSE-2.0
