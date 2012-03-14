@@ -31,7 +31,7 @@ You may provide options to Readability::Document.new, including:
     :debug               - provide debugging output, defaults false
     :encoding            - if the page is of a known encoding, you can specify it; if left unspecified,
                            the encoding will be guessed (only in Ruby 1.9.x)
-    :html_headers        - in Ruby 1.9.x these will be passed to the guess_html_encoding gem 
+    :html_headers        - in Ruby 1.9.x these will be passed to the guess_html_encoding gem
                            to aid with guessing the HTML encoding
     :ignore_image_format - for use with .images.  For example: :ignore_image_format => ["gif", "png"]
     :min_image_height    - set a minimum image height for .images
@@ -61,7 +61,11 @@ If you're on a Mac and are getting segmentation faults, see the discussion at ht
 Or if you're using bundler and Rails 3, you can run this command to make bundler always globally build `nokogiri` this way
 
     bundle config build.nokogiri -- --with-xml2-include=/usr/local/Cellar/libxml2/2.7.8/include/libxml2 --with-xml2-lib=/usr/local/Cellar/libxml2/2.7.8/lib --with-xslt-dir=/usr/local/Cellar/libxslt/1.1.26
-    
+
+# Change Log
+
+ * Version 0.5.1, released 3/13/2012 - The `ignore_image_format` option now defaults to an empty array, no longer excluding gif files by default.  MiniMagic fetches are no longer attempted on local images.
+
 # License
 
 This code is under the Apache License 2.0.  http://www.apache.org/licenses/LICENSE-2.0

@@ -25,6 +25,10 @@ describe Readability do
       @bbc      = File.read(File.dirname(__FILE__) + "/fixtures/bbc.html")
       @nytimes  = File.read(File.dirname(__FILE__) + "/fixtures/nytimes.html")
       @thesum   = File.read(File.dirname(__FILE__) + "/fixtures/thesun.html")
+
+      FakeWeb::Registry.instance.clean_registry
+      FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg",
+                           :body => File.read(File.dirname(__FILE__) + "/fixtures/images/dim_1416768a.jpg"))
     end
 
     it "should show one image, but outside of the best candidate" do
@@ -39,9 +43,26 @@ describe Readability do
       @doc.best_candidate_has_image.should == true
     end
 
+    it "should not try to download local images" do
+      @doc = Readability::Document.new(<<-HTML)
+        <html>
+          <head>
+            <title>title!</title>
+          </head>
+          <body class='comment'>
+            <div>
+              <img src="/something/local.gif" />
+            </div>
+          </body>
+        </html>
+      HTML
+      do_not_allow(@doc).load_image(anything)
+      @doc.images.should == []
+    end
+
     describe "no images" do
       it "shouldn't show images" do
-        @doc = Readability::Document.new(@bbc, :min_image_height => 400)
+        @doc = Readability::Document.new(@bbc, :min_image_height => 600)
         @doc.images.should == []
         @doc.best_candidate_has_image.should == false
       end
@@ -50,7 +71,10 @@ describe Readability do
     describe "poll of images" do
       it "should show some images inside of the best candidate" do
         @doc = Readability::Document.new(@bbc)
-        @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg", "http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027786_john_capes229_rnsm.jpg", "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"]
+        @doc.images.should =~ ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg",
+                               "http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027786_john_capes229_rnsm.jpg",
+                               "http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif",
+                               "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"]
         @doc.best_candidate_has_image.should == true
       end
 
@@ -275,7 +299,7 @@ describe Readability do
       @html_files = Dir.glob(File.dirname(__FILE__) + "/fixtures/samples/*.html")
       @samples = @html_files.map {|filename| File.basename(filename, '.html') }
     end
-    
+
     it "should output expected fragments of text" do
       checks = 0
       @samples.each do |sample|
@@ -284,12 +308,12 @@ describe Readability do
 
         load "fixtures/samples/#{sample}-fragments.rb"
         #puts "testing #{sample}..."
-        
+
         $required_fragments.each do |required_text|
           doc.should include(required_text)
           checks += 1
         end
-        
+
         $excluded_fragments.each do |text_to_avoid|
           doc.should_not include(text_to_avoid)
           checks += 1

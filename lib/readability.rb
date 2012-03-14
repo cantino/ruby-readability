@@ -13,7 +13,7 @@ module Readability
       :remove_empty_nodes         => true,
       :min_image_width            => 130,
       :min_image_height           => 80,
-      :ignore_image_format        => ["gif"]
+      :ignore_image_format        => []
     }.freeze
 
     attr_accessor :options, :html, :best_candidate, :candidates, :best_candidate_has_image
@@ -66,38 +66,43 @@ module Readability
       elements = content.css("img").map(&:attributes)
 
         elements.each do |element|
-          begin
-            url     = element["src"].value
-            height  = element["height"].nil?  ? 0 : element["height"].value.to_i
-            width   = element["width"].nil?   ? 0 : element["width"].value.to_i
-            format  = File.extname(url).gsub(".", "")
-            image   = {:width => width, :height => height, :format => format}
-            image   = MiniMagick::Image.open(url) if height.zero? or width.zero?
+          url     = element["src"].value
+          height  = element["height"].nil?  ? 0 : element["height"].value.to_i
+          width   = element["width"].nil?   ? 0 : element["width"].value.to_i
+          format  = File.extname(url).gsub(".", "")
+          image   = {:width => width, :height => height, :format => format}
+          image   = load_image(url) if url =~ /\Ahttps?:\/\//i && (height.zero? || width.zero?)
 
-            if tested_images.include?(url)
-              debug("Image was tested: #{url}")
-              next
-            end
+          next unless image
 
-            tested_images.push(url)
-            if imageable?(image)
-              list_images << url
-            else
-              debug("Image descarted: #{url} - height: #{image[:height]} - width: #{image[:width]} - format: #{image[:format]}")
-            end
-          rescue => e
-            debug("Image error: #{e}")
+          if tested_images.include?(url)
+            debug("Image was tested: #{url}")
             next
+          end
+
+          tested_images.push(url)
+          if image_meets_criteria?(image)
+            list_images << url
+          else
+            debug("Image discarded: #{url} - height: #{image[:height]} - width: #{image[:width]} - format: #{image[:format]}")
           end
         end
 
       (list_images.empty? and content != @html) ? images(@html, true) : list_images
     end
 
-    def imageable?(image)
-      image[:width] >= options[:min_image_width] and
-      image[:height] >= options[:min_image_height] and not
-      options[:ignore_image_format].include?(image[:format].downcase)
+    def load_image(url)
+      begin
+        MiniMagick::Image.open(url)
+      rescue => e
+        debug("Image error: #{e}")
+        nil
+      end
+    end
+
+    def image_meets_criteria?(image)
+      return false if options[:ignore_image_format].include?(image[:format].downcase)
+      image[:width] >= (options[:min_image_width] || 0) && image[:height] >= (options[:min_image_height] || 0)
     end
 
     REGEXES = {
