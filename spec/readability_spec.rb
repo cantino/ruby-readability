@@ -347,4 +347,13 @@ describe Readability do
       end
     end
   end
+
+  describe "strip html comments" do
+    it "should strip the html comments tag" do
+      doc = Readability::Document.new("<html><head><meta http-equiv='content-type' content='text/html; charset=LATIN1'></head><body><div>hi!<!-- bye~ --></div></body></html>")
+      content = doc.content
+      content.should include("hi!")
+      content.should_not include("bye")
+    end
+  end
 end
