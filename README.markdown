@@ -30,7 +30,8 @@ You may provide options to Readability::Document.new, including:
     :attributes          - whitelist of allowed attributes
     :debug               - provide debugging output, defaults false
     :encoding            - if the page is of a known encoding, you can specify it; if left unspecified,
-                           the encoding will be guessed (only in Ruby 1.9.x)
+                           the encoding will be guessed (only in Ruby 1.9.x).  If you wish to disable guessing,
+                           supply :do_not_guess_encoding => true.
     :html_headers        - in Ruby 1.9.x these will be passed to the guess_html_encoding gem
                            to aid with guessing the HTML encoding
     :ignore_image_format - for use with .images.  For example: :ignore_image_format => ["gif", "png"]
