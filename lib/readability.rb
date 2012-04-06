@@ -46,6 +46,9 @@ module Readability
 
     def make_html
       @html = Nokogiri::HTML(@input, nil, @options[:encoding])
+
+      # Remove html comment tags
+      @html.xpath('//comment()').each { |i| i.remove }
     end
 
     def images(content=nil, reload=false)
