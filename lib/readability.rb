@@ -27,8 +27,6 @@ module Readability
         @options[:encoding] = @input.encoding.to_s
       end
 
-      # kill unnecessary parts
-      @input = @input.gsub(REGEXES[:killHtmlCommentsRe], '')
       @input = @input.gsub(REGEXES[:replaceBrsRe], '</p><p>').gsub(REGEXES[:replaceFontsRe], '<\1span>')
       @remove_unlikely_candidates = @options[:remove_unlikely_candidates]
       @weight_classes = @options[:weight_classes]
@@ -118,8 +116,7 @@ module Readability
         :trimRe => /^\s+|\s+$/,
         :normalizeRe => /\s{2,}/,
         :killBreaksRe => /(<br\s*\/?>(\s|&nbsp;?)*){1,}/,
-        :videoRe => /http:\/\/(www\.)?(youtube|vimeo)\.com/i,
-        :killHtmlCommentsRe => /<!\s*--(.*?)(--\s*>)/m
+        :videoRe => /http:\/\/(www\.)?(youtube|vimeo)\.com/i
     }
 
     def title
