@@ -20,7 +20,7 @@ module Readability
 
     def initialize(input, options = {})
       @options = DEFAULT_OPTIONS.merge(options)
-      @input = input
+      @input = fix_blank_input(input)
 
       if RUBY_VERSION =~ /^1\.9\./ && !@options[:encoding]
         @input = GuessHtmlEncoding.encode(@input, @options[:html_headers]) unless @options[:do_not_guess_encoding]
@@ -409,5 +409,9 @@ module Readability
       end
     end
 
+    protected
+    def fix_blank_input(input)
+      input.empty? ? '<body />' : ''
+    end
   end
 end
