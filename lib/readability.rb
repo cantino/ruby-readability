@@ -20,7 +20,7 @@ module Readability
 
     def initialize(input, options = {})
       @options = DEFAULT_OPTIONS.merge(options)
-      @input = fix_blank_input(input)
+      @input = input
 
       if RUBY_VERSION =~ /^1\.9\./ && !@options[:encoding]
         @input = GuessHtmlEncoding.encode(@input, @options[:html_headers]) unless @options[:do_not_guess_encoding]
@@ -46,6 +46,8 @@ module Readability
 
     def make_html
       @html = Nokogiri::HTML(@input, nil, @options[:encoding])
+      # In case Nokogiri returns an empty document which can happen, for example, if @input is an empty string
+      @html = Nokogiri::HTML('<body />', nil, @options[:encoding]) if @html.children.length == 1
     end
 
     def images(content=nil, reload=false)
@@ -407,11 +409,6 @@ module Readability
           end
         end
       end
-    end
-
-    protected
-    def fix_blank_input(input)
-      input.empty? ? '<body />' : ''
     end
   end
 end
