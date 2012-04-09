@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "ruby-readability"
-  s.version     = '0.5.1'
+  s.version     = '0.5.2'
   s.authors     = ["Andrew Cantino", "starrhorne", "libc", "Kyle Maxwell"]
   s.email       = ["andrew@iterationlabs.com"]
   s.homepage    = "http://github.com/iterationlabs/ruby-readability"
@@ -21,5 +21,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-expectations", ">= 2.8"
   s.add_development_dependency "rr", ">= 1.0"
   s.add_dependency 'nokogiri', '>= 1.4.2'
-  s.add_dependency 'guess_html_encoding', '>= 0.0.2'
+  s.add_dependency 'guess_html_encoding', '>= 0.0.4'
 end

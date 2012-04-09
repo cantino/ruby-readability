@@ -48,6 +48,9 @@ module Readability
       @html = Nokogiri::HTML(@input, nil, @options[:encoding])
       # In case Nokogiri returns an empty document which can happen, for example, if @input is an empty string
       @html = Nokogiri::HTML('<body />', nil, @options[:encoding]) if @html.children.length == 1
+
+      # Remove html comment tags
+      @html.xpath('//comment()').each { |i| i.remove }
     end
 
     def images(content=nil, reload=false)
