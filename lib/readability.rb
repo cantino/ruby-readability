@@ -46,8 +46,8 @@ module Readability
 
     def make_html
       @html = Nokogiri::HTML(@input, nil, @options[:encoding])
-      # In case Nokogiri returns an empty document which can happen, for example, if @input is an empty string
-      @html = Nokogiri::HTML('<body />', nil, @options[:encoding]) if @html.children.length == 1
+      # In case document has no body, such as from empty string or redirect
+      @html = Nokogiri::HTML('<body />', nil, @options[:encoding]) if @html.css('body').length == 0
 
       # Remove html comment tags
       @html.xpath('//comment()').each { |i| i.remove }

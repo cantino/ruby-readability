@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 require 'spec_helper'
+require 'readability'
 
 describe Readability do
   before do
@@ -358,6 +359,10 @@ describe Readability do
 
     it "should not error with empty content" do
       Readability::Document.new('').content.should == '<div><div></div></div>'
+    end
+
+    it "should not error with a document with no <body>" do
+      Readability::Document.new('<html><head><meta http-equiv="refresh" content="0;URL=http://example.com"></head></html>').content.should == '<div><div></div></div>'
     end
   end
 end
