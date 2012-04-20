@@ -287,7 +287,7 @@ module Readability
     def remove_unlikely_candidates!
       @html.css("*").each do |elem|
         str = "#{elem[:class]}#{elem[:id]}"
-        if str =~ REGEXES[:unlikelyCandidatesRe] && str !~ REGEXES[:okMaybeItsACandidateRe] && (elem.name.downcase != 'html2') && (elem.name.downcase != 'body')
+        if str =~ REGEXES[:unlikelyCandidatesRe] && str !~ REGEXES[:okMaybeItsACandidateRe] && (elem.name.downcase != 'html') && (elem.name.downcase != 'body')
           debug("Removing unlikely candidate - #{str}")
           elem.remove
         end
