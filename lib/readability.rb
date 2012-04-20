@@ -179,8 +179,9 @@ module Readability
         end
 
         if append
-          sibling.name = "div" unless %w[div p].include?(sibling.name.downcase)
-          output << sibling
+          sibling_dup = sibling.dup # otherwise the state of the document in processing will change, thus creating side effects
+          sibling_dup.name = "div" unless %w[div p].include?(sibling.name.downcase)
+          output << sibling_dup
         end
       end
 
@@ -190,7 +191,7 @@ module Readability
     def select_best_candidate(candidates)
       sorted_candidates = candidates.values.sort { |a, b| b[:content_score] <=> a[:content_score] }
 
-      debug("Top 5 canidates:")
+      debug("Top 5 candidates:")
       sorted_candidates[0...5].each do |candidate|
         debug("Candidate #{candidate[:elem].name}##{candidate[:elem][:id]}.#{candidate[:elem][:class]} with score #{candidate[:content_score]}")
       end
@@ -313,7 +314,7 @@ module Readability
       end
     end
 
-    def sanitize(node, candidates, options = {})
+    def sanitize(node, candidates, options = {})    
       node.css("h1, h2, h3, h4, h5, h6").each do |header|
         header.remove if class_weight(header) < 0 || get_link_density(header) > 0.33
       end
