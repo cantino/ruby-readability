@@ -39,7 +39,7 @@ module Readability
       @html.css("script, style").each { |i| i.remove }
       remove_unlikely_candidates! if @remove_unlikely_candidates
       transform_misused_divs_into_paragraphs!
-
+      
       @candidates     = score_paragraphs(options[:min_text_length])
       @best_candidate = select_best_candidate(@candidates)
     end
@@ -287,7 +287,7 @@ module Readability
     def remove_unlikely_candidates!
       @html.css("*").each do |elem|
         str = "#{elem[:class]}#{elem[:id]}"
-        if str =~ REGEXES[:unlikelyCandidatesRe] && str !~ REGEXES[:okMaybeItsACandidateRe] && elem.name.downcase != 'body'
+        if str =~ REGEXES[:unlikelyCandidatesRe] && str !~ REGEXES[:okMaybeItsACandidateRe] && (elem.name.downcase != 'html') && (elem.name.downcase != 'body')
           debug("Removing unlikely candidate - #{str}")
           elem.remove
         end
