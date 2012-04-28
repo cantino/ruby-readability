@@ -71,7 +71,7 @@ module Readability
       elements = content.css("img").map(&:attributes)
 
         elements.each do |element|
-          url     = URI.escape(element["src"].value) if element["src"].value
+          url     = URI.escape(element["src"].value) if element["src"]
           height  = element["height"].nil?  ? 0 : element["height"].value.to_i
           width   = element["width"].nil?   ? 0 : element["width"].value.to_i
           format  = File.extname(url).gsub(".", "")
