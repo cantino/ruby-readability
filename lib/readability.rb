@@ -71,7 +71,8 @@ module Readability
       elements = content.css("img").map(&:attributes)
 
         elements.each do |element|
-          url     = element["src"].value
+          next unless element["src"]
+          url     = URI.escape(element["src"].value) 
           height  = element["height"].nil?  ? 0 : element["height"].value.to_i
           width   = element["width"].nil?   ? 0 : element["width"].value.to_i
           format  = File.extname(url).gsub(".", "")
@@ -87,7 +88,7 @@ module Readability
 
           tested_images.push(url)
           if image_meets_criteria?(image)
-            list_images << url
+            list_images << { :url => url, :width => image[:width], :height => image[:height] }
           else
             debug("Image discarded: #{url} - height: #{image[:height]} - width: #{image[:width]} - format: #{image[:format]}")
           end
