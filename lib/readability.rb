@@ -87,7 +87,7 @@ module Readability
 
           tested_images.push(url)
           if image_meets_criteria?(image)
-            list_images << url
+            list_images << { :url => url, :width => image[:width], :height => image[:height] }
           else
             debug("Image discarded: #{url} - height: #{image[:height]} - width: #{image[:width]} - format: #{image[:format]}")
           end
