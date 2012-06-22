@@ -56,7 +56,7 @@ You can get a list of images in the content area with `.images`.  This feature r
 
 ## Potential Issues
 
-If you're on a Mac and are getting segmentation faults, see the discussion at https://github.com/tenderlove/nokogiri/issues/404 and consider updating your version of libxml2.  Version 2.7.8 of libxml2, installed with `brew`, worked for me:
+If you're on a Mac and are getting segmentation faults, see the discussion at https://github.com/sparklemotion/nokogiri/issues/404 and consider updating your version of libxml2.  Version 2.7.8 of libxml2, installed with `brew`, worked for me:
 
     gem install nokogiri -- --with-xml2-include=/usr/local/Cellar/libxml2/2.7.8/include/libxml2 --with-xml2-lib=/usr/local/Cellar/libxml2/2.7.8/lib --with-xslt-dir=/usr/local/Cellar/libxslt/1.1.26
 
