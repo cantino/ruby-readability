@@ -128,6 +128,75 @@ describe Readability do
     end
   end
 
+  describe "author" do
+    it "should pick up <meta name='dc.creator'></meta> as an author" do
+      doc = Readability::Document.new(<<-HTML)
+        <html>
+          <head>
+            <meta name='dc.creator' content='Austin Fonacier' />
+          </head>
+          <body></body>
+        </html>
+      HTML
+      doc.author.should eql("Austin Fonacier")
+    end
+    
+    it "should pick up readability's recommended author format" do
+      doc = Readability::Document.new(<<-HTML)
+        <html>
+          <head>
+          </head>
+          <body>
+            <p class="byline author vcard">
+            By <cite class="fn">Austin Fonacier</span>
+            </p>
+          </body>
+        </html>
+      HTML
+      doc.author.should eql("Austin Fonacier")
+    end
+    
+    it "should pick up vcard fn" do
+      doc = Readability::Document.new(<<-HTML)
+        <html>
+          <head>
+          </head>
+          <body>
+            <div class="author">By</div>
+            <div class="author vcard">
+              <a class="url fn" href="http://austinlivesinyotests.com/">Austin Fonacier</a>
+            </div>
+          </body>
+        </html>
+      HTML
+      doc.author.should eql("Austin Fonacier")
+    end
+    
+    it "should pick up <a rel='author'>" do
+      doc = Readability::Document.new(<<-HTML)
+        <html>
+          <head></head>
+          <body>
+            <a rel="author" href="http://google.com">Danny Banks (rel)</a>
+          </body>
+        </html>
+      HTML
+      doc.author.should eql("Danny Banks (rel)")
+    end
+    
+    it "should pick up <div id='author'>" do
+      doc = Readability::Document.new(<<-HTML)
+        <html>
+          <head></head>
+          <body>
+            <div id="author">Austin Fonacier (author)</div>
+          </body>
+        </html>
+      HTML
+      doc.author.should eql("Austin Fonacier (author)")
+    end
+  end
+
   describe "score_node" do
     before do
       @doc = Readability::Document.new(<<-HTML)
