@@ -49,7 +49,7 @@ Readability comes with a command-line tool for experimentation in bin/readabilit
 
 ## Images
 
-You can get a list of images in the content area with `.images`.  This feature requires that the `mini_magick` gem be installed    
+You can get a list of images in the content area with `.images`.  This feature requires that the `fastimage` gem be installed    
 
     rbody = Readability::Document.new(body, :tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false)
     rbody.images
