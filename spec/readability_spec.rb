@@ -34,7 +34,7 @@ describe Readability do
 
     it "should show one image, but outside of the best candidate" do
       @doc = Readability::Document.new(@thesum)
-      @doc.images.should == ["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg"]
+      @doc.images.should == ["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg", "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703711a.gif", "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703712a.gif"]
       @doc.best_candidate_has_image.should == false
     end
 
