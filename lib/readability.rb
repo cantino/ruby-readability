@@ -55,9 +55,9 @@ module Readability
 
     def images(content=nil, reload=false)
       begin
-        require 'mini_magick'
+        require 'fastimage'
       rescue LoadError
-        raise "Please install mini_magick in order to use the #images feature."
+        raise "Please install fastimage in order to use the #images feature."
       end
 
       @best_candidate_has_image = false if reload
@@ -76,12 +76,16 @@ module Readability
           url     = element["src"].value
           height  = element["height"].nil?  ? 0 : element["height"].value.to_i
           width   = element["width"].nil?   ? 0 : element["width"].value.to_i
-          format  = File.extname(url).gsub(".", "")
-          image   = {:width => width, :height => height, :format => format}
-          image   = load_image(url) if url =~ /\Ahttps?:\/\//i && (height.zero? || width.zero?)
-
-          next unless image
-
+          
+          if url =~ /\Ahttps?:\/\//i && (height.zero? || width.zero?)
+            image   = get_image_size(url) 
+            next unless image
+          else
+            image = {:width => width, :height => height}
+          end
+          
+          image[:format] = File.extname(url).gsub(".", "")
+          
           if tested_images.include?(url)
             debug("Image was tested: #{url}")
             next
@@ -98,9 +102,11 @@ module Readability
       (list_images.empty? and content != @html) ? images(@html, true) : list_images
     end
 
-    def load_image(url)
+    def get_image_size(url)
       begin
-        MiniMagick::Image.open(url)
+        w, h = FastImage.size(url)
+        raise "Couldn't get size." if w.nil? || h.nil?
+        {width: w, height: h}
       rescue => e
         debug("Image error: #{e}")
         nil

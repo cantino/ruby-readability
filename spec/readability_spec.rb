@@ -30,11 +30,17 @@ describe Readability do
       FakeWeb::Registry.instance.clean_registry
       FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg",
                            :body => File.read(File.dirname(__FILE__) + "/fixtures/images/dim_1416768a.jpg"))
+                           
+      FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703711a.gif",
+                           :body => File.read(File.dirname(__FILE__) + "/fixtures/images/sign_up_emails_682__703711a.gif"))
+                        
+      FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703712a.gif",                                            
+                           :body => File.read(File.dirname(__FILE__) + "/fixtures/images/sign_up_emails_682__703712a.gif"))
     end
 
     it "should show one image, but outside of the best candidate" do
       @doc = Readability::Document.new(@thesum)
-      @doc.images.should == ["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg"]
+      @doc.images.should == ["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg", "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703711a.gif", "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703712a.gif"]
       @doc.best_candidate_has_image.should == false
     end
 
