@@ -1,4 +1,4 @@
-ruby-readability
+ruby-readability has moved
 ================
 
-Old home of ruby-readability
+Please point your browsers and refs to https://github.com/cantino/ruby-readability
