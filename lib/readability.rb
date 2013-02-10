@@ -106,7 +106,7 @@ module Readability
       begin
         w, h = FastImage.size(url)
         raise "Couldn't get size." if w.nil? || h.nil?
-        {width: w, height: h}
+        {:width => w, :height => h}
       rescue => e
         debug("Image error: #{e}")
         nil
