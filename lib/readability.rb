@@ -418,8 +418,12 @@ module Readability
 
       end
 
+      s = Nokogiri::XML::Node::SaveOptions
+      save_opts = s::NO_DECLARATION | s::NO_EMPTY_TAGS | s::AS_XHTML
+      html = node.serialize(:save_with => save_opts)
+
       # Get rid of duplicate whitespace
-      node.to_xhtml.gsub(/[\r\n\f]+/, "\n" )
+      return html.gsub(/[\r\n\f]+/, "\n" )
     end
 
     def clean_conditionally(node, candidates, selector)
