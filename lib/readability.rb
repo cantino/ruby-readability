@@ -419,7 +419,7 @@ module Readability
       end
 
       # Get rid of duplicate whitespace
-      node.to_html.gsub(/[\r\n\f]+/, "\n" )
+      node.to_xhtml.gsub(/[\r\n\f]+/, "\n" )
     end
 
     def clean_conditionally(node, candidates, selector)
