@@ -490,4 +490,22 @@ describe Readability do
       @doc.css("pre code").text.should == "\nsecond\n  indented\n    "
     end
   end
+
+  describe "remove all tags" do
+    it "should work for an incomplete piece of HTML" do
+      doc = Readability::Document.new('<div>test</div', :tags => [])
+      doc.content.should == 'test'
+    end
+
+    it "should work for a HTML document" do
+      doc = Readability::Document.new('<html><head><title>title!</title></head><body><div><p>test</p></div></body></html>',
+                                      :tags => [])
+      doc.content.should == 'test'
+    end
+
+    it "should work for a plain text" do
+      doc = Readability::Document.new('test', :tags => [])
+      doc.content.should == 'test'
+    end
+  end
 end
