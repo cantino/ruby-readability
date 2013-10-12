@@ -411,10 +411,16 @@ module Readability
 
           # Otherwise, replace the element with its contents
         else
-          if replace_with_whitespace[el.node_name]
-            el.swap(Nokogiri::XML::Text.new(' ' << el.text << ' ', el.document))
+          # If element is root, replace the node as a text node
+          if el.parent.nil?
+            node = Nokogiri::XML::Text.new(el.text, el.document)
+            break
           else
-            el.swap(Nokogiri::XML::Text.new(el.text, el.document))
+            if replace_with_whitespace[el.node_name]
+              el.swap(Nokogiri::XML::Text.new(' ' << el.text << ' ', el.document))
+            else
+              el.swap(Nokogiri::XML::Text.new(el.text, el.document))
+            end
           end
         end
 
