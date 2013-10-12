@@ -96,4 +96,4 @@ License
 
 This code is under the Apache License 2.0. See <http://www.apache.org/licenses/LICENSE-2.0>.
 
-Ruby port by starrhorne, libc, and iterationlabs. Special thanks to fizx and marcosinger.
+Ruby port by cantino, starrhorne, libc, and iterationlabs. Special thanks to fizx and marcosinger.
