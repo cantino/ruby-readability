@@ -448,13 +448,15 @@ module Readability
           counts = %w[p img li a embed input].inject({}) { |m, kind| m[kind] = el.css(kind).length; m }
           counts["li"] -= 100
 
+          # For every img under a noscript tag discount one from the count to avoid double counting
+          counts["img"] -= el.css("noscript").css("img").length
+                
           content_length = el.text.strip.length  # Count the text length excluding any surrounding whitespace
           link_density = get_link_density(el)
           to_remove = false
           reason = ""
           
-          if (counts["img"] > counts["p"] + 1)
-            debug("img count : #{counts["img"]} p count #{counts["p"]} content len: #{content_length}") # jp
+          if (counts["img"] > counts["p"]) && (counts["img"] > 1)
             reason = "too many images"
             to_remove = true
           elsif counts["li"] > counts["p"] && name != "ul" && name != "ol"
