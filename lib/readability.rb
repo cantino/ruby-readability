@@ -440,7 +440,7 @@ module Readability
         weight = class_weight(el)
         content_score = candidates[el] ? candidates[el][:content_score] : 0
         name = el.name.downcase
-
+        
         if weight + content_score < 0
           el.remove
           debug("Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because score + content score was less than zero.")
@@ -452,8 +452,9 @@ module Readability
           link_density = get_link_density(el)
           to_remove = false
           reason = ""
-
-          if counts["img"] > counts["p"]
+          
+          if (counts["img"] > counts["p"] + 1)
+            debug("img count : #{counts["img"]} p count #{counts["p"]} content len: #{content_length}") # jp
             reason = "too many images"
             to_remove = true
           elsif counts["li"] > counts["p"] && name != "ul" && name != "ol"
@@ -462,7 +463,7 @@ module Readability
           elsif counts["input"] > (counts["p"] / 3).to_i
             reason = "less than 3x <p>s than <input>s"
             to_remove = true
-          elsif content_length < (options[:min_text_length] || TEXT_LENGTH_THRESHOLD) && (counts["img"] == 0 || counts["img"] > 2)
+          elsif (content_length < options[:min_text_length]) && (counts["img"] != 1)
             reason = "too short a content length without a single image"
             to_remove = true
           elsif weight < 25 && link_density > 0.2
