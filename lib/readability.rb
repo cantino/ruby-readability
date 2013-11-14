@@ -17,7 +17,21 @@ module Readability
       :min_image_height           => 80,
       :ignore_image_format        => []
     }.freeze
-
+    
+    REGEXES = {
+        :unlikelyCandidatesRe => /combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup/i,
+        :okMaybeItsACandidateRe => /and|article|body|column|main|shadow/i,
+        :positiveRe => /article|body|content|entry|hentry|main|page|pagination|post|text|blog|story/i,
+        :negativeRe => /combx|comment|com-|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget/i,
+        :divToPElementsRe => /<(a|blockquote|dl|div|img|ol|p|pre|table|ul)/i,
+        :replaceBrsRe => /(<br[^>]*>[ \n\r\t]*){2,}/i,
+        :replaceFontsRe => /<(\/?)font[^>]*>/i,
+        :trimRe => /^\s+|\s+$/,
+        :normalizeRe => /\s{2,}/,
+        :killBreaksRe => /(<br\s*\/?>(\s|&nbsp;?)*){1,}/,
+        :videoRe => /http:\/\/(www\.)?(youtube|vimeo)\.com/i
+    }
+    
     attr_accessor :options, :html, :best_candidate, :candidates, :best_candidate_has_image
 
     def initialize(input, options = {})
@@ -119,20 +133,6 @@ module Readability
       return false if options[:ignore_image_format].include?(image[:format].downcase)
       image[:width] >= (options[:min_image_width] || 0) && image[:height] >= (options[:min_image_height] || 0)
     end
-
-    REGEXES = {
-        :unlikelyCandidatesRe => /combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup/i,
-        :okMaybeItsACandidateRe => /and|article|body|column|main|shadow/i,
-        :positiveRe => /article|body|content|entry|hentry|main|page|pagination|post|text|blog|story/i,
-        :negativeRe => /combx|comment|com-|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget/i,
-        :divToPElementsRe => /<(a|blockquote|dl|div|img|ol|p|pre|table|ul)/i,
-        :replaceBrsRe => /(<br[^>]*>[ \n\r\t]*){2,}/i,
-        :replaceFontsRe => /<(\/?)font[^>]*>/i,
-        :trimRe => /^\s+|\s+$/,
-        :normalizeRe => /\s{2,}/,
-        :killBreaksRe => /(<br\s*\/?>(\s|&nbsp;?)*){1,}/,
-        :videoRe => /http:\/\/(www\.)?(youtube|vimeo)\.com/i
-    }
 
     def title
       title = @html.css("title").first
