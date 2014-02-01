@@ -74,6 +74,10 @@ feature requires that the `fastimage` gem be installed.
     rbody = Readability::Document.new(body, :tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false)
     rbody.images
 
+Related Projects
+----------------
+
+* [newspaper](https://github.com/codelucas/newspaper) is an advanced news extraction, article extraction, and content curation library for Python.
 
 Potential Issues
 ----------------
