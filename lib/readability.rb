@@ -39,7 +39,7 @@ module Readability
       @html.css("script, style").each { |i| i.remove }
       remove_unlikely_candidates! if @remove_unlikely_candidates
       transform_misused_divs_into_paragraphs!
-      
+
       @candidates     = score_paragraphs(options[:min_text_length])
       @best_candidate = select_best_candidate(@candidates)
     end
@@ -76,16 +76,16 @@ module Readability
           url     = element["src"].value
           height  = element["height"].nil?  ? 0 : element["height"].value.to_i
           width   = element["width"].nil?   ? 0 : element["width"].value.to_i
-          
+
           if url =~ /\Ahttps?:\/\//i && (height.zero? || width.zero?)
-            image   = get_image_size(url) 
+            image   = get_image_size(url)
             next unless image
           else
             image = {:width => width, :height => height}
           end
-          
+
           image[:format] = File.extname(url).gsub(".", "")
-          
+
           if tested_images.include?(url)
             debug("Image was tested: #{url}")
             next
@@ -103,14 +103,12 @@ module Readability
     end
 
     def get_image_size(url)
-      begin
-        w, h = FastImage.size(url)
-        raise "Couldn't get size." if w.nil? || h.nil?
-        {width: w, height: h}
-      rescue => e
-        debug("Image error: #{e}")
-        nil
-      end
+      w, h = FastImage.size(url)
+      raise "Couldn't get size." if w.nil? || h.nil?
+      {width: w, height: h}
+    rescue => e
+      debug("Image error: #{e}")
+      nil
     end
 
     def image_meets_criteria?(image)
@@ -146,9 +144,7 @@ module Readability
       author_elements = @html.xpath('//meta[@name = "dc.creator"]')
       unless author_elements.empty?
         author_elements.each do |element|
-          if element['content']
-            return element['content'].strip
-          end
+          return element['content'].strip if element['content']
         end
       end
 
@@ -158,9 +154,7 @@ module Readability
       author_elements = @html.xpath('//*[contains(@class, "vcard")]//*[contains(@class, "fn")]')
       unless author_elements.empty?
         author_elements.each do |element|
-          if element.text
-            return element.text.strip
-          end
+          return element.text.strip if element.text
         end
       end
 
@@ -170,18 +164,14 @@ module Readability
       author_elements = @html.xpath('//a[@rel = "author"]')
       unless author_elements.empty?
         author_elements.each do |element|
-          if element.text
-            return element.text.strip
-          end
+          return element.text.strip if element.text
         end
       end
 
       author_elements = @html.xpath('//*[@id = "author"]')
       unless author_elements.empty?
         author_elements.each do |element|
-          if element.text
-            return element.text.strip
-          end
+          return element.text.strip if element.text
         end
       end
     end
@@ -228,10 +218,10 @@ module Readability
           node_content = sibling.text
           node_length = node_content.length
 
-          if node_length > 80 && link_density < 0.25
-            append = true
+          append = if node_length > 80 && link_density < 0.25
+            true
           elsif node_length < 80 && link_density == 0 && node_content =~ /\.( |$)/
-            append = true
+            true
           end
         end
 
@@ -300,40 +290,28 @@ module Readability
       return weight unless @weight_classes
 
       if e[:class] && e[:class] != ""
-        if e[:class] =~ REGEXES[:negativeRe]
-          weight -= 25
-        end
-
-        if e[:class] =~ REGEXES[:positiveRe]
-          weight += 25
-        end
+        weight -= 25 if e[:class] =~ REGEXES[:negativeRe]
+        weight += 25 if e[:class] =~ REGEXES[:positiveRe]
       end
 
       if e[:id] && e[:id] != ""
-        if e[:id] =~ REGEXES[:negativeRe]
-          weight -= 25
-        end
-
-        if e[:id] =~ REGEXES[:positiveRe]
-          weight += 25
-        end
+        weight -= 25 if e[:id] =~ REGEXES[:negativeRe]
+        weight += 25 if e[:id] =~ REGEXES[:positiveRe]
       end
 
       weight
     end
 
+    ELEMENT_SCORES = {
+      'div' => 5,
+      'blockquote' => 3,
+      'form' => -3,
+      'th' => -5
+    }.freeze
+
     def score_node(elem)
       content_score = class_weight(elem)
-      case elem.name.downcase
-        when "div"
-          content_score += 5
-        when "blockquote"
-          content_score += 3
-        when "form"
-          content_score -= 3
-        when "th"
-          content_score -= 5
-      end
+      content_score += ELEMENT_SCORES.fetch(elem.name.downcase, 0)
       { :content_score => content_score, :elem => elem }
     end
 
@@ -371,7 +349,7 @@ module Readability
       end
     end
 
-    def sanitize(node, candidates, options = {})    
+    def sanitize(node, candidates, options = {})
       node.css("h1, h2, h3, h4, h5, h6").each do |header|
         header.remove if class_weight(header) < 0 || get_link_density(header) > 0.33
       end
@@ -409,11 +387,12 @@ module Readability
 
           # Otherwise, replace the element with its contents
         else
-          if replace_with_whitespace[el.node_name]
-            el.swap(Nokogiri::XML::Text.new(' ' << el.text << ' ', el.document))
+          new_element = if replace_with_whitespace[el.node_name]
+            Nokogiri::XML::Text.new(' ' << el.text << ' ', el.document)
           else
-            el.swap(Nokogiri::XML::Text.new(el.text, el.document))
+            Nokogiri::XML::Text.new(el.text, el.document)
           end
+          el.swap(new_element)
         end
 
       end
