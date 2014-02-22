@@ -417,38 +417,35 @@ module Readability
 
           content_length = el.text.strip.length  # Count the text length excluding any surrounding whitespace
           link_density = get_link_density(el)
-          to_remove = false
-          reason = ""
 
-          if counts["img"] > counts["p"]
-            reason = "too many images"
-            to_remove = true
-          elsif counts["li"] > counts["p"] && name != "ul" && name != "ol"
-            reason = "more <li>s than <p>s"
-            to_remove = true
-          elsif counts["input"] > (counts["p"] / 3).to_i
-            reason = "less than 3x <p>s than <input>s"
-            to_remove = true
-          elsif content_length < (options[:min_text_length] || TEXT_LENGTH_THRESHOLD) && (counts["img"] == 0 || counts["img"] > 2)
-            reason = "too short a content length without a single image"
-            to_remove = true
-          elsif weight < 25 && link_density > 0.2
-            reason = "too many links for its weight (#{weight})"
-            to_remove = true
-          elsif weight >= 25 && link_density > 0.5
-            reason = "too many links for its weight (#{weight})"
-            to_remove = true
-          elsif (counts["embed"] == 1 && content_length < 75) || counts["embed"] > 1
-            reason = "<embed>s with too short a content length, or too many <embed>s"
-            to_remove = true
-          end
-
-          if to_remove
+          reason = clean_conditionally_reason?(counts, content_length, options, weight, link_density)
+          if reason
             debug("Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because it has #{reason}.")
             el.remove
           end
         end
       end
     end
+
+    def clean_conditionally_reason?(counts, content_length, options, weight, link_density)
+      if counts["img"] > counts["p"]
+        "too many images"
+      elsif counts["li"] > counts["p"] && name != "ul" && name != "ol"
+        "more <li>s than <p>s"
+      elsif counts["input"] > (counts["p"] / 3).to_i
+        "less than 3x <p>s than <input>s"
+      elsif content_length < (options[:min_text_length] || TEXT_LENGTH_THRESHOLD) && (counts["img"] == 0 || counts["img"] > 2)
+        "too short a content length without a single image"
+      elsif weight < 25 && link_density > 0.2
+        "too many links for its weight (#{weight})"
+      elsif weight >= 25 && link_density > 0.5
+        "too many links for its weight (#{weight})"
+      elsif (counts["embed"] == 1 && content_length < 75) || counts["embed"] > 1
+        "<embed>s with too short a content length, or too many <embed>s"
+      else
+        nil
+      end
+    end
+
   end
 end
