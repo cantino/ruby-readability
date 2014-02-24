@@ -472,5 +472,40 @@ describe Readability do
   
   end
   
-  
+  describe "Code blocks" do
+    before do
+      @code = File.read(File.dirname(__FILE__) + "/fixtures/code.html")
+      @content  = Readability::Document.new(@code, 
+                                        :tags => %w[div p img a ul ol li h1 h2 h3 h4 h5 h6 blockquote strong em b code pre],
+                                        :attributes => %w[src href],
+                                        :remove_empty_nodes => false).content
+      @doc = Nokogiri::HTML(@content)
+    end
+
+    it "preserve the code blocks" do
+      @doc.css("code pre").text.should == "\nroot\n  indented\n    "
+    end
+
+    it "preserve backwards code blocks" do
+      @doc.css("pre code").text.should == "\nsecond\n  indented\n    "
+    end
+  end
+
+  describe "remove all tags" do
+    it "should work for an incomplete piece of HTML" do
+      doc = Readability::Document.new('<div>test</div', :tags => [])
+      doc.content.should == 'test'
+    end
+
+    it "should work for a HTML document" do
+      doc = Readability::Document.new('<html><head><title>title!</title></head><body><div><p>test</p></div></body></html>',
+                                      :tags => [])
+      doc.content.should == 'test'
+    end
+
+    it "should work for a plain text" do
+      doc = Readability::Document.new('test', :tags => [])
+      doc.content.should == 'test'
+    end
+  end
 end

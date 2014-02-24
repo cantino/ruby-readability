@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'rubygems'
 require 'nokogiri'
 require 'guess_html_encoding'
@@ -22,7 +24,7 @@ module Readability
       @options = DEFAULT_OPTIONS.merge(options)
       @input = input
 
-      if RUBY_VERSION =~ /^1\.9\./ && !@options[:encoding]
+      if RUBY_VERSION =~ /^(1\.9|2)/ && !@options[:encoding]
         @input = GuessHtmlEncoding.encode(@input, @options[:html_headers]) unless @options[:do_not_guess_encoding]
         @options[:encoding] = @input.encoding.to_s
       end
@@ -105,7 +107,7 @@ module Readability
     def get_image_size(url)
       w, h = FastImage.size(url)
       raise "Couldn't get size." if w.nil? || h.nil?
-      {width: w, height: h}
+      {:width => w, :height => h}
     rescue => e
       debug("Image error: #{e}")
       nil
@@ -387,18 +389,27 @@ module Readability
 
           # Otherwise, replace the element with its contents
         else
-          new_element = if replace_with_whitespace[el.node_name]
-            Nokogiri::XML::Text.new(' ' << el.text << ' ', el.document)
+          # If element is root, replace the node as a text node
+          if el.parent.nil?
+            node = Nokogiri::XML::Text.new(el.text, el.document)
+            break
           else
-            Nokogiri::XML::Text.new(el.text, el.document)
+            if replace_with_whitespace[el.node_name]
+              el.swap(Nokogiri::XML::Text.new(' ' << el.text << ' ', el.document))
+            else
+              el.swap(Nokogiri::XML::Text.new(el.text, el.document))
+            end
           end
-          el.swap(new_element)
         end
 
       end
 
+      s = Nokogiri::XML::Node::SaveOptions
+      save_opts = s::NO_DECLARATION | s::NO_EMPTY_TAGS | s::AS_XHTML
+      html = node.serialize(:save_with => save_opts)
+
       # Get rid of duplicate whitespace
-      node.to_html.gsub(/[\r\n\f]+/, "\n" ).gsub(/[\t  ]+/, " ")
+      return html.gsub(/[\r\n\f]+/, "\n" )
     end
 
     def clean_conditionally(node, candidates, selector)
