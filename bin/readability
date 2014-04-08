@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby 
+#!/usr/bin/env ruby
 require 'rubygems'
 require 'open-uri'
 require 'optparse'
@@ -29,11 +29,13 @@ if ARGV.length != 1
 end
 
 text = open(ARGV.first).read
-if options[:images]
-  puts Readability::Document.new(text, :tags => %w[div p img a], 
-                                       :attributes => %w[src href], 
-                                       :remove_empty_nodes => false, 
-                                       :debug => options[:debug]).content
+params = if options[:images]
+  { :tags => %w[div p img a],
+    :attributes => %w[src href],
+    :remove_empty_nodes => false,
+    :debug => options[:debug] }
 else
-  puts Readability::Document.new(text, :debug => options[:debug]).content
+  { :debug => options[:debug] }
 end
+
+puts Readability::Document.new(text, params).content
