@@ -51,6 +51,7 @@ You may provide options to `Readability::Document.new`, including:
   `:ignore_image_format => ["gif", "png"]`;
 * `:min_image_height`: set a minimum image height for `#images`;
 * `:min_image_width`: set a minimum image width for `#images`.
+* `:blacklist` and `:whitelist` allow you to explicitly scope to, or remove, CSS selectors.
 
 
 Command Line Tool
