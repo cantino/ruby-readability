@@ -514,7 +514,16 @@ describe Readability do
       File.read(File.dirname(__FILE__) + "/fixtures/boing_boing.html")
     }
 
+    it "contains incorrect data by default" do
+      doc = Readability::Document.new(boing_boing)
+
+      content = doc.content
+      (content !~ /Bees and Bombs/).should == true
+      content.should =~ /ADVERTISE/
+    end
+
     it "should apply whitelist" do
+
       doc = Readability::Document.new(boing_boing,
                                       whitelist: ".post-content")
       content = doc.content

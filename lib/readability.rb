@@ -69,15 +69,18 @@ module Readability
           end
         end
 
-        elems = @html.css(whitelist).to_s
+        if whitelist
+          elems = @html.css(whitelist).to_s
 
-        if body = @html.at_css('body')
-          body.css('*').each do |e|
-            e.remove
+          if body = @html.at_css('body')
+            body.css('*').each do |e|
+              e.remove
+            end
+            body.inner_html = elems
           end
-          body.inner_html = elems
         end
       end
+
     end
 
     def images(content=nil, reload=false)
