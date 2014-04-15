@@ -515,6 +515,10 @@ describe Readability do
     }
 
     it "contains incorrect data by default" do
+      # NOTE: in an ideal world this spec starts failing
+      #  and readability correctly detects content for the
+      #  boing boing sample.
+
       doc = Readability::Document.new(boing_boing)
 
       content = doc.content

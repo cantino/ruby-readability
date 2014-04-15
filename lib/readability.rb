@@ -36,10 +36,8 @@ module Readability
       @weight_classes = @options[:weight_classes]
       @clean_conditionally = @options[:clean_conditionally]
       @best_candidate_has_image = true
-      make_html(@options[:whitelist], @options[:blacklist])
-      if @options[:whitelist] || @options[:blacklist]
-        @input = @html.to_s
-      end
+      make_html
+      handle_exclusions!(@options[:whitelist], @options[:blacklist])
     end
 
     def prepare_candidates
@@ -51,6 +49,33 @@ module Readability
       @best_candidate = select_best_candidate(@candidates)
     end
 
+    def handle_exclusions!(whitelist, blacklist)
+      return unless whitelist || blacklist
+
+      if blacklist
+        elems = @html.css(blacklist)
+        if elems
+          elems.each do |e|
+            e.remove
+          end
+        end
+      end
+
+      if whitelist
+        elems = @html.css(whitelist).to_s
+
+        if body = @html.at_css('body')
+          body.css('*').each do |e|
+            e.remove
+          end
+          body.inner_html = elems
+        end
+      end
+
+      @input = @html.to_s
+      nil
+    end
+
     def make_html(whitelist=nil, blacklist=nil)
       @html = Nokogiri::HTML(@input, nil, @options[:encoding])
       # In case document has no body, such as from empty string or redirect
@@ -58,29 +83,6 @@ module Readability
 
       # Remove html comment tags
       @html.xpath('//comment()').each { |i| i.remove }
-
-      if whitelist || blacklist
-        if blacklist
-          elems = @html.css(blacklist)
-          if elems
-            elems.each do |e|
-              e.remove
-            end
-          end
-        end
-
-        if whitelist
-          elems = @html.css(whitelist).to_s
-
-          if body = @html.at_css('body')
-            body.css('*').each do |e|
-              e.remove
-            end
-            body.inner_html = elems
-          end
-        end
-      end
-
     end
 
     def images(content=nil, reload=false)
