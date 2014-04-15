@@ -65,15 +65,11 @@ module Readability
         elems = @html.css(whitelist).to_s
 
         if body = @html.at_css('body')
-          body.css('*').each do |e|
-            e.remove
-          end
           body.inner_html = elems
         end
       end
 
       @input = @html.to_s
-      nil
     end
 
     def make_html(whitelist=nil, blacklist=nil)
