@@ -508,4 +508,37 @@ describe Readability do
       doc.content.should == 'test'
     end
   end
+
+  describe "boing boing" do
+    let(:boing_boing) {
+      File.read(File.dirname(__FILE__) + "/fixtures/boing_boing.html")
+    }
+
+    it "contains incorrect data by default" do
+      # NOTE: in an ideal world this spec starts failing
+      #  and readability correctly detects content for the
+      #  boing boing sample.
+
+      doc = Readability::Document.new(boing_boing)
+
+      content = doc.content
+      (content !~ /Bees and Bombs/).should == true
+      content.should =~ /ADVERTISE/
+    end
+
+    it "should apply whitelist" do
+
+      doc = Readability::Document.new(boing_boing,
+                                      whitelist: ".post-content")
+      content = doc.content
+      content.should =~ /Bees and Bombs/
+    end
+
+    it "should apply blacklist" do
+      doc = Readability::Document.new(boing_boing, blacklist: "#sidebar_adblock")
+      content = doc.content
+      (content !~ /ADVERTISE/).should == true
+
+    end
+  end
 end

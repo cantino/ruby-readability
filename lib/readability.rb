@@ -15,7 +15,9 @@ module Readability
       :remove_empty_nodes         => true,
       :min_image_width            => 130,
       :min_image_height           => 80,
-      :ignore_image_format        => []
+      :ignore_image_format        => [],
+      :blacklist                  => nil,
+      :whitelist                  => nil
     }.freeze
 
     attr_accessor :options, :html, :best_candidate, :candidates, :best_candidate_has_image
@@ -35,6 +37,7 @@ module Readability
       @clean_conditionally = @options[:clean_conditionally]
       @best_candidate_has_image = true
       make_html
+      handle_exclusions!(@options[:whitelist], @options[:blacklist])
     end
 
     def prepare_candidates
@@ -46,7 +49,30 @@ module Readability
       @best_candidate = select_best_candidate(@candidates)
     end
 
-    def make_html
+    def handle_exclusions!(whitelist, blacklist)
+      return unless whitelist || blacklist
+
+      if blacklist
+        elems = @html.css(blacklist)
+        if elems
+          elems.each do |e|
+            e.remove
+          end
+        end
+      end
+
+      if whitelist
+        elems = @html.css(whitelist).to_s
+
+        if body = @html.at_css('body')
+          body.inner_html = elems
+        end
+      end
+
+      @input = @html.to_s
+    end
+
+    def make_html(whitelist=nil, blacklist=nil)
       @html = Nokogiri::HTML(@input, nil, @options[:encoding])
       # In case document has no body, such as from empty string or redirect
       @html = Nokogiri::HTML('<body />', nil, @options[:encoding]) if @html.css('body').length == 0
