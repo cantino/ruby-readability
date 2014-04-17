@@ -455,7 +455,7 @@ module Readability
           content_length = el.text.strip.length  # Count the text length excluding any surrounding whitespace
           link_density = get_link_density(el)
 
-          reason = clean_conditionally_reason?(counts, content_length, options, weight, link_density)
+          reason = clean_conditionally_reason?(name, counts, content_length, options, weight, link_density)
           if reason
             debug("Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because it has #{reason}.")
             el.remove
@@ -464,7 +464,7 @@ module Readability
       end
     end
 
-    def clean_conditionally_reason?(counts, content_length, options, weight, link_density)
+    def clean_conditionally_reason?(name, counts, content_length, options, weight, link_density)
       if counts["img"] > counts["p"]
         "too many images"
       elsif counts["li"] > counts["p"] && name != "ul" && name != "ol"

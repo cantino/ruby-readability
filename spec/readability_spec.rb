@@ -541,4 +541,13 @@ describe Readability do
 
     end
   end
+
+  describe "clean_conditionally_reason?" do
+    let (:list_fixture) { "<div><p>test</p>#{'<li></li>' * 102}" }
+
+    it "does not raise error" do
+      @doc = Readability::Document.new(list_fixture)
+      expect { @doc.content }.to_not raise_error
+    end
+  end
 end
