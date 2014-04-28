@@ -18,7 +18,8 @@ module Readability
       :ignore_image_format        => [],
       :blacklist                  => nil,
       :whitelist                  => nil,
-      :get_largest_image          => false
+      :get_largest_image          => false,
+      :url_blacklist              => []
     }.freeze
 
     attr_accessor :options, :html, :best_candidate, :candidates, :best_candidate_has_image
@@ -82,6 +83,18 @@ module Readability
       @html.xpath('//comment()').each { |i| i.remove }
     end
 
+
+    def is_blacklist(url)
+      options[:url_blacklist].each do |blacklist|
+        if url.include? blacklist 
+          return true
+        end
+      end
+
+      return false
+    end
+
+
     def images(content=nil, reload=false)
       begin
         require 'fastimage'
@@ -108,6 +121,11 @@ module Readability
           url     = element["src"].value
           height  = element["height"].nil?  ? 0 : element["height"].value.to_i
           width   = element["width"].nil?   ? 0 : element["width"].value.to_i
+
+          if is_blacklist(url)
+            debug("image discarded (blacklist): #{url}")
+            next
+          end
 
           if element["style"]
 
@@ -144,6 +162,11 @@ module Readability
             if options[:get_largest_image]
               area = image[:height] * image[:width]
               if area > largest_image_area
+
+                if largest_image_url
+                  debug("Image discarded by larger image: #{largest_image_url}")
+                end
+
                 largest_image_area = area
                 largest_image_url = url
               end
@@ -169,7 +192,7 @@ module Readability
       raise "Couldn't get size." if w.nil? || h.nil?
       {:width => w, :height => h}
     rescue => e
-      debug("Image error: #{e}")
+      debug("Image error: #{e} url: #{url}")
       nil
     end
 
