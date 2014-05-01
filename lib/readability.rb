@@ -20,6 +20,7 @@ module Readability
       :whitelist                  => nil
     }.freeze
 
+
     attr_accessor :options, :html, :best_candidate, :candidates, :best_candidate_has_image
 
     def initialize(input, options = {})
@@ -167,41 +168,8 @@ module Readability
     # Precedence Information here on the wiki: (TODO attach wiki URL if it is accepted)
     # Returns nil if no author is detected
     def author
-      # Let's grab this author:
-      # <meta name="dc.creator" content="Finch - http://www.getfinch.com" />
-      author_elements = @html.xpath('//meta[@name = "dc.creator"]')
-      unless author_elements.empty?
-        author_elements.each do |element|
-          return element['content'].strip if element['content']
-        end
-      end
-
-      # Now let's try to grab this
-      # <span class="byline author vcard"><span>By</span><cite class="fn">Austin Fonacier</cite></span>
-      # <div class="author">By</div><div class="author vcard"><a class="url fn" href="http://austinlivesinyoapp.com/">Austin Fonacier</a></div>
-      author_elements = @html.xpath('//*[contains(@class, "vcard")]//*[contains(@class, "fn")]')
-      unless author_elements.empty?
-        author_elements.each do |element|
-          return element.text.strip if element.text
-        end
-      end
-
-      # Now let's try to grab this
-      # <a rel="author" href="http://dbanksdesign.com">Danny Banks (rel)</a>
-      # TODO: strip out the (rel)?
-      author_elements = @html.xpath('//a[@rel = "author"]')
-      unless author_elements.empty?
-        author_elements.each do |element|
-          return element.text.strip if element.text
-        end
-      end
-
-      author_elements = @html.xpath('//*[@id = "author"]')
-      unless author_elements.empty?
-        author_elements.each do |element|
-          return element.text.strip if element.text
-        end
-      end
+      @authors_finder ||= AuthorsFinder.new(@html)
+      @authors_finder.author
     end
 
     def content(remove_unlikely_candidates = :default)

@@ -30,11 +30,11 @@ describe Readability do
       FakeWeb::Registry.instance.clean_registry
       FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg",
                            :body => File.read(File.dirname(__FILE__) + "/fixtures/images/dim_1416768a.jpg"))
-                           
+
       FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703711a.gif",
                            :body => File.read(File.dirname(__FILE__) + "/fixtures/images/sign_up_emails_682__703711a.gif"))
-                        
-      FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703712a.gif",                                            
+
+      FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703712a.gif",
                            :body => File.read(File.dirname(__FILE__) + "/fixtures/images/sign_up_emails_682__703712a.gif"))
     end
 
@@ -143,10 +143,10 @@ describe Readability do
           </head>
           <body></body>
         </html>
-      HTML
+
       doc.author.should eql("Austin Fonacier")
     end
-    
+
     it "should pick up readability's recommended author format" do
       doc = Readability::Document.new(<<-HTML)
         <html>
@@ -161,7 +161,7 @@ describe Readability do
       HTML
       doc.author.should eql("Austin Fonacier")
     end
-    
+
     it "should pick up vcard fn" do
       doc = Readability::Document.new(<<-HTML)
         <html>
@@ -177,7 +177,7 @@ describe Readability do
       HTML
       doc.author.should eql("Austin Fonacier")
     end
-    
+
     it "should pick up <a rel='author'>" do
       doc = Readability::Document.new(<<-HTML)
         <html>
@@ -189,7 +189,7 @@ describe Readability do
       HTML
       doc.author.should eql("Danny Banks (rel)")
     end
-    
+
     it "should pick up <div id='author'>" do
       doc = Readability::Document.new(<<-HTML)
         <html>
@@ -440,42 +440,42 @@ describe Readability do
       Readability::Document.new('<html><head><meta http-equiv="refresh" content="0;URL=http://example.com"></head></html>').content.should == '<div><div></div></div>'
     end
   end
-  
+
   describe "No side-effects" do
     before do
       @bbc      = File.read(File.dirname(__FILE__) + "/fixtures/bbc.html")
       @nytimes  = File.read(File.dirname(__FILE__) + "/fixtures/nytimes.html")
       @thesum   = File.read(File.dirname(__FILE__) + "/fixtures/thesun.html")
     end
-    
+
     it "should not have any side-effects when calling content() and then images()" do
-      @doc=Readability::Document.new(@nytimes, :tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false, 
+      @doc=Readability::Document.new(@nytimes, :tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false,
       :do_not_guess_encoding => true)
       @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
       @doc.content
       @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
     end
-    
+
     it "should not have any side-effects when calling content() multiple times" do
-       @doc=Readability::Document.new(@nytimes, :tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false, 
+       @doc=Readability::Document.new(@nytimes, :tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false,
         :do_not_guess_encoding => true)
        @doc.content.should ==  @doc.content
     end
-    
+
     it "should not have any side-effects when calling content and images multiple times" do
-       @doc=Readability::Document.new(@nytimes, :tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false, 
+       @doc=Readability::Document.new(@nytimes, :tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false,
         :do_not_guess_encoding => true)
        @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
        @doc.content.should ==  @doc.content
        @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
     end
-  
+
   end
-  
+
   describe "Code blocks" do
     before do
       @code = File.read(File.dirname(__FILE__) + "/fixtures/code.html")
-      @content  = Readability::Document.new(@code, 
+      @content  = Readability::Document.new(@code,
                                         :tags => %w[div p img a ul ol li h1 h2 h3 h4 h5 h6 blockquote strong em b code pre],
                                         :attributes => %w[src href],
                                         :remove_empty_nodes => false).content
