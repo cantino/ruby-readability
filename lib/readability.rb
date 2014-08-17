@@ -19,7 +19,21 @@ module Readability
       :blacklist                  => nil,
       :whitelist                  => nil
     }.freeze
-
+    
+    REGEXES = {
+        :unlikelyCandidatesRe => /combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup/i,
+        :okMaybeItsACandidateRe => /and|article|body|column|main|shadow/i,
+        :positiveRe => /article|body|content|entry|hentry|main|page|pagination|post|text|blog|story/i,
+        :negativeRe => /combx|comment|com-|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget/i,
+        :divToPElementsRe => /<(a|blockquote|dl|div|img|ol|p|pre|table|ul)/i,
+        :replaceBrsRe => /(<br[^>]*>[ \n\r\t]*){2,}/i,
+        :replaceFontsRe => /<(\/?)font[^>]*>/i,
+        :trimRe => /^\s+|\s+$/,
+        :normalizeRe => /\s{2,}/,
+        :killBreaksRe => /(<br\s*\/?>(\s|&nbsp;?)*){1,}/,
+        :videoRe => /http:\/\/(www\.)?(youtube|vimeo)\.com/i
+    }
+    
     attr_accessor :options, :html, :best_candidate, :candidates, :best_candidate_has_image
 
     def initialize(input, options = {})
@@ -129,6 +143,31 @@ module Readability
 
       (list_images.empty? and content != @html) ? images(@html, true) : list_images
     end
+    
+    def images_with_fqdn_uris!(source_uri)
+      images_with_fqdn_uris(@html, source_uri)
+    end
+    
+    def images_with_fqdn_uris(document = @html.dup, source_uri)
+      uri = URI.parse(source_uri)
+      host = uri.host
+      scheme = uri.scheme
+      port = uri.port # defaults to 80
+
+      base = "#{scheme}://#{host}:#{port}/"
+
+      images = []
+      document.css("img").each do |elem|
+        begin
+          elem['src'] = URI.join(base,elem['src']).to_s if URI.parse(elem['src']).host == nil 
+          images << elem['src'].to_s
+        rescue URI::InvalidURIError => exc
+          elem.remove
+        end
+      end
+
+      images(document,true)
+    end
 
     def get_image_size(url)
       w, h = FastImage.size(url)
@@ -143,20 +182,6 @@ module Readability
       return false if options[:ignore_image_format].include?(image[:format].downcase)
       image[:width] >= (options[:min_image_width] || 0) && image[:height] >= (options[:min_image_height] || 0)
     end
-
-    REGEXES = {
-        :unlikelyCandidatesRe => /combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup/i,
-        :okMaybeItsACandidateRe => /and|article|body|column|main|shadow/i,
-        :positiveRe => /article|body|content|entry|hentry|main|page|pagination|post|text|blog|story/i,
-        :negativeRe => /combx|comment|com-|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget/i,
-        :divToPElementsRe => /<(a|blockquote|dl|div|img|ol|p|pre|table|ul)/i,
-        :replaceBrsRe => /(<br[^>]*>[ \n\r\t]*){2,}/i,
-        :replaceFontsRe => /<(\/?)font[^>]*>/i,
-        :trimRe => /^\s+|\s+$/,
-        :normalizeRe => /\s{2,}/,
-        :killBreaksRe => /(<br\s*\/?>(\s|&nbsp;?)*){1,}/,
-        :videoRe => /http:\/\/(www\.)?(youtube|vimeo)\.com/i
-    }
 
     def title
       title = @html.css("title").first
@@ -444,7 +469,7 @@ module Readability
         weight = class_weight(el)
         content_score = candidates[el] ? candidates[el][:content_score] : 0
         name = el.name.downcase
-
+        
         if weight + content_score < 0
           el.remove
           debug("Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because score + content score was less than zero.")
@@ -452,6 +477,9 @@ module Readability
           counts = %w[p img li a embed input].inject({}) { |m, kind| m[kind] = el.css(kind).length; m }
           counts["li"] -= 100
 
+          # For every img under a noscript tag discount one from the count to avoid double counting
+          counts["img"] -= el.css("noscript").css("img").length
+                
           content_length = el.text.strip.length  # Count the text length excluding any surrounding whitespace
           link_density = get_link_density(el)
 
@@ -465,13 +493,13 @@ module Readability
     end
 
     def clean_conditionally_reason?(name, counts, content_length, options, weight, link_density)
-      if counts["img"] > counts["p"]
+      if (counts["img"] > counts["p"]) && (counts["img"] > 1)
         "too many images"
       elsif counts["li"] > counts["p"] && name != "ul" && name != "ol"
         "more <li>s than <p>s"
       elsif counts["input"] > (counts["p"] / 3).to_i
         "less than 3x <p>s than <input>s"
-      elsif content_length < (options[:min_text_length] || TEXT_LENGTH_THRESHOLD) && (counts["img"] == 0 || counts["img"] > 2)
+      elsif (content_length < options[:min_text_length]) && (counts["img"] != 1)
         "too short a content length without a single image"
       elsif weight < 25 && link_density > 0.2
         "too many links for its weight (#{weight})"
