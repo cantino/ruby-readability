@@ -19,6 +19,35 @@ describe Readability do
         </body>
       </html>
     HTML
+    
+    @simple_html_with_img_no_text = <<-HTML
+    <html>
+      <head>
+        <title>title!</title>
+      </head>
+      <body class='main'>
+        <div class="article-img">
+          <img src="http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg">
+        </div>
+      </body>
+      </html>
+    HTML
+    
+    @simple_html_with_img_in_noscript = <<-HTML
+    <html>
+      <head>
+        <title>title!</title>
+      </head>
+      <body class='main'>
+        <div class="article-img">
+        <img src="http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703711a.gif" width="660" 
+        height="317" alt="test" class="lazy" 
+        data-original="http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg">
+        <noscript><img src="http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg"></noscript>
+        </div>
+      </body>
+      </html>
+    HTML
   end
 
   describe "images" do
@@ -36,6 +65,7 @@ describe Readability do
                         
       FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703712a.gif",                                            
                            :body => File.read(File.dirname(__FILE__) + "/fixtures/images/sign_up_emails_682__703712a.gif"))
+     
     end
 
     it "should show one image, but outside of the best candidate" do
@@ -115,6 +145,17 @@ describe Readability do
           @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif"]
           @doc.best_candidate_has_image.should == true
         end
+        
+        it "should not miss an image if it exists by itself in a div without text" do
+          @doc = Readability::Document.new(@simple_html_with_img_no_text,:tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false, :do_not_guess_encoding => true)
+          @doc.images.should == ["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg"]
+        end
+        
+        it "should not double count an image between script and noscript" do
+          @doc = Readability::Document.new(@simple_html_with_img_in_noscript,:tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false, :do_not_guess_encoding => true)
+          @doc.images.should == ["http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703711a.gif", "http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg"]
+        end
+        
       end
     end
   end
