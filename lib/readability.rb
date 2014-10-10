@@ -156,17 +156,17 @@ module Readability
 
       base = "#{scheme}://#{host}:#{port}/"
 
-      images = []
+      image_list = []
       document.css("img").each do |elem|
         begin
           elem['src'] = URI.join(base,elem['src']).to_s if URI.parse(elem['src']).host == nil 
-          images << elem['src'].to_s
+          image_list << elem['src'].to_s
         rescue URI::InvalidURIError => exc
           elem.remove
         end
       end
 
-      images(document,true)
+      images(document, true)
     end
 
     def get_image_size(url)

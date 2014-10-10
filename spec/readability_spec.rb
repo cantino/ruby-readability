@@ -84,14 +84,10 @@ describe Readability do
 
     it "should expand relative image url" do
       url = 'http://blog.codinghorror.com/standard-flavored-markdown/'
-      @doc = Readability::Document.new(@ch, url: url,
-                                            tags: %w[div p img a],
+      @doc = Readability::Document.new(@ch, tags: %w[div p img a],
                                             attributes: %w[src href],
                                             remove_empty_nodes: false)
-      expect(@doc.images).to include([
-        'http://blog.codinghorror.com/content/images/2014/Sep/JohnPinhole.jpg',
-        'http://blog.codinghorror.com/content/images/2014/Sep/Confusion_of_Tongues.png'
-      ])
+      @doc.images_with_fqdn_uris!(url)
 
       expect(@doc.content).to include('http://blog.codinghorror.com/content/images/2014/Sep/JohnPinhole.jpg')
       expect(@doc.content).to include('http://blog.codinghorror.com/content/images/2014/Sep/Confusion_of_Tongues.png')
