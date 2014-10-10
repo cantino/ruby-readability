@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Standard Flavored Markdown</title>
+<meta name="description" content=""/>
+<meta name="HandheldFriendly" content="True"/>
+<meta name="MobileOptimized" content="320"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico?v=8684b6a35e">
+<link rel="apple-touch-icon" href="/assets/images/codinghorror-app-icon.png?v=8684b6a35e">
+<meta name="google-site-verification" content="sl0m9SU_4V0JcvjWlOX4dUFBR6VS2P4tlxjJMo0gphU"/>
+<link rel="stylesheet" type="text/css" href="/assets/css/screen.css?v=8684b6a35e"/>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700"/>
+<link rel="alternate" type="application/rss+xml" title="Coding Horror" href="http://feeds.feedburner.com/codinghorror">
+</head>
+<body class="post-template">
+<header class="site-head">
+<div class="site-head-content">
+<a class="blog-logo" href="http://blog.codinghorror.com"><img src="/assets/images/codinghorror-app-icon.png?v=8684b6a35e" alt="Coding Horror Logo" width="158" height="158"/></a>
+<h1 class="blog-title"><a href="http://blog.codinghorror.com">Coding Horror</a></h1>
+<h2 class="blog-description">programming and human factors</h2>
+<div class="site-search">
+<script>
+                  (function() {
+                    var cx = '016956275695630057531:lqveu9tah7y';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                  })();
+                </script>
+<gcse:search></gcse:search>
+</div>
+</div>
+</header>
+<div class="wrap clearfix">
+<div class="clearfix"></div>
+<main class="content" role="main">
+<article class="post">
+<span class="post-meta"><time datetime="2014-09-03">03 Sep 2014</time> </span>
+<h1 class="post-title">Standard Flavored Markdown</h1>
+<section class="post-content">
+<p>In 2009 I <a href="http://blog.codinghorror.com/responsible-open-source-code-parenting/">lamented the state of Markdown</a>:</p>
+<blockquote>
+<p>Right now we have the worst of both worlds. Lack of leadership from the top, and a bunch of fragmented, poorly coordinated community efforts to advance Markdown, none of which are officially canon. This isn't merely incovenient for anyone trying to find accurate information about Markdown; it's actually harming the project's future. </p>
+</blockquote>
+<p>In late 2012, David Greenspan from <a href="https://www.meteor.com/">Meteor</a> approached me and proposed we move forward, and <a href="http://blog.codinghorror.com/the-future-of-markdown/">a project crystallized</a>:</p>
+<blockquote>
+<p>I propose that Stack Exchange, GitHub, Meteor, Reddit, and any other company with lots of traffic and a strategic investment in Markdown, all work together to <strong>come up with an official Markdown specification, and standard test suites to validate Markdown implementations</strong>. We've all been working at cross purposes for too long, accidentally fragmenting Markdown while popularizing it.</p>
+</blockquote>
+<p>We formed a small private working group with key representatives from GitHub, from Reddit, from Stack Exchange, from the open source community. We spent months hashing out the details and agreeing on the necessary changes to turn Markdown into a language you can parse without feeling like you just walked through a sewer &ndash; while preserving the simple, clear, ASCII email inspired spirit of Markdown.</p>
+<p>We really struggled with this at <a href="http://www.discourse.org">Discourse</a>, which is also based on Markdown, but an even more complex dialect than the one we built at Stack Overflow. In Discourse, you can mix <em>three</em> forms of markup interchangeably:</p>
+<ul>
+<li>Markdown</li>
+<li>HTML (safe subset)</li>
+<li>BBCode (subset)</li>
+</ul>
+<p>Discourse is primarily a JavaScript app, so naturally we needed a nice, compliant implementation of Markdown in JavaScript. Surely such a thing exists, yes? Nope. Even in 2012, we found <em>zero</em> JavaScript implementations of Markdown that could pass the only Markdown test suite I know of, <a href="https://github.com/michelf/mdtest/">MDTest</a>. It isn't authoritative, it's a community created initiative that embodies its own decisions about rendering ambiguities in Markdown, but it's all we've got. We contributed many <a href="https://github.com/evilstreak/markdown-js/commits/master">upstream fixes to markdown.js</a> to make it pass MDTest &ndash; but it still only passes in our locally extended version.</p>
+<p>As an open source project ourselves, we're perfectly happy contributing upstream code to improve it for everyone. But it's an indictment of the state of the Markdown ecosystem that any remotely popular implementation wasn't already testing itself against a formal spec and test suite. But who can blame them, because <i>it didn't exist!</i></p>
+<p>Well, now it does.</p>
+<p>It took a while, but I'm pleased to announce that <a href="http://standardmarkdown.com"><strong>Standard Markdown</strong></a> is now finally ready for public review.</p>
+<p><strong><a href="http://standardmarkdown.com">standardmarkdown.com</a></strong></p>
+<p>It's a spec, including embedded examples, and implementations in portable C and JavaScript. We strived mightily to stay true to the spirit of Markdown in writing it. The primary author, John MacFarlane, <a href="http://spec.standardmarkdown.com">explains in the introduction to the spec</a>:</p>
+<blockquote>
+<p>Because Gruber’s syntax description leaves many aspects of the syntax undetermined, writing a precise spec requires making a large number of decisions, many of them somewhat arbitrary. In making them, I have appealed to existing conventions and considerations of simplicity, readability, expressive power, and consistency. I have tried to ensure that “normal” documents in the many incompatible existing implementations of markdown will render, as far as possible, as their authors intended. And I have tried to make the rules for different elements work together harmoniously. In places where different decisions could have been made (for example, the rules governing list indentation), I have explained the rationale for my choices. In a few cases, I have departed slightly from the canonical syntax description, in ways that I think further the goals of markdown as stated in that description.</p>
+</blockquote>
+<p>Part of my contribution to the project is to host the discussion / mailing list for Standard Markdown in a Discourse instance. </p>
+<p><strong><a href="http://talk.standardmarkdown.com">talk.standardmarkdown.com</a></strong></p>
+<p>Fortunately, Discourse itself <a href="http://blog.discourse.org/2014/08/introducing-discourse-1-0/">just reached version 1.0</a>. If the only thing Standard Markdown does is help save a few users from the continuing horror that is mailing list web UI, we all win.</p>
+<p>What I'm most excited about is that we got a massive contribution from the one person who, in my mind, was the most perfect person in the world to work on this project: <a href="http://johnmacfarlane.net/">John MacFarlane</a>. He took our feedback and wrote the entire Standard Markdown spec and both implementations.</p>
+<p><a href="http://johnmacfarlane.net/"><img src="/content/images/2014/Sep/JohnPinhole.jpg" alt="" title=""/></a></p>
+<p>A lot of people know of John through his <a href="http://johnmacfarlane.net/pandoc/">Pandoc</a> project, which is amazing in its own right, but I found out about him because he built <a href="http://johnmacfarlane.net/babelmark2/faq.html">Babelmark</a>. I learned to refer to Babelmark extensively while working on Stack Overflow and MarkdownSharp, a C# implementation of Markdown.</p>
+<p>Here's how crazy Markdown is: to decide what the "correct" behavior is, you provide sample Markdown input to 20+ different Markdown parsers &hellip; and then pray that some consensus emerges in all their output. That's what Babelmark does.</p>
+<p>Consider this simple Markdown example:</p>
+<pre><code># Hello there
+
+This is a paragraph.
+
+- one
+- two
+- three
+- four
+
+1. pirate
+2. ninja
+3. zombie
+</code></pre>
+<p>Just for that, I count <a href="http://johnmacfarlane.net/babelmark2/?text=%23+Hello+there%0A%0AThis+is+a+paragraph.%0A%0A-+one%0A-+two%0A-+three%0A-+four%0A%0A1.+pirate%0A2.+ninja%0A3.+zombie"><em>fifteen</em> different rendered outputs</a> from 22 different Markdown parsers.</p>
+<p><a href="http://en.wikipedia.org/wiki/Tower_of_Babel"><img src="/content/images/2014/Sep/Confusion_of_Tongues.png" alt="" title=""/></a></p>
+<p>In Markdown, we <em>literally</em> built a <a href="http://en.wikipedia.org/wiki/Tower_of_Babel">Tower of Babel</a>. </p>
+<p>Have I mentioned that it's a good idea for a language to have a formal specification and test suites? Maybe now you can see why that is.</p>
+<p>Oh, and in his spare time, John is also the chair of the department of philosophy at the University of California, Berkeley. <em>No big deal.</em> While I don't mean to minimize the contributions of anyone to the Standard Markdown project, we all owe a special thanks to John.</p>
+<p>Markdown is indeed everywhere. And that's a good thing. But it needs to be sane, parseable, and standard. That's the goal of <a href="http://standardmarkdown.com/">Standard Markdown</a> &mdash; but we need your help to get there. If you use Markdown on a website, <strong>ask what it would take for that site to become compatible with Standard Markdown</strong>; when you see the word "Markdown" you have the right to expect consistent rendering across all the websites you visit. If you implement Markdown, <a href="http://spec.standardmarkdown.com">take a look at the spec</a>, try to <strong>make your parser compatible with Standard Markdown</strong>, and <a href="http://talk.standardmarkdown.com">discuss improvements or refinements</a> to the spec.</p>
+<p><span style="color:red;">Update:</span> The project was renamed <a href="http://commonmark.org">CommonMark</a>. See <a href="http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/">my subsequent blog post</a>.</p>
+<table>
+<tr><td class="welovecodinghorror">
+[advertisement] How are you showing off your awesome? Create a <a href="http://careers.stackoverflow.com/cv" rel="nofollow">Stack Overflow Careers profile</a> and show off all of your hard work from Stack Overflow, Github, and virtually every other coding site. Who knows, you might even get recruited for a great <a href="http://careers.stackoverflow.com/jobs" rel="nofollow">new position</a>!
+</td></tr>
+</table>
+</section>
+<footer class="post-footer">
+<section class="author">
+<h4>Written by Jeff Atwood</h4>
+<p>Indoor enthusiast. Co-founder of Stack Exchange and Discourse. Disclaimer: I have no idea what I&#x27;m talking about. Find me here: <a href="http://twitter.com/codinghorror">http://twitter.com/codinghorror</a></p>
+</section>
+</footer>
+<div id="nrelate_related_placeholder"></div> <script async id="nrelate_loader_script" type="text/javascript" src="http://static.nrelate.com/common_js/0.52.1/loader.min.js"></script>
+</article>
+<div id="discourse-comments"></div>
+<script type="text/javascript">
+      var discourseUrl = "http://discourse.codinghorror.com/",
+          discourseEmbedUrl = 'http://blog.codinghorror.com/standard-flavored-markdown/';
+
+      (function() {
+        var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+          d.src = discourseUrl + 'javascripts/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+      })();
+    </script>
+</main>
+<aside class="sidebar">
+ 
+<div id="carbonads-container"><div class="carbonad"><div id="azcarbon"></div><script type="text/javascript">var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = "http://engine.carbonads.com/z/56742/azcarbon_2_1_0_VERT"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script></div></div>
+<div id="hireme" class="hireme codinghorror" style="min-height: 220px; margin-bottom: 15px;"></div>
+<script>
+        setTimeout(function () {
+            var a = document.createElement("script");
+            var b = document.getElementsByTagName('script')[0];
+            a.src = "http://careers.stackoverflow.com/ad/js";
+            a.async = true; 
+            a.type = "text/javascript"; 
+            b.parentNode.insertBefore(a, b);
+        }, 5);
+    </script>
+<div class="welovecodinghorror" style="margin-bottom:15px">
+[ad] Enjoy the blog? Read <b><a href="http://www.hyperink.com/Effective-Programming-More-Than-Writing-Code-b1559">Effective Programming: More than Writing Code</a></b> and <b><a href="http://www.hyperink.com/How-To-Stop-Sucking-And-Be-Awesome-Instead-b9A74B5CBA6">How to Stop Sucking and Be Awesome Instead</a></b> on your Kindle, iPad, Nook, or as a PDF.
+</div>
+<h3>Resources</h3>
+<ul>
+<li><a href="/about-me/">About Me</a></li>
+<li><a href="http://twitter.com/codinghorror">@codinghorror</a></li>
+<li><a href="http://www.discourse.org/">discourse.org</a></li>
+<li><a href="http://stackexchange.com/">stackexchange.com</a></li>
+<li><a href="/recommended-reading-for-developers/">Recommended Reading</a></li>
+</ul>
+<ul>
+<li><a href="http://feeds.feedburner.com/codinghorror" class="icon-feed">&nbsp;Subscribe in a reader</a></li>
+<li><a href="http://feedburner.google.com/fb/a/mailverify?uri=codinghorror&amp;loc=en_US" class="icon-email">&nbsp;Subscribe via email</a></li>
+</ul>
+<p>Coding Horror has been continuously published since 2004</p>
+<ul>
+<li><img src="http://feeds.feedburner.com/~fc/codinghorror?bg=EEEEEE&amp;fg=111111&amp;anim=0" height="26" width="88" style="border:0" alt="Count of RSS readers"></li>
+<li><a href="http://my.statcounter.com/project/standard/stats.php?project_id=2600027&amp;guest=1">Traffic Stats</a></li>
+</ul>
+<footer class="site-footer">
+<section class="copyright">Copyright <a rel="author" href="https://profiles.google.com/codinghorror1">Jeff Atwood</a> &copy; 2014<br/>
+Logo image &copy; 1993 Steven C. McConnell <br/>
+Proudly published with <a class="icon-ghost" href="http://ghost.org">Ghost</a></section>
+</footer></aside>
+</div>
+<script src="/public/jquery.min.js?v=8684b6a35e"></script>
+<script type="text/javascript" src="/assets/js/jquery.fitvids.js?v=8684b6a35e"></script>
+<script type="text/javascript" src="/assets/js/index.js?v=8684b6a35e"></script>
+<script async src="http://www.statcounter.com/counter/counter.js"></script>
+<noscript><a href="http://www.statcounter.com/"><img src="http://c26.statcounter.com/counter.php?sc_project=2600027&amp;java=0&amp;security=dcff5548&amp;invisible=0" alt="web metrics"></a> </noscript>
+ 
+<script>
+    document.write(unescape("%3Cscript src='" + (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js'%3E%3C/script%3E"));
+    </script>
+<script>
+    COMSCORE.beacon({
+      c1: 2,
+      c2: "6035669",
+      c3: "",
+      c4: "http://www.codinghorror.com/blog/",
+      c5: "",
+      c6: "",
+      c15: ""
+    });
+    </script>
+<noscript>
+<img src="http://b.scorecardresearch.com/b?c1=2&amp;c2=6035669&amp;c3=&amp;c4=http%3A%2F%2Fwww.codinghorror.com%2Fblog%2F&amp;c5=&amp;c6=&amp;c15=&amp;cv=1.3&amp;cj=1" style="display:none" width="0" height="0" alt=""/>
+</noscript>
+<img src="/view.gif?page=/standard-flavored-markdown/" alt="" style="display:none" hidden />
+</body>
+</html>
