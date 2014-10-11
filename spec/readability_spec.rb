@@ -67,7 +67,12 @@ describe Readability do
                         
       FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703712a.gif",                                            
                            :body => File.read(File.dirname(__FILE__) + "/fixtures/images/sign_up_emails_682__703712a.gif"))
-     
+
+      # Register images for codinghorror
+      FakeWeb.register_uri(:get, 'http://blog.codinghorror.com/content/images/2014/Sep/JohnPinhole.jpg',                                            
+                           :body => File.read(File.dirname(__FILE__) + "/fixtures/images/JohnPinhole.jpg"))
+      FakeWeb.register_uri(:get, 'http://blog.codinghorror.com/content/images/2014/Sep/Confusion_of_Tongues.png',                                            
+                           :body => File.read(File.dirname(__FILE__) + "/fixtures/images/Confusion_of_Tongues.png"))
     end
 
     it "should show one image, but outside of the best candidate" do
@@ -91,6 +96,11 @@ describe Readability do
 
       expect(@doc.content).to include('http://blog.codinghorror.com/content/images/2014/Sep/JohnPinhole.jpg')
       expect(@doc.content).to include('http://blog.codinghorror.com/content/images/2014/Sep/Confusion_of_Tongues.png')
+
+      expect(@doc.images).to match_array([
+        'http://blog.codinghorror.com/content/images/2014/Sep/JohnPinhole.jpg',
+        'http://blog.codinghorror.com/content/images/2014/Sep/Confusion_of_Tongues.png'
+      ])
     end
 
 
