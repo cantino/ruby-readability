@@ -55,8 +55,10 @@ describe Readability do
       @bbc      = File.read(File.dirname(__FILE__) + "/fixtures/bbc.html")
       @nytimes  = File.read(File.dirname(__FILE__) + "/fixtures/nytimes.html")
       @thesum   = File.read(File.dirname(__FILE__) + "/fixtures/thesun.html")
+      @ch       = File.read(File.dirname(__FILE__) + "/fixtures/codinghorror.html")
 
       FakeWeb::Registry.instance.clean_registry
+
       FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg",
                            :body => File.read(File.dirname(__FILE__) + "/fixtures/images/dim_1416768a.jpg"))
                            
@@ -65,7 +67,12 @@ describe Readability do
                         
       FakeWeb.register_uri(:get, "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703712a.gif",                                            
                            :body => File.read(File.dirname(__FILE__) + "/fixtures/images/sign_up_emails_682__703712a.gif"))
-     
+
+      # Register images for codinghorror
+      FakeWeb.register_uri(:get, 'http://blog.codinghorror.com/content/images/2014/Sep/JohnPinhole.jpg',                                            
+                           :body => File.read(File.dirname(__FILE__) + "/fixtures/images/JohnPinhole.jpg"))
+      FakeWeb.register_uri(:get, 'http://blog.codinghorror.com/content/images/2014/Sep/Confusion_of_Tongues.png',                                            
+                           :body => File.read(File.dirname(__FILE__) + "/fixtures/images/Confusion_of_Tongues.png"))
     end
 
     it "should show one image, but outside of the best candidate" do
@@ -79,6 +86,23 @@ describe Readability do
       @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
       @doc.best_candidate_has_image.should == true
     end
+
+    it "should expand relative image url" do
+      url = 'http://blog.codinghorror.com/standard-flavored-markdown/'
+      @doc = Readability::Document.new(@ch, tags: %w[div p img a],
+                                            attributes: %w[src href],
+                                            remove_empty_nodes: false)
+      @doc.images_with_fqdn_uris!(url)
+
+      expect(@doc.content).to include('http://blog.codinghorror.com/content/images/2014/Sep/JohnPinhole.jpg')
+      expect(@doc.content).to include('http://blog.codinghorror.com/content/images/2014/Sep/Confusion_of_Tongues.png')
+
+      expect(@doc.images).to match_array([
+        'http://blog.codinghorror.com/content/images/2014/Sep/JohnPinhole.jpg',
+        'http://blog.codinghorror.com/content/images/2014/Sep/Confusion_of_Tongues.png'
+      ])
+    end
+
 
     it "should not try to download local images" do
       @doc = Readability::Document.new(<<-HTML)

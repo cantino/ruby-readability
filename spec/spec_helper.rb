@@ -7,5 +7,8 @@ FakeWeb.allow_net_connect = false
 
 RSpec.configure do |config|
   config.mock_with :rr
-end
 
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
+end
