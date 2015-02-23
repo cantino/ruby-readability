@@ -3,6 +3,8 @@
 require 'rubygems'
 require 'nokogiri'
 require 'guess_html_encoding'
+require 'pry-byebug'
+require 'sanitize'
 
 module Readability
   class Document
@@ -298,8 +300,14 @@ module Readability
 
       best_candidate = sorted_candidates.first || { :elem => @html.css("body").first, :content_score => 0 }
       debug("Best candidate #{best_candidate[:elem].name}##{best_candidate[:elem][:id]}.#{best_candidate[:elem][:class]} with score #{best_candidate[:content_score]}")
-
+      best_candidate[:elem] = get_main_content(best_candidate[:elem], 1)
       best_candidate
+    end
+
+    def get_main_content(elem, recursion_cnt)
+      return elem if recursion_cnt > 3
+      return elem if elem.parent[:class] !~ /.*main.*|.*content.*|.*body.*/
+      get_main_content(elem.parent, recursion_cnt+=1)
     end
 
     def get_link_density(elem)
@@ -455,12 +463,25 @@ module Readability
 
       end
 
+      # set title
+      output = ""
+      @html.css("title").each {|title| output += "<h1>#{title.text}</h1>"}
+
       s = Nokogiri::XML::Node::SaveOptions
       save_opts = s::NO_DECLARATION | s::NO_EMPTY_TAGS | s::AS_XHTML
       html = node.serialize(:save_with => save_opts)
 
       # Get rid of duplicate whitespace
-      return html.gsub(/[\r\n\f]+/, "\n" )
+      html = html.gsub(/[\r\n\f\t]+/, "\n" )
+      html = Sanitize.clean(html, :elements => ['img'], :attributes => {'img' => ['src']})
+      html.each_line do |line|
+        if line =~ /.*img.*/
+          output += "#{line.chomp}"
+        else
+          output += "<p>#{line.chomp}</p>"
+        end
+      end
+      output
     end
 
     def clean_conditionally(node, candidates, selector)
