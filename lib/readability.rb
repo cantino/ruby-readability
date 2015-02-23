@@ -3,7 +3,6 @@
 require 'rubygems'
 require 'nokogiri'
 require 'guess_html_encoding'
-require 'pry-byebug'
 require 'sanitize'
 
 module Readability
