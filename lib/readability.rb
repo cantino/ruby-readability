@@ -472,6 +472,7 @@ module Readability
 
       # Get rid of duplicate whitespace
       html = html.gsub(/[\r\n\f\t]+/, "\n" )
+      html = html.gsub(/[\"]/, "" )
       html = Sanitize.clean(html, :elements => ['img'], :attributes => {'img' => ['src']})
       html.each_line do |line|
         if line =~ /.*img.*/
