@@ -304,6 +304,7 @@ module Readability
     end
 
     def get_main_content(elem, recursion_cnt)
+      return elem unless elem.parent.respond_to?(:parent) # is exists parent node
       return elem if recursion_cnt > 3
       # best_candidate near wrapper
       return elem if elem.parent.name == "div" && elem.parent[:class] !~ /.*main.*|.*content.*|.*body.*/
