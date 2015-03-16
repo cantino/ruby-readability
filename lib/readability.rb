@@ -18,7 +18,9 @@ module Readability
       :min_image_height           => 80,
       :ignore_image_format        => [],
       :blacklist                  => nil,
-      :whitelist                  => nil
+      :whitelist                  => nil,
+      :blacklist_domain           => nil,
+      :whitelist_domain           => nil
     }.freeze
     
     REGEXES = {
@@ -300,6 +302,7 @@ module Readability
       best_candidate = sorted_candidates.first || { :elem => @html.css("body").first, :content_score => 0 }
       debug("Best candidate #{best_candidate[:elem].name}##{best_candidate[:elem][:id]}.#{best_candidate[:elem][:class]} with score #{best_candidate[:content_score]}")
       best_candidate[:elem] = get_main_content(best_candidate[:elem], 1)
+      remove_blacklist_domain_link best_candidate[:elem]
       best_candidate
     end
 
@@ -430,6 +433,9 @@ module Readability
       # Conditionally clean <table>s, <ul>s, and <div>s
       clean_conditionally(node, candidates, "table, ul, div")
 
+      # remove black list domain image
+      remove_blacklist_domain_link node
+
       # We'll sanitize all elements using a whitelist
       base_whitelist = @options[:tags] || %w[div p]
       # We'll add whitespace instead of block elements,
@@ -533,6 +539,19 @@ module Readability
         "<embed>s with too short a content length, or too many <embed>s"
       else
         nil
+      end
+    end
+
+    def remove_blacklist_domain_link(node)
+      if @options[:blacklist_domain]
+        node.xpath("//a/img").each do |elem|
+          next if elem.attribute("src").nil?
+          @options[:blacklist_domain].each do |domain|
+            if elem.attribute("src").value.include? domain
+              node.xpath("//img[@src=\"#{elem.attribute("src")}\"]").remove
+            end
+          end
+        end
       end
     end
 
