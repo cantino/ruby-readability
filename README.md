@@ -78,6 +78,7 @@ feature requires that the `fastimage` gem be installed.
 Related Projects
 ----------------
 
+* [readability.cr](https://github.com/joenas/readability.cr) - Port of ruby-readability's port of arc90's readability project to Crystal
 * [newspaper](https://github.com/codelucas/newspaper) is an advanced news extraction, article extraction, and content curation library for Python.
 
 Potential Issues
