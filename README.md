@@ -103,7 +103,3 @@ License
 This code is under the Apache License 2.0. See <http://www.apache.org/licenses/LICENSE-2.0>.
 
 Ruby port by cantino, starrhorne, libc, and iterationlabs. Special thanks to fizx and marcosinger.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/cantino/ruby-readability/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
