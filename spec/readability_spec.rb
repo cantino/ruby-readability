@@ -77,14 +77,14 @@ describe Readability do
 
     it "should show one image, but outside of the best candidate" do
       @doc = Readability::Document.new(@thesum)
-      @doc.images.should == ["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg", "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703711a.gif", "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703712a.gif"]
-      @doc.best_candidate_has_image.should == false
+      expect(@doc.images).to eq(["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg", "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703711a.gif", "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703712a.gif"])
+      expect(@doc.best_candidate_has_image).to eq(false)
     end
 
     it "should show one image inside of the best candidate" do
       @doc = Readability::Document.new(@nytimes)
-      @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
-      @doc.best_candidate_has_image.should == true
+      expect(@doc.images).to eq(["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"])
+      expect(@doc.best_candidate_has_image).to eq(true)
     end
 
     it "should expand relative image url" do
@@ -118,66 +118,66 @@ describe Readability do
         </html>
       HTML
       expect(@doc).not_to receive(:get_image_size)
-      @doc.images.should == []
+      expect(@doc.images).to eq([])
     end
 
     describe "no images" do
       it "shouldn't show images" do
         @doc = Readability::Document.new(@bbc, :min_image_height => 600)
-        @doc.images.should == []
-        @doc.best_candidate_has_image.should == false
+        expect(@doc.images).to eq([])
+        expect(@doc.best_candidate_has_image).to eq(false)
       end
     end
 
     describe "poll of images" do
       it "should show some images inside of the best candidate" do
         @doc = Readability::Document.new(@bbc)
-        @doc.images.should =~ ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg",
+        expect(@doc.images).to match_array(["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg",
                                "http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027786_john_capes229_rnsm.jpg",
                                "http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif",
-                               "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"]
-        @doc.best_candidate_has_image.should == true
+                               "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"])
+        expect(@doc.best_candidate_has_image).to eq(true)
       end
 
       it "should show some images inside of the best candidate, include gif format" do
         @doc = Readability::Document.new(@bbc, :ignore_image_format => [])
-        @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg", "http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027786_john_capes229_rnsm.jpg", "http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif", "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"]
-        @doc.best_candidate_has_image.should == true
+        expect(@doc.images).to eq(["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg", "http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027786_john_capes229_rnsm.jpg", "http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif", "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"])
+        expect(@doc.best_candidate_has_image).to eq(true)
       end
 
       describe "width, height and format" do
         it "should show some images inside of the best candidate, but with width most equal to 400px" do
           @doc = Readability::Document.new(@bbc, :min_image_width => 400, :ignore_image_format => [])
-          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg"]
-          @doc.best_candidate_has_image.should == true
+          expect(@doc.images).to eq(["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg"])
+          expect(@doc.best_candidate_has_image).to eq(true)
         end
 
         it "should show some images inside of the best candidate, but with width most equal to 304px" do
           @doc = Readability::Document.new(@bbc, :min_image_width => 304, :ignore_image_format => [])
-          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg", "http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif", "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"]
-          @doc.best_candidate_has_image.should == true
+          expect(@doc.images).to eq(["http://news.bbcimg.co.uk/media/images/57027000/jpg/_57027794_perseus_getty.jpg", "http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif", "http://news.bbcimg.co.uk/media/images/57055000/jpg/_57055063_perseus_thoctarides.jpg"])
+          expect(@doc.best_candidate_has_image).to eq(true)
         end
 
         it "should show some images inside of the best candidate, but with width most equal to 304px and ignoring JPG format" do
           @doc = Readability::Document.new(@bbc, :min_image_width => 304, :ignore_image_format => ["jpg"])
-          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif"]
-          @doc.best_candidate_has_image.should == true
+          expect(@doc.images).to eq(["http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif"])
+          expect(@doc.best_candidate_has_image).to eq(true)
         end
 
         it "should show some images inside of the best candidate, but with height most equal to 400px, no ignoring no format" do
           @doc = Readability::Document.new(@bbc, :min_image_height => 400, :ignore_image_format => [])
-          @doc.images.should == ["http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif"]
-          @doc.best_candidate_has_image.should == true
+          expect(@doc.images).to eq(["http://news.bbcimg.co.uk/media/images/57060000/gif/_57060487_sub_escapes304x416.gif"])
+          expect(@doc.best_candidate_has_image).to eq(true)
         end
 
         it "should not miss an image if it exists by itself in a div without text" do
           @doc = Readability::Document.new(@simple_html_with_img_no_text,:tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false, :do_not_guess_encoding => true)
-          @doc.images.should == ["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg"]
+          expect(@doc.images).to eq(["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg"])
         end
 
         it "should not double count an image between script and noscript" do
           @doc = Readability::Document.new(@simple_html_with_img_in_noscript,:tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false, :do_not_guess_encoding => true)
-          @doc.images.should == ["http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703711a.gif", "http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg"]
+          expect(@doc.images).to eq(["http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703711a.gif", "http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg"])
         end
 
       end
@@ -191,11 +191,11 @@ describe Readability do
     end
 
     it "should transform divs containing no block elements into <p>s" do
-      @doc.html.css("#body").first.name.should == "p"
+      expect(@doc.html.css("#body").first.name).to eq("p")
     end
 
     it "should not transform divs that contain block elements" do
-      @doc.html.css("#contains_blockquote").first.name.should == "div"
+      expect(@doc.html.css("#contains_blockquote").first.name).to eq("div")
     end
   end
 
@@ -209,7 +209,7 @@ describe Readability do
           <body></body>
         </html>
       HTML
-      doc.author.should eql("Austin Fonacier")
+      expect(doc.author).to eql("Austin Fonacier")
     end
 
     it "should pick up readability's recommended author format" do
@@ -224,7 +224,7 @@ describe Readability do
           </body>
         </html>
       HTML
-      doc.author.should eql("Austin Fonacier")
+      expect(doc.author).to eql("Austin Fonacier")
     end
 
     it "should pick up vcard fn" do
@@ -240,7 +240,7 @@ describe Readability do
           </body>
         </html>
       HTML
-      doc.author.should eql("Austin Fonacier")
+      expect(doc.author).to eql("Austin Fonacier")
     end
 
     it "should pick up <a rel='author'>" do
@@ -252,7 +252,7 @@ describe Readability do
           </body>
         </html>
       HTML
-      doc.author.should eql("Danny Banks (rel)")
+      expect(doc.author).to eql("Danny Banks (rel)")
     end
 
     it "should pick up <div id='author'>" do
@@ -264,7 +264,7 @@ describe Readability do
           </body>
         </html>
       HTML
-      doc.author.should eql("Austin Fonacier (author)")
+      expect(doc.author).to eql("Austin Fonacier (author)")
     end
   end
 
@@ -287,15 +287,15 @@ describe Readability do
     end
 
     it "should like <div>s more than <th>s" do
-      @doc.score_node(@elem1)[:content_score].should > @doc.score_node(@elem2)[:content_score]
+      expect(@doc.score_node(@elem1)[:content_score]).to be > @doc.score_node(@elem2)[:content_score]
     end
 
     it "should like classes like text more than classes like comment" do
       @elem2.name = "div"
-      @doc.score_node(@elem1)[:content_score].should == @doc.score_node(@elem2)[:content_score]
+      expect(@doc.score_node(@elem1)[:content_score]).to eq(@doc.score_node(@elem2)[:content_score])
       @elem1['class'] = "text"
       @elem2['class'] = "comment"
-      @doc.score_node(@elem1)[:content_score].should > @doc.score_node(@elem2)[:content_score]
+      expect(@doc.score_node(@elem1)[:content_score]).to be > @doc.score_node(@elem2)[:content_score]
     end
   end
 
@@ -306,15 +306,15 @@ describe Readability do
     end
 
     it "should remove things that have class comment" do
-      @doc.html.inner_html.should_not =~ /a comment/
+      expect(@doc.html.inner_html).not_to match(/a comment/)
     end
 
     it "should not remove body tags" do
-      @doc.html.inner_html.should =~ /<\/body>/
+      expect(@doc.html.inner_html).to match(/<\/body>/)
     end
 
     it "should not remove things with class comment and id body" do
-      @doc.html.inner_html.should =~ /real content/
+      expect(@doc.html.inner_html).to match(/real content/)
     end
   end
 
@@ -342,13 +342,13 @@ describe Readability do
     end
 
     it "should score elements in the document" do
-      @candidates.values.length.should == 3
+      expect(@candidates.values.length).to eq(3)
     end
 
     it "should prefer the body in this particular example" do
-      @candidates.values.sort { |a, b|
+      expect(@candidates.values.sort { |a, b|
         b[:content_score] <=> a[:content_score]
-      }.first[:elem][:id].should == "body"
+      }.first[:elem][:id]).to eq("body")
     end
 
     context "when two consequent br tags are used instead of p" do
@@ -373,7 +373,7 @@ describe Readability do
           </html>
         HTML
         @candidates = @doc.score_paragraphs(0)
-        @candidates.values.sort_by { |a| -a[:content_score] }.first[:elem][:id].should == 'post1'
+        expect(@candidates.values.sort_by { |a| -a[:content_score] }.first[:elem][:id]).to eq('post1')
       end
     end
   end
@@ -383,7 +383,7 @@ describe Readability do
       allowed_tags = %w[div span table tr td p i strong u h1 h2 h3 h4 pre code br a]
       allowed_attributes = %w[href]
       html = File.read(File.dirname(__FILE__) + "/fixtures/cant_read.html")
-      Readability::Document.new(html, :tags => allowed_tags, :attributes => allowed_attributes).content.should match(/Can you talk a little about how you developed the looks for the/)
+      expect(Readability::Document.new(html, :tags => allowed_tags, :attributes => allowed_attributes).content).to match(/Can you talk a little about how you developed the looks for the/)
     end
   end
 
@@ -394,15 +394,15 @@ describe Readability do
     end
 
     it "should return the main page content" do
-      @doc.content.should match("Some content")
+      expect(@doc.content).to match("Some content")
     end
 
     it "should return the page title if present" do
-      @doc.title.should match("title!")
+      expect(@doc.title).to match("title!")
 
       doc = Readability::Document.new("<html><head></head><body><div><p>Some content</p></div></body>",
                                        :min_text_length => 0, :retry_length => 1)
-      doc.title.should be_nil
+      expect(doc.title).to be_nil
     end
   end
 
@@ -413,7 +413,7 @@ describe Readability do
     end
 
     it "should not return the sidebar" do
-      @doc.content.should_not match("sidebar")
+      expect(@doc.content).not_to match("sidebar")
     end
   end
 
@@ -431,7 +431,7 @@ describe Readability do
     end
 
     it "should not return the sidebar" do
-      @doc.content.should_not match("a b c d f")
+      expect(@doc.content).not_to match("a b c d f")
     end
   end
 
@@ -451,12 +451,12 @@ describe Readability do
         #puts "testing #{sample}..."
 
         $required_fragments.each do |required_text|
-          doc.should include(required_text)
+          expect(doc).to include(required_text)
           checks += 1
         end
 
         $excluded_fragments.each do |text_to_avoid|
-          doc.should_not include(text_to_avoid)
+          expect(doc).not_to include(text_to_avoid)
           checks += 1
         end
       end
@@ -470,8 +470,8 @@ describe Readability do
         it "should correctly guess and enforce HTML encoding" do
           doc = Readability::Document.new("<html><head><meta http-equiv='content-type' content='text/html; charset=LATIN1'></head><body><div>hi!</div></body></html>")
           content = doc.content
-          content.encoding.to_s.should == "ISO-8859-1"
-          content.should be_valid_encoding
+          expect(content.encoding.to_s).to eq("ISO-8859-1")
+          expect(content).to be_valid_encoding
         end
 
         it "should allow encoding guessing to be skipped" do
@@ -493,16 +493,16 @@ describe Readability do
     it "should strip the html comments tag" do
       doc = Readability::Document.new("<html><head><meta http-equiv='content-type' content='text/html; charset=LATIN1'></head><body><div>hi!<!-- bye~ --></div></body></html>")
       content = doc.content
-      content.should include("hi!")
-      content.should_not include("bye")
+      expect(content).to include("hi!")
+      expect(content).not_to include("bye")
     end
 
     it "should not error with empty content" do
-      Readability::Document.new('').content.should == '<div><div></div></div>'
+      expect(Readability::Document.new('').content).to eq('<div><div></div></div>')
     end
 
     it "should not error with a document with no <body>" do
-      Readability::Document.new('<html><head><meta http-equiv="refresh" content="0;URL=http://example.com"></head></html>').content.should == '<div><div></div></div>'
+      expect(Readability::Document.new('<html><head><meta http-equiv="refresh" content="0;URL=http://example.com"></head></html>').content).to eq('<div><div></div></div>')
     end
   end
 
@@ -516,23 +516,23 @@ describe Readability do
     it "should not have any side-effects when calling content() and then images()" do
       @doc=Readability::Document.new(@nytimes, :tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false,
       :do_not_guess_encoding => true)
-      @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
+      expect(@doc.images).to eq(["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"])
       @doc.content
-      @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
+      expect(@doc.images).to eq(["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"])
     end
 
     it "should not have any side-effects when calling content() multiple times" do
        @doc=Readability::Document.new(@nytimes, :tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false,
         :do_not_guess_encoding => true)
-       @doc.content.should ==  @doc.content
+       expect(@doc.content).to eq(@doc.content)
     end
 
     it "should not have any side-effects when calling content and images multiple times" do
        @doc=Readability::Document.new(@nytimes, :tags => %w[div p img a], :attributes => %w[src href], :remove_empty_nodes => false,
         :do_not_guess_encoding => true)
-       @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
-       @doc.content.should ==  @doc.content
-       @doc.images.should == ["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"]
+       expect(@doc.images).to eq(["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"])
+       expect(@doc.content).to eq(@doc.content)
+       expect(@doc.images).to eq(["http://graphics8.nytimes.com/images/2011/12/02/opinion/02fixes-freelancersunion/02fixes-freelancersunion-blog427.jpg"])
     end
 
   end
@@ -548,29 +548,29 @@ describe Readability do
     end
 
     it "preserve the code blocks" do
-      @doc.css("code pre").text.should == "\nroot\n  indented\n    "
+      expect(@doc.css("code pre").text).to eq("\nroot\n  indented\n    ")
     end
 
     it "preserve backwards code blocks" do
-      @doc.css("pre code").text.should == "\nsecond\n  indented\n    "
+      expect(@doc.css("pre code").text).to eq("\nsecond\n  indented\n    ")
     end
   end
 
   describe "remove all tags" do
     it "should work for an incomplete piece of HTML" do
       doc = Readability::Document.new('<div>test</div', :tags => [])
-      doc.content.should == 'test'
+      expect(doc.content).to eq('test')
     end
 
     it "should work for a HTML document" do
       doc = Readability::Document.new('<html><head><title>title!</title></head><body><div><p>test</p></div></body></html>',
                                       :tags => [])
-      doc.content.should == 'test'
+      expect(doc.content).to eq('test')
     end
 
     it "should work for a plain text" do
       doc = Readability::Document.new('test', :tags => [])
-      doc.content.should == 'test'
+      expect(doc.content).to eq('test')
     end
   end
 
@@ -587,8 +587,8 @@ describe Readability do
       doc = Readability::Document.new(boing_boing)
 
       content = doc.content
-      (content !~ /Bees and Bombs/).should == true
-      content.should =~ /ADVERTISE/
+      expect(content !~ /Bees and Bombs/).to eq(true)
+      expect(content).to match(/ADVERTISE/)
     end
 
     it "should apply whitelist" do
@@ -596,13 +596,13 @@ describe Readability do
       doc = Readability::Document.new(boing_boing,
                                       whitelist: ".post-content")
       content = doc.content
-      content.should =~ /Bees and Bombs/
+      expect(content).to match(/Bees and Bombs/)
     end
 
     it "should apply blacklist" do
       doc = Readability::Document.new(boing_boing, blacklist: "#sidebar_adblock")
       content = doc.content
-      (content !~ /ADVERTISE/).should == true
+      expect(content !~ /ADVERTISE/).to eq(true)
 
     end
   end
