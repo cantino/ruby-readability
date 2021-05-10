@@ -8,6 +8,7 @@ Build Status
 ------------
 
 [![Ruby](https://github.com/cantino/ruby-readability/actions/workflows/ruby.yml/badge.svg?branch=master)](https://github.com/cantino/ruby-readability/actions/workflows/ruby.yml)
+
 Install
 -------
 
