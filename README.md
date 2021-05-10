@@ -7,7 +7,7 @@ webpage. It is a Ruby port of arc90's readability project.
 Build Status
 ------------
 
-[![Build Status](https://travis-ci.org/cantino/ruby-readability.png)](https://travis-ci.org/cantino/ruby-readability)
+[![Build Status](https://github.com/antino/ruby-readability/actions/workflows/ruby/badge.svg)](https://github.com/antino/ruby-readability/actions)
 
 Install
 -------
