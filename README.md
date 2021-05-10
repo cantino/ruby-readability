@@ -7,8 +7,7 @@ webpage. It is a Ruby port of arc90's readability project.
 Build Status
 ------------
 
-[![Build Status](https://github.com/cantino/ruby-readability/actions/workflows/ruby/badge.svg)](https://github.com/cantino/ruby-readability/actions)
-
+[![Ruby](https://github.com/cantino/ruby-readability/actions/workflows/ruby.yml/badge.svg?branch=master)](https://github.com/cantino/ruby-readability/actions/workflows/ruby.yml)
 Install
 -------
 
