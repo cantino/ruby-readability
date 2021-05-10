@@ -54,7 +54,7 @@ describe Readability do
     before do
       @bbc      = File.read(File.dirname(__FILE__) + "/fixtures/bbc.html")
       @nytimes  = File.read(File.dirname(__FILE__) + "/fixtures/nytimes.html")
-      @thesum   = File.read(File.dirname(__FILE__) + "/fixtures/thesun.html")
+      @thesun   = File.read(File.dirname(__FILE__) + "/fixtures/thesun.html")
       @ch       = File.read(File.dirname(__FILE__) + "/fixtures/codinghorror.html")
 
       FakeWeb::Registry.instance.clean_registry
@@ -76,7 +76,7 @@ describe Readability do
     end
 
     it "should show one image, but outside of the best candidate" do
-      @doc = Readability::Document.new(@thesum)
+      @doc = Readability::Document.new(@thesun)
       expect(@doc.images).to eq(["http://img.thesun.co.uk/multimedia/archive/01416/dim_1416768a.jpg", "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703711a.gif", "http://img.thesun.co.uk/multimedia/archive/00703/sign_up_emails_682__703712a.gif"])
       expect(@doc.best_candidate_has_image).to eq(false)
     end
@@ -510,7 +510,7 @@ describe Readability do
     before do
       @bbc      = File.read(File.dirname(__FILE__) + "/fixtures/bbc.html")
       @nytimes  = File.read(File.dirname(__FILE__) + "/fixtures/nytimes.html")
-      @thesum   = File.read(File.dirname(__FILE__) + "/fixtures/thesun.html")
+      @thesun   = File.read(File.dirname(__FILE__) + "/fixtures/thesun.html")
     end
 
     it "should not have any side-effects when calling content() and then images()" do
