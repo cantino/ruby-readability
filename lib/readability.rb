@@ -17,7 +17,9 @@ module Readability
       :min_image_height           => 80,
       :ignore_image_format        => [],
       :blacklist                  => nil,
-      :whitelist                  => nil
+      :whitelist                  => nil,
+      :get_largest_image          => false,
+      :url_blacklist              => []
     }.freeze
     
     REGEXES = {
@@ -95,6 +97,18 @@ module Readability
       @html.xpath('//comment()').each { |i| i.remove }
     end
 
+
+    def is_blacklist(url)
+      options[:url_blacklist].each do |blacklist|
+        if url.include? blacklist 
+          return true
+        end
+      end
+
+      return false
+    end
+
+
     def images(content=nil, reload=false)
       begin
         require 'fastimage'
@@ -103,6 +117,9 @@ module Readability
       end
 
       @best_candidate_has_image = false if reload
+
+      largest_image_url = nil
+      largest_image_area = 0
 
       prepare_candidates
       list_images   = []
@@ -118,6 +135,27 @@ module Readability
           url     = element["src"].value
           height  = element["height"].nil?  ? 0 : element["height"].value.to_i
           width   = element["width"].nil?   ? 0 : element["width"].value.to_i
+
+          if is_blacklist(url)
+            debug("image discarded (blacklist): #{url}")
+            next
+          end
+
+          if element["style"]
+
+            width_reg = /width:(\d+)/.match(element["style"])
+            height_reg = /height:(\d+)/.match(element["style"])
+
+            if width_reg
+              width = width_reg[1].to_i
+            end
+
+            if height_reg
+              height = height_reg[1].to_i
+            end
+            
+          end
+          
 
           if url =~ /\Ahttps?:\/\//i && (height.zero? || width.zero?)
             image   = get_image_size(url)
@@ -135,13 +173,32 @@ module Readability
 
           tested_images.push(url)
           if image_meets_criteria?(image)
-            list_images << url
+            if options[:get_largest_image]
+              area = image[:height] * image[:width]
+              if area > largest_image_area
+
+                if largest_image_url
+                  debug("Image discarded by larger image: #{largest_image_url}")
+                end
+
+                largest_image_area = area
+                largest_image_url = url
+              end
+            else
+              list_images << url
+            end
+            
           else
             debug("Image discarded: #{url} - height: #{image[:height]} - width: #{image[:width]} - format: #{image[:format]}")
           end
         end
 
-      (list_images.empty? and content != @html) ? images(@html, true) : list_images
+        if options[:get_largest_image] and largest_image_url
+          list_images << largest_image_url
+        end
+
+        (list_images.empty? and content != @html) ? images(@html, true) : list_images
+
     end
     
     def images_with_fqdn_uris!(source_uri)
@@ -174,7 +231,7 @@ module Readability
       raise "Couldn't get size." if w.nil? || h.nil?
       {:width => w, :height => h}
     rescue => e
-      debug("Image error: #{e}")
+      debug("Image error: #{e} url: #{url}")
       nil
     end
 
