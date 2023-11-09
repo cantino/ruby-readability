@@ -17,7 +17,8 @@ module Readability
       :min_image_height           => 80,
       :ignore_image_format        => [],
       :blacklist                  => nil,
-      :whitelist                  => nil
+      :whitelist                  => nil,
+      :elements_to_score          => ["p", "td", "pre"]
     }.freeze
     
     REGEXES = {
@@ -310,7 +311,7 @@ module Readability
 
     def score_paragraphs(min_text_length)
       candidates = {}
-      @html.css("p,td").each do |elem|
+      @html.css(options[:elements_to_score].join(',')).each do |elem|
         parent_node = elem.parent
         grand_parent_node = parent_node.respond_to?(:parent) ? parent_node.parent : nil
         inner_text = elem.text
