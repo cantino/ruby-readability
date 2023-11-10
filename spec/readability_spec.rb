@@ -376,6 +376,126 @@ describe Readability do
         expect(@candidates.values.sort_by { |a| -a[:content_score] }.first[:elem][:id]).to eq('post1')
       end
     end
+
+    it "does not include short paragraphs as related siblings in the output" do
+      @doc = Readability::Document.new(<<-HTML, min_text_length: 1, elements_to_score: ["h1", "p"])
+        <html>
+          <head>
+            <title>title!</title>
+          </head>
+          <body>
+            <section>
+              <p>Paragraph 1</p>
+              <p>Paragraph 2</p>
+            </section>
+            <section>
+              <p>Too short</p>
+            </section>
+            #{'<a href="/">This link lowers the body score.</a>' * 5}
+          </body>
+        </html>
+      HTML
+
+      expect(@doc.content).to include("Paragraph 1")
+      expect(@doc.content).to include("Paragraph 2")
+      expect(@doc.content).not_to include("Too short")
+    end
+
+    it "includes long paragraphs as related siblings in the output" do
+      @doc = Readability::Document.new(<<-HTML, min_text_length: 1, elements_to_score: ["h1", "p"])
+        <html>
+          <head>
+            <title>title!</title>
+          </head>
+          <body>
+            <section>
+              <p>Paragraph 1</p>
+              <p>Paragraph 2</p>
+            </section>
+            <p>This paragraph is longer than 80 characters so should be included as a sibling in the output.</p>
+            #{'<a href="/">This link lowers the body score.</a>' * 5}
+          </body>
+        </html>
+      HTML
+
+      expect(@doc.content).to include("Paragraph 1")
+      expect(@doc.content).to include("Paragraph 2")
+      expect(@doc.content).to include("This paragraph is longer")
+    end
+
+    it "does not include non-paragraph tags in the output, even when longer than 80 characters" do
+      @doc = Readability::Document.new(<<-HTML, min_text_length: 1, elements_to_score: ["h1", "p"])
+        <html>
+          <head>
+            <title>title!</title>
+          </head>
+          <body>
+            <section>
+              <p>Paragraph 1</p>
+              <p>Paragraph 2</p>
+            </section>
+            <section>
+              <p>Although this paragraph is longer than 80 characters, the sibling is the section so it should not be included.</p>
+            </section>
+            #{'<a href="/">This link lowers the body score.</a>' * 5}
+          </body>
+        </html>
+      HTML
+
+      expect(@doc.content).to include("Paragraph 1")
+      expect(@doc.content).to include("Paragraph 2")
+      expect(@doc.content).not_to include("Although this paragraph")
+    end
+
+    it "does include non-paragraph tags in the output if their content score is high enough" do
+      @doc = Readability::Document.new(<<-HTML, min_text_length: 1, elements_to_score: ["h1", "p"])
+        <html>
+          <head>
+            <title>title!</title>
+          </head>
+          <body>
+            <section>
+              <p>Paragraph 1</p>
+              #{'<p>Paragraph 2</p>' * 10} <!-- Ensure this section remains the best_candidate. -->
+            </section>
+            <section>
+              <p>This should be included in the output because the content is score is high enough.<p>
+              <p>The, inclusion, of, lots, of, commas, increases, the, score, of, an, element.</p>
+            </section>
+            #{'<a href="/">This link lowers the body score.</a>' * 5}
+          </body>
+        </html>
+      HTML
+
+      expect(@doc.content).to include("Paragraph 1")
+      expect(@doc.content).to include("Paragraph 2")
+      expect(@doc.content).to include("This should be included")
+    end
+
+    it "can optionally include other related siblings in the output if they meet the 80 character threshold" do
+      @doc = Readability::Document.new(<<-HTML, min_text_length: 1, elements_to_score: ["h1", "p"], likely_siblings: ["section"])
+        <html>
+          <head>
+            <title>title!</title>
+          </head>
+          <body>
+            <section>
+              <p>Paragraph 1</p>
+              #{'<p>Paragraph 2</p>' * 10} <!-- Ensure this section remains the best_candidate. -->
+            </section>
+            <section>
+              <p>This paragraph is longer than 80 characters and inside a section that is a sibling of the best_candidate.</p>
+              <p>The likely_siblings now include the section tag so it should be included in the output.</p>
+            </section>
+            #{'<a href="/">This link lowers the body score.</a>' * 5}
+          </body>
+        </html>
+      HTML
+
+      expect(@doc.content).to include("Paragraph 1")
+      expect(@doc.content).to include("Paragraph 2")
+      expect(@doc.content).to include("should be included")
+    end
   end
 
   describe "the cant_read.html fixture" do
