@@ -56,6 +56,7 @@ describe Readability do
       @nytimes  = File.read(File.dirname(__FILE__) + "/fixtures/nytimes.html")
       @thesun   = File.read(File.dirname(__FILE__) + "/fixtures/thesun.html")
       @ch       = File.read(File.dirname(__FILE__) + "/fixtures/codinghorror.html")
+      @nested   = File.read(File.dirname(__FILE__) + "/fixtures/nested_images.html")
 
       FakeWeb::Registry.instance.clean_registry
 
@@ -103,6 +104,16 @@ describe Readability do
       ])
     end
 
+    it "should be able to preserve deeply nested image tags in the article's content by whitelisting all tags" do
+      @doc = Readability::Document.new(@nested, attributes: ["src"])
+      expect(@doc.images).to be_empty
+
+      @doc = Readability::Document.new(@nested, attributes: ["src"], tags: ["figure", "image"])
+      expect(@doc.images).to be_empty
+
+      @doc = Readability::Document.new(@nested, attributes: ["src"], tags: ["*"])
+      expect(@doc.content).to include('<img src="http://example.com/image.jpeg" />')
+    end
 
     it "should not try to download local images" do
       @doc = Readability::Document.new(<<-HTML)
