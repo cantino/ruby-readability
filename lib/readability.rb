@@ -17,7 +17,9 @@ module Readability
       :min_image_height           => 80,
       :ignore_image_format        => [],
       :blacklist                  => nil,
-      :whitelist                  => nil
+      :whitelist                  => nil,
+      :elements_to_score          => ["p", "td", "pre"],
+      :likely_siblings            => ["p"]
     }.freeze
     
     REGEXES = {
@@ -260,13 +262,14 @@ module Readability
       # Things like preambles, content split by ads that we removed, etc.
 
       sibling_score_threshold = [10, best_candidate[:content_score] * 0.2].max
+      downcased_likely_siblings = options[:likely_siblings].map(&:downcase)
       output = Nokogiri::XML::Node.new('div', @html)
       best_candidate[:elem].parent.children.each do |sibling|
         append = false
         append = true if sibling == best_candidate[:elem]
         append = true if candidates[sibling] && candidates[sibling][:content_score] >= sibling_score_threshold
 
-        if sibling.name.downcase == "p"
+        if downcased_likely_siblings.include?(sibling.name.downcase)
           link_density = get_link_density(sibling)
           node_content = sibling.text
           node_length = node_content.length
@@ -310,7 +313,7 @@ module Readability
 
     def score_paragraphs(min_text_length)
       candidates = {}
-      @html.css("p,td").each do |elem|
+      @html.css(options[:elements_to_score].join(',')).each do |elem|
         parent_node = elem.parent
         grand_parent_node = parent_node.respond_to?(:parent) ? parent_node.parent : nil
         inner_text = elem.text
