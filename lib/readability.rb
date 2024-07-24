@@ -426,7 +426,8 @@ module Readability
 
       # We'll sanitize all elements using a whitelist
       base_whitelist = @options[:tags] || %w[div p]
-      all_whitelisted = base_whitelist.include?("*")
+      all_tags_whitelisted = base_whitelist.include?("*")
+      all_attr_whitelisted = @options[:attributes] && @options[:attributes].include?("*")
 
       # We'll add whitespace instead of block elements,
       # so a<br>b will have a nice space between them
@@ -440,8 +441,8 @@ module Readability
 
       ([node] + node.css("*")).each do |el|
         # If element is in whitelist, delete all its attributes
-        if all_whitelisted || whitelist[el.node_name]
-          el.attributes.each { |a, x| el.delete(a) unless @options[:attributes] && @options[:attributes].include?(a.to_s) }
+        if all_tags_whitelisted || whitelist[el.node_name]
+          el.attributes.each { |a, x| el.delete(a) unless @options[:attributes] && @options[:attributes].include?(a.to_s) } unless all_attr_whitelisted
 
           # Otherwise, replace the element with its contents
         else

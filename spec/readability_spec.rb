@@ -115,6 +115,11 @@ describe Readability do
       expect(@doc.content).to include('<img src="http://example.com/image.jpeg" />')
     end
 
+    it "should be able to whitelist all attributes" do
+      @doc = Readability::Document.new(@nested, attributes: ["*"], tags: ["*"])
+      expect(@doc.content).to include('<img src="http://example.com/image.jpeg" />')
+    end
+
     it "should not try to download local images" do
       @doc = Readability::Document.new(<<-HTML)
         <html>
