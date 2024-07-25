@@ -50,7 +50,7 @@ module Readability
       @input = @input.gsub(REGEXES[:replaceBrsRe], '</p><p>').gsub(REGEXES[:replaceFontsRe], '<\1span>')
       @remove_unlikely_candidates = @options[:remove_unlikely_candidates]
       @weight_classes = @options[:weight_classes]
-      @clean_conditionally = @options[:clean_conditionally]
+      @clean_conditionally = !!@options[:clean_conditionally]
       @best_candidate_has_image = true
       make_html
       handle_exclusions!(@options[:whitelist], @options[:blacklist])
@@ -475,14 +475,17 @@ module Readability
 
     def clean_conditionally(node, candidates, selector)
       return unless @clean_conditionally
+
       node.css(selector).each do |el|
         weight = class_weight(el)
         content_score = candidates[el] ? candidates[el][:content_score] : 0
         name = el.name.downcase
+        remove = false
+        message = nil
 
         if weight + content_score < 0
-          el.remove
-          debug("Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because score + content score was less than zero.")
+          remove = true
+          message = "Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because score + content score was less than zero."
         elsif el.text.count(",") < 10
           counts = %w[p img li a embed input].inject({}) { |m, kind| m[kind] = el.css(kind).length; m }
           counts["li"] -= 100
@@ -495,9 +498,19 @@ module Readability
 
           reason = clean_conditionally_reason?(name, counts, content_length, options, weight, link_density)
           if reason
-            debug("Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because it has #{reason}.")
-            el.remove
+            message = "Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because it has #{reason}."
+            remove = true
           end
+        end
+
+        if options[:clean_conditionally].respond_to?(:call)
+          context = { remove: remove, message: message, weight: weight, content_score: content_score, el: el }
+          remove = options[:clean_conditionally].call(context) # Allow the user to override the decision for whether to remove the element.
+        end
+
+        if remove
+          debug(message || "Conditionally cleaned by user-specified function.")
+          el.remove
         end
       end
     end

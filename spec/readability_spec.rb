@@ -748,11 +748,23 @@ describe Readability do
   end
 
   describe "clean_conditionally_reason?" do
-    let (:list_fixture) { "<div><p>test</p>#{'<li></li>' * 102}" }
+    let(:list_fixture) { "<div><p>test</p>#{'<li></li>' * 102}" }
 
     it "does not raise error" do
       @doc = Readability::Document.new(list_fixture)
       expect { @doc.content }.to_not raise_error
+    end
+  end
+
+  describe "clean_conditionally" do
+    let(:fixture) { "<html><head><title>title!</title></head><body><div><p>Some content</p></div><div class='sidebar'><p>sidebar<p></div></body>" }
+
+    it "can set a clean_conditionally function to allow overriding the default decision" do
+      clean_conditionally_fn = lambda { |context| !context[:remove] } # Flip the decision.
+      content = Readability::Document.new(fixture, clean_conditionally: clean_conditionally_fn, min_text_length: 0, retry_length: 1).content
+
+      expect(content).to include("sidebar")
+      expect(content).not_to include('Some content')
     end
   end
 
