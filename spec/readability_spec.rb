@@ -503,6 +503,9 @@ describe Readability do
               <p>This paragraph is longer than 80 characters and inside a section that is a sibling of the best_candidate.</p>
               <p>The likely_siblings now include the section tag so it should be included in the output.</p>
             </section>
+            <section>
+              <p>too short when stripped                                                                                  </p>
+            </section>
             #{'<a href="/">This link lowers the body score.</a>' * 5}
           </body>
         </html>
@@ -511,6 +514,7 @@ describe Readability do
       expect(@doc.content).to include("Paragraph 1")
       expect(@doc.content).to include("Paragraph 2")
       expect(@doc.content).to include("should be included")
+      expect(@doc.content).not_to include("too short when stripped")
     end
   end
 

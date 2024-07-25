@@ -271,7 +271,7 @@ module Readability
 
         if downcased_likely_siblings.include?(sibling.name.downcase)
           link_density = get_link_density(sibling)
-          node_content = sibling.text
+          node_content = sibling.text.strip
           node_length = node_content.length
 
           append = if node_length > 80 && link_density < 0.25
