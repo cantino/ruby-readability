@@ -751,4 +751,14 @@ describe Readability do
       expect { @doc.content }.to_not raise_error
     end
   end
+
+  describe "debug" do
+    it "can set a debug function, e.g. to send output to Rails logger" do
+      output = []
+      debug_fn = lambda { |str| output << str }
+
+      Readability::Document.new(@simple_html_fixture, debug: debug_fn).content
+      expect(output).not_to be_empty
+    end
+  end
 end

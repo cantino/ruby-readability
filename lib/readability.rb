@@ -372,7 +372,11 @@ module Readability
     end
 
     def debug(str)
-      puts str if options[:debug]
+      if options[:debug].respond_to?(:call)
+        options[:debug].call(str)
+      elsif options[:debug]
+        puts str
+      end
     end
 
     def remove_unlikely_candidates!
