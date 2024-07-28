@@ -21,7 +21,7 @@ module Readability
       :elements_to_score          => ["p", "td", "pre"],
       :likely_siblings            => ["p"]
     }.freeze
-    
+
     REGEXES = {
         :unlikelyCandidatesRe => /combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup/i,
         :okMaybeItsACandidateRe => /and|article|body|column|main|shadow/i,
@@ -35,7 +35,7 @@ module Readability
         :killBreaksRe => /(<br\s*\/?>(\s|&nbsp;?)*){1,}/,
         :videoRe => /http:\/\/(www\.)?(youtube|vimeo)\.com/i
     }
-    
+
     attr_accessor :options, :html, :best_candidate, :candidates, :best_candidate_has_image
 
     def initialize(input, options = {})
@@ -50,7 +50,7 @@ module Readability
       @input = @input.gsub(REGEXES[:replaceBrsRe], '</p><p>').gsub(REGEXES[:replaceFontsRe], '<\1span>')
       @remove_unlikely_candidates = @options[:remove_unlikely_candidates]
       @weight_classes = @options[:weight_classes]
-      @clean_conditionally = @options[:clean_conditionally]
+      @clean_conditionally = !!@options[:clean_conditionally]
       @best_candidate_has_image = true
       make_html
       handle_exclusions!(@options[:whitelist], @options[:blacklist])
@@ -145,11 +145,11 @@ module Readability
 
       (list_images.empty? and content != @html) ? images(@html, true) : list_images
     end
-    
+
     def images_with_fqdn_uris!(source_uri)
       images_with_fqdn_uris(@html, source_uri)
     end
-    
+
     def images_with_fqdn_uris(document = @html.dup, source_uri)
       uri = URI.parse(source_uri)
       host = uri.host
@@ -161,7 +161,7 @@ module Readability
       images = []
       document.css("img").each do |elem|
         begin
-          elem['src'] = URI.join(base,elem['src']).to_s if URI.parse(elem['src']).host == nil 
+          elem['src'] = URI.join(base,elem['src']).to_s if URI.parse(elem['src']).host == nil
           images << elem['src'].to_s
         rescue URI::InvalidURIError => exc
           elem.remove
@@ -271,7 +271,7 @@ module Readability
 
         if downcased_likely_siblings.include?(sibling.name.downcase)
           link_density = get_link_density(sibling)
-          node_content = sibling.text
+          node_content = sibling.text.strip
           node_length = node_content.length
 
           append = if node_length > 80 && link_density < 0.25
@@ -372,7 +372,11 @@ module Readability
     end
 
     def debug(str)
-      puts str if options[:debug]
+      if options[:debug].respond_to?(:call)
+        options[:debug].call(str)
+      elsif options[:debug]
+        puts str
+      end
     end
 
     def remove_unlikely_candidates!
@@ -426,7 +430,8 @@ module Readability
 
       # We'll sanitize all elements using a whitelist
       base_whitelist = @options[:tags] || %w[div p]
-      all_whitelisted = base_whitelist.include?("*")
+      all_tags_whitelisted = base_whitelist.include?("*")
+      all_attr_whitelisted = @options[:attributes] && @options[:attributes].include?("*")
 
       # We'll add whitespace instead of block elements,
       # so a<br>b will have a nice space between them
@@ -440,8 +445,8 @@ module Readability
 
       ([node] + node.css("*")).each do |el|
         # If element is in whitelist, delete all its attributes
-        if all_whitelisted || whitelist[el.node_name]
-          el.attributes.each { |a, x| el.delete(a) unless @options[:attributes] && @options[:attributes].include?(a.to_s) }
+        if all_tags_whitelisted || whitelist[el.node_name]
+          el.attributes.each { |a, x| el.delete(a) unless @options[:attributes] && @options[:attributes].include?(a.to_s) } unless all_attr_whitelisted
 
           # Otherwise, replace the element with its contents
         else
@@ -470,29 +475,42 @@ module Readability
 
     def clean_conditionally(node, candidates, selector)
       return unless @clean_conditionally
+
       node.css(selector).each do |el|
         weight = class_weight(el)
         content_score = candidates[el] ? candidates[el][:content_score] : 0
         name = el.name.downcase
-        
+        remove = false
+        message = nil
+
         if weight + content_score < 0
-          el.remove
-          debug("Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because score + content score was less than zero.")
+          remove = true
+          message = "Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because score + content score was less than zero."
         elsif el.text.count(",") < 10
           counts = %w[p img li a embed input].inject({}) { |m, kind| m[kind] = el.css(kind).length; m }
           counts["li"] -= 100
 
           # For every img under a noscript tag discount one from the count to avoid double counting
           counts["img"] -= el.css("noscript").css("img").length
-                
+
           content_length = el.text.strip.length  # Count the text length excluding any surrounding whitespace
           link_density = get_link_density(el)
 
           reason = clean_conditionally_reason?(name, counts, content_length, options, weight, link_density)
           if reason
-            debug("Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because it has #{reason}.")
-            el.remove
+            message = "Conditionally cleaned #{name}##{el[:id]}.#{el[:class]} with weight #{weight} and content score #{content_score} because it has #{reason}."
+            remove = true
           end
+        end
+
+        if options[:clean_conditionally].respond_to?(:call)
+          context = { remove: remove, message: message, weight: weight, content_score: content_score, el: el }
+          remove = options[:clean_conditionally].call(context) # Allow the user to override the decision for whether to remove the element.
+        end
+
+        if remove
+          debug(message || "Conditionally cleaned by user-specified function.")
+          el.remove
         end
       end
     end

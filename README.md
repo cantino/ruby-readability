@@ -41,7 +41,7 @@ You may provide options to `Readability::Document.new`, including:
 * `:remove_empty_nodes`: remove `<p>` tags that have no text content; also
   removes `<p>` tags that contain only images;
 * `:attributes`: whitelist of allowed attributes;
-* `:debug`: provide debugging output, defaults false;
+* `:debug`: provide debugging output, defaults false; supports setting a Proc;
 * `:encoding`: if the page is of a known encoding, you can specify it; if left
    unspecified, the encoding will be guessed (only in Ruby 1.9.x). If you wish
    to disable guessing, supply `:do_not_guess_encoding => true`;
