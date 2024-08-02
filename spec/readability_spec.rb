@@ -516,6 +516,35 @@ describe Readability do
       expect(@doc.content).to include("should be included")
       expect(@doc.content).not_to include("too short when stripped")
     end
+
+    it "climbs the DOM tree to the closest ancestor that has siblings when checking for related siblings" do
+      @doc = Readability::Document.new(<<-HTML, min_text_length: 1, elements_to_score: ["h1", "p"], likely_siblings: ["section"])
+        <html>
+          <head>
+            <title>title!</title>
+          </head>
+          <body>
+            <div> <!-- This is the closest node of the best candidate that has siblings. -->
+              <div>
+                <section>
+                  <p>Paragraph 1</p>
+                  #{'<p>Paragraph 2</p>' * 10} <!-- Ensure this section remains the best_candidate. -->
+                </section>
+              </div>
+            </div>
+            <section>
+              <p>This paragraph is longer than 80 characters and inside a section that is a sibling of the ancestor node.</p>
+              <p>The likely_siblings now include the section tag so it should be included in the output.</p>
+            </section>
+            #{'<a href="/">This link lowers the body score.</a>' * 5}
+          </body>
+        </html>
+      HTML
+
+      expect(@doc.content).to include("Paragraph 1")
+      expect(@doc.content).to include("Paragraph 2")
+      expect(@doc.content).to include("should be included")
+    end
   end
 
   describe "the cant_read.html fixture" do

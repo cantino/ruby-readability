@@ -264,9 +264,11 @@ module Readability
       sibling_score_threshold = [10, best_candidate[:content_score] * 0.2].max
       downcased_likely_siblings = options[:likely_siblings].map(&:downcase)
       output = Nokogiri::XML::Node.new('div', @html)
-      best_candidate[:elem].parent.children.each do |sibling|
+      node = closest_node_with_siblings(best_candidate[:elem])
+
+      node.parent.children.each do |sibling|
         append = false
-        append = true if sibling == best_candidate[:elem]
+        append = true if sibling == node
         append = true if candidates[sibling] && candidates[sibling][:content_score] >= sibling_score_threshold
 
         if downcased_likely_siblings.include?(sibling.name.downcase)
@@ -289,6 +291,23 @@ module Readability
       end
 
       output
+    end
+
+    def closest_node_with_siblings(element)
+      node = element
+
+      until node.node_name == 'body'
+        siblings = node.parent.children
+        non_empty = siblings.reject { |sibling| sibling.text? && sibling.text.strip.empty? }
+
+        if non_empty.size > 1
+          return node
+        else
+          node = node.parent
+        end
+      end
+
+      node
     end
 
     def select_best_candidate(candidates)
