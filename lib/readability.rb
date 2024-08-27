@@ -19,7 +19,8 @@ module Readability
       :blacklist                  => nil,
       :whitelist                  => nil,
       :elements_to_score          => ["p", "td", "pre"],
-      :likely_siblings            => ["p"]
+      :likely_siblings            => ["p"],
+      :ignore_redundant_nesting   => false
     }.freeze
 
     REGEXES = {
@@ -264,7 +265,16 @@ module Readability
       sibling_score_threshold = [10, best_candidate[:content_score] * 0.2].max
       downcased_likely_siblings = options[:likely_siblings].map(&:downcase)
       output = Nokogiri::XML::Node.new('div', @html)
-      node = closest_node_with_siblings(best_candidate[:elem])
+
+      # If the best candidate is the only element in its parent then we will never find any siblings. Therefore,
+      # find the closest ancestor that has siblings (if :ignore_redundant_nesting is true). This improves the
+      # related content detection, but could lead to false positives. Not supported in arc90's readability.
+      node =
+        if options[:ignore_redundant_nesting]
+          closest_node_with_siblings(best_candidate[:elem])
+        else
+          best_candidate[:elem] # This is the default behaviour for consistency with arc90's readability.
+        end
 
       node.parent.children.each do |sibling|
         append = false

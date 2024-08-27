@@ -518,7 +518,7 @@ describe Readability do
     end
 
     it "climbs the DOM tree to the closest ancestor that has siblings when checking for related siblings" do
-      @doc = Readability::Document.new(<<-HTML, min_text_length: 1, elements_to_score: ["h1", "p"], likely_siblings: ["section"])
+      @doc = Readability::Document.new(<<-HTML, min_text_length: 1, elements_to_score: ["h1", "p"], likely_siblings: ["section"], ignore_redundant_nesting: true)
         <html>
           <head>
             <title>title!</title>
