@@ -9,6 +9,10 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/cantino/ruby-readability"
   s.summary     = %q{Port of arc90's readability project to ruby}
   s.description = %q{Port of arc90's readability project to ruby}
+  s.metadata    = {
+    "bug_tracker_uri" => "https://github.com/cantino/ruby-readability/issues",
+    "source_code_uri" => "https://github.com/cantino/ruby-readability",
+  }
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
