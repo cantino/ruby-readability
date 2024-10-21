@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'open-uri'
 require 'optparse'
-require File.dirname(__FILE__) + '/../lib/readability'
+require_relative '../lib/readability'
 
 options = { :debug => false, :images => false }
 options_parser = OptionParser.new do |opts|
@@ -28,7 +28,7 @@ if ARGV.length != 1
   exit 1
 end
 
-text = open(ARGV.first).read
+text = URI.parse(ARGV.first).read
 params = if options[:images]
   { :tags => %w[div p img a],
     :attributes => %w[src href],
